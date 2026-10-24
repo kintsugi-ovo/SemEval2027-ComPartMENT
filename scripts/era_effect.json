@@ -1,0 +1,70 @@
+{
+ "en-nn": {
+  "ModAvg": {
+   "n_sent": 3480,
+   "coverage": 0.067,
+   "n_with_signal": 234,
+   "rho_global_on_signalled": 0.007,
+   "n_targets_within": 174,
+   "rho_within": 0.028,
+   "frac_within_pos": 0.477,
+   "rho_target_std": 0.078
+  },
+  "HeadAvg": {
+   "n_sent": 3480,
+   "coverage": 0.067,
+   "n_with_signal": 234,
+   "rho_global_on_signalled": -0.033,
+   "n_targets_within": 174,
+   "rho_within": -0.04,
+   "frac_within_pos": 0.425,
+   "rho_target_std": -0.096
+  }
+ },
+ "de-nn": {
+  "ModAvg": {
+   "n_sent": 3298,
+   "coverage": 0.362,
+   "n_with_signal": 1193,
+   "rho_global_on_signalled": 0.035,
+   "n_targets_within": 420,
+   "rho_within": -0.019,
+   "frac_within_pos": 0.44,
+   "rho_target_std": 0.006
+  },
+  "HeadAvg": {
+   "n_sent": 3298,
+   "coverage": 0.362,
+   "n_with_signal": 1193,
+   "rho_global_on_signalled": -0.11,
+   "n_targets_within": 420,
+   "rho_within": -0.024,
+   "frac_within_pos": 0.455,
+   "rho_target_std": 0.153
+  }
+ },
+ "en-pv": {
+  "Avg": {
+   "n_sent": 1557,
+   "coverage": 0.062,
+   "n_with_signal": 97,
+   "rho_global_on_signalled": 0.024,
+   "n_targets_within": 72,
+   "rho_within": -0.008,
+   "frac_within_pos": 0.472,
+   "rho_target_std": -0.169
+  }
+ },
+ "de-pv": {
+  "Avg": {
+   "n_sent": 1490,
+   "coverage": 0.376,
+   "n_with_signal": 560,
+   "rho_global_on_signalled": 0.035,
+   "n_targets_within": 151,
+   "rho_within": 0.066,
+   "frac_within_pos": 0.536,
+   "rho_target_std": 0.018
+  }
+ }
+}

@@ -1,0 +1,56 @@
+{
+  "en-nn/ModAvg": {
+    "tau2": 0.0581,
+    "sigma2": 0.2418,
+    "snr": 0.1937,
+    "m2_perfect": 0.1759,
+    "m2_perfect_sd": 0.0475,
+    "m2_realistic": 0.0515,
+    "m2_realistic_sd": 0.0465
+  },
+  "en-nn/HeadAvg": {
+    "tau2": 0.0745,
+    "sigma2": 0.2146,
+    "snr": 0.2577,
+    "m2_perfect": 0.2351,
+    "m2_perfect_sd": 0.0446,
+    "m2_realistic": 0.081,
+    "m2_realistic_sd": 0.0476
+  },
+  "de-nn/ModAvg": {
+    "tau2": 0.0,
+    "sigma2": 0.1264,
+    "snr": 0.0,
+    "m2_perfect": 0.0017,
+    "m2_perfect_sd": 0.0666,
+    "m2_realistic": 0.0007,
+    "m2_realistic_sd": 0.0464
+  },
+  "de-nn/HeadAvg": {
+    "tau2": 0.0,
+    "sigma2": 0.1783,
+    "snr": 0.0,
+    "m2_perfect": 0.001,
+    "m2_perfect_sd": 0.0672,
+    "m2_realistic": 0.0018,
+    "m2_realistic_sd": 0.0471
+  },
+  "en-pv/Avg": {
+    "tau2": 0.3821,
+    "sigma2": 0.2508,
+    "snr": 0.6037,
+    "m2_perfect": 0.5734,
+    "m2_perfect_sd": 0.0553,
+    "m2_realistic": 0.4128,
+    "m2_realistic_sd": 0.068
+  },
+  "de-pv/Avg": {
+    "tau2": 0.2102,
+    "sigma2": 0.2382,
+    "snr": 0.4688,
+    "m2_perfect": 0.437,
+    "m2_perfect_sd": 0.0663,
+    "m2_realistic": 0.2571,
+    "m2_realistic_sd": 0.0736
+  }
+}

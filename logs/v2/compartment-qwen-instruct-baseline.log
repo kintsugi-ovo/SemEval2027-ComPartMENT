@@ -1,0 +1,643 @@
+8.3s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+8.3s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+8.3s 3 0.00s - to python to disable frozen modules.
+8.3s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+9.0s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+9.0s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+9.0s 7 0.00s - to python to disable frozen modules.
+9.0s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+10.3s 9 [环境] CUDA_VISIBLE_DEVICES=0 （本进程只看见这 1 张卡 → Trainer 不会套 nn.DataParallel → 梯度显存不翻倍）
+48.9s 10 torch 2.11.0+cu128
+48.9s 11 绘图字体: Liberation Sans | 图注语言: en (English only)
+49.0s 12 {
+49.0s 13 "MODEL_KEY": "qwen",
+49.0s 14 "MAX_LENGTH": 160,
+49.0s 15 "BATCH_SIZE": 8,
+49.0s 16 "LR": 2e-05,
+49.0s 17 "EPOCHS": 3,
+49.0s 18 "JOINT_EPOCHS": 5,
+49.0s 19 "WARMUP_RATIO": 0.05,
+49.0s 20 "HUBER_DELTA": 2.0,
+49.0s 21 "LAMBDA_RANK": 0.0,
+49.0s 22 "MU_STD": 0.05,
+49.0s 23 "BEST_METRIC_KEY": "合计|_综合分",
+49.0s 24 "SMOKE": false,
+49.0s 25 "RUN_PLAN": [
+49.0s 26 [
+49.0s 27 "single",
+49.0s 28 "en-nn"
+49.0s 29 ],
+49.0s 30 [
+49.0s 31 "single",
+49.0s 32 "de-nn"
+49.0s 33 ],
+49.0s 34 [
+49.0s 35 "single",
+49.0s 36 "en-pv"
+49.0s 37 ],
+49.0s 38 [
+49.0s 39 "single",
+49.0s 40 "de-pv"
+49.0s 41 ],
+49.0s 42 [
+49.0s 43 "joint",
+49.0s 44 null
+49.0s 45 ]
+49.0s 46 ]
+49.0s 47 }
+49.5s 48 {'device': 'cuda', 'bf16': False, 'fp16': True, 'tf32': True, 'workers': 2, 'torch': '2.11.0+cu128', 'platform': 'Linux', 'python': '3.13.15'}
+49.5s 49 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5 | 原生bf16=False | fp16=True
+49.5s 50 物理卡：1 张可见（合计 14.6 GiB）；本 notebook 绑定物理 GPU0，在进程内编号为 cuda:0
+49.5s 51 → 单卡模式：Trainer 看到 n_gpu=1 → **不会**自动套 nn.DataParallel（DataParallel 的反向传播会额外复制一整份梯度，Qwen-1.5B 要多花 5.75 GiB）
+49.6s 52 WORK_DIR  = /kaggle/working
+49.6s 53 DATA_ROOT = /kaggle/input/datasets/kintsugi0v0/compartment-data/train
+49.6s 54 OUTPUT_ROOT = /kaggle/working/outputs
+49.8s 55 en-nn 原始形状: (3480, 9)
+49.8s 56 列名: ['ContextID', 'Compound', 'Mod', 'Head', 'ModAvg', 'ModStd', 'HeadAvg', 'HeadStd', 'Context']
+49.8s 57 Compound  ModAvg  HeadAvg                                                                                                                                                                    Context
+49.8s 58 0  account book     3.5      3.8  Correspondence, letterbooks, account books, and writings together with family papers concerning Charles, Clement, Edward, James, Nicholas, Thomas, and William S. Biddle.
+49.8s 59 1  account book     3.0      3.9                                                                                               Let me see, (looking at my account book ) that is two weeks wages making $8.
+49.8s 60 2  account book     4.4      4.1                              She drops her black silk b
+49.8s 61 
+49.8s 62 --- 标签分布 ---
+49.8s 63 ModAvg: 均值 3.659 | 标准差 0.997 | 最小 0.00 | 最大 5.00
+49.8s 64 HeadAvg: 均值 3.913 | 标准差 0.887 | 最小 0.00 | 最大 5.00
+49.8s 65 
+49.8s 66 --- 句子长度（词）分位 ---
+49.8s 67 {'p50': 25.0, 'p90': 39.0, 'p95': 42.0, 'p99': 45.0, 'max': 48.0}
+49.8s 68 → 句子很短，MAX_LENGTH=160 足够，不会因为截断丢掉关键信息。
+50.0s 69 [en-nn] 形状 (3480, 12) | 目标数 444 | 每目标例句数中位 8.0 | ContextID 是否还在: False
+50.0s 70 [de-nn] 形状 (3298, 12) | 目标数 461 | 每目标例句数中位 6.0 | ContextID 是否还在: False
+50.1s 71 [en-pv] 形状 (1557, 10) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+50.2s 72 [de-pv] 形状 (1490, 10) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+50.2s 73 归一化与词干工具就绪
+50.3s 74 MWE   : potato cake
+50.3s 75 原句  : Cakes of white flour and of whole meal are to be seen, as in other places; but potato cakes belong more especially to Ireland.
+50.3s 76 
+50.3s 77 句子切成 24 个词: ['cakes', 'of', 'white', 'flour', 'and', 'of', 'whole', 'meal', 'are', 'to', 'be', 'seen', 'as', 'in']
+50.3s 78 
+50.3s 79 归一化与词干:
+50.3s 80 fold(MWE) = potatocake
+50.3s 81 词干键(复合词) = ['pot', 'pota', 'potat']
+50.3s 82 
+50.3s 83 最小版本（只做 S0 精确匹配）: 命中 → 'potato cake'
+50.3s 84 → 精确匹配在复合词上够用，但在小品词动词上只能覆盖约三分之一；
+50.3s 85 所以下一格把级联封装成一个函数，逐级放宽。
+50.3s 86 策略  : S0 精确匹配
+50.3s 87 标记后: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+50.3s 88 最终输入: MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+50.5s 89 en-nn 定位覆盖（n=3480）成功标出 span 100.0% | S0 精确匹配 3432 | S3 英文词干前缀 48
+50.7s 90 de-nn 定位覆盖（n=3298）成功标出 span 96.0% | S0 精确匹配 3162 | S1 历史转写还原 132 | S2a 德语前缀型(屈折) 4
+50.8s 91 en-pv 定位覆盖（n=1557）成功标出 span 86.3% | S3 英文词干前缀 819 | S0 精确匹配 523 | S5 未定位 214 | S4 相邻窗口 1
+50.9s 92 de-pv 定位覆盖（n=1490）成功标出 span 77.7% | S2a 德语前缀型(屈折) 735 | S5 未定位 332 | S0 精确匹配 310 | S2b 德语后置型(动词分离) 112 | S1 历史转写还原 1
+51.1s 93 官方源连通性探测: 通  (https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct)
+51.1s 94 → 使用官方 huggingface.co（云端 GPU 直连即走这条）
+51.4s 95 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+51.4s 96 
+51.4s 97 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+68.6s 98 权重就绪: Qwen/Qwen2.5-1.5B-Instruct @ https://huggingface.co
+68.6s 99 -> /root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+76.2s 100 tokenizer: Qwen2Tokenizer | pad: <|endoftext|> | padding_side: right
+81.9s 101 en-nn 训练集 (2801, 15) | 验证集 (679, 15)
+81.9s 102 目标交集: 0 （必须为 0）
+81.9s 103 en-nn·ModAvg: train 均值 3.669 | val 均值 3.615
+81.9s 104 en-nn·HeadAvg: train 均值 3.903 | val 均值 3.955
+81.9s 105 示例解码: MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+82.0s 106 序列长度: 中位 40 | 均值 41 | 最长 108
+82.0s 107 定长补齐到 160 的 token 总量: 448,160
+82.0s 108 动态补齐的 token 总量            : 166,969
+82.0s 109 → 动态补齐省下 62.7% 的 token，注意力开销按平方计，实际省得更多。
+82.0s 110 input_ids        shape=(4, 56) dtype=torch.int64
+82.0s 111 attention_mask   shape=(4, 56) dtype=torch.int64
+82.0s 112 labels           shape=(4, 2) dtype=torch.float32
+82.0s 113 loss_mask        shape=(4, 2) dtype=torch.float32
+82.0s 114 group_index      shape=(4,) dtype=torch.int64
+82.0s 115 subset_index     shape=(4,) dtype=torch.int64
+82.0s 116 
+82.0s 117 labels 样例   : [[4.400000095367432, 3.0999999046325684], [4.0, 4.599999904632568], [4.300000190734863, 2.299999952316284], [4.5, 4.800000190734863]]
+82.0s 118 loss_mask 样例: [[1.0, 1.0], [1.0, 1.0], [1.0, 1.0], [1.0, 1.0]]
+82.0s 119 subset_index  : [0, 0, 0, 0]
+82.0s 120 → labels 是 [B, 2] 的 float 张量，没有 -100 填充；loss_mask 标出哪一列真有标签。
+83.2s 121 主干类型: Qwen2Model
+83.2s 122 config: hidden_size=64 num_attention_heads=4 attention_head_size=- head_dim=-
+83.2s 123 last_hidden_state shape: (1, 18, 64)
+83.2s 124 → [batch, 序列长度, 隐层维度]。真正的「句子向量」还需要池化，这就是下面要做的。
+83.2s 125 from_pretrained 的精度参数名: torch_dtype
+83.3s 126 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+83.3s 127 
+83.3s 128 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+85.5s 129 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+87.4s 130 主干       : Qwen/Qwen2.5-1.5B-Instruct（SMOKE=False）
+87.4s 131 池化方式   : last
+87.4s 132 输出维度   : 2（统一 2 列）
+87.4s 133 总参数     : 1543.7M | 回归头 3.1K (0.0002%)
+87.4s 134 设备       : cuda
+88.2s 135 前向 logits shape: (2, 2)
+88.2s 136 是否含 NaN: False
+88.2s 137 type-level 基线：指标1 Spearman = 0.786 | 指标3 RMSE = 0.517
+88.2s 138 组内预测 std 的唯一取值个数 = 1（0 表示每个目标内完全相同）
+88.2s 139 → 指标 2 的输入是常数数组，相关系数**未定义（nan）**：该系统在指标 2 上直接出局。
+88.2s 140 → 这就是为什么本任务必须「逐例句预测」，不能先聚合成目标级分数再回归。
+88.4s 141 ① 完美预测      : 指标1=1.000 指标2=1.000 RMSE=0.000  ✓
+88.4s 142 ② 常数预测      : 指标1=nan 指标2=nan（未定义）              ✓
+88.4s 143 ③ 反向预测      : 指标1=-1.000                              ✓
+88.4s 144 ④ 人工 std 恒为 0: 指标2=nan（被解释变量无方差）           ✓
+88.4s 145 → 指标实现通过四组断言，接下来所有结果都由它产出。
+88.4s 146 transformers 兼容层: {'eval_key': 'eval_strategy', 'tokenizer_kw': 'processing_class', 'save_only_model': True}
+88.5s 147 L_huber = 0.2862   绝对值误差
+88.5s 148 L_rank  = 0.1772   组内相对顺序（目标0真实 1<4，预测 1.5>3.0 → 被罚）
+88.5s 149 L_std   = 1.8450   组内离散程度（人工组内 std=3.0，预测组内 std=1.5 → 被罚）
+88.5s 150 → 三项各自惩罚不同的东西；λ、μ 为 0 时只有第一项生效，即纯回归基线。
+88.6s 151 CompartmentTrainer / TargetGroupedSampler 已定义
+88.6s 152 Trainer 工厂与档位探测就绪
+88.7s 153 ==============================================================================
+88.7s 154 运行 1/5：single_en-nn  |  参与子集 ['en-nn']
+88.7s 155 ==============================================================================
+94.3s 156 训练 2801 条 | 验证 679 条 | 评测设置 2 个
+94.3s 157 本次运行轮数 = 3（单子集诊断）
+96.2s 158 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+98.1s 159 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+98.1s 160 显存预算：Qwen/Qwen2.5-1.5B-Instruct | 1544M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+98.1s 161 档位表（固定开销与 batch 无关，降 batch 救不了）：
+98.1s 162 档   含义                                       固定    bs=1 需    bs=8 需  判定
+98.1s 163 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+98.1s 164 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+98.1s 165 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+98.1s 166 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+98.1s 167 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+98.1s 168 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+98.1s 169 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+98.1s 170 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 11.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+98.7s 171 ==============================================================================
+98.7s 172 试探档位 t3：全参微调 · Adafactor · 无 AMP | optim=adafactor | 可训层比例=100% | 混合精度=关 | gradient_checkpointing=True | 固定开销 11.8 GiB（按参考 1550M 算）
+98.7s 173 ==============================================================================
+100.6s 174 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+107.6s 175 {'loss': '4.368', 'grad_norm': '116.4', 'learning_rate': '3.846e-07', 'epoch': '0.005698'}
+107.6s 176 {'train_runtime': '4.568', 'train_samples_per_second': '3.503', 'train_steps_per_second': '0.438', 'train_loss': '4.368', 'epoch': '0.005698'}
+107.6s 177 t3 micro-batch=8: 通过，峰值显存 13.26 GiB，每样本 310.13 ms
+108.9s 178 loss                   : 4.1663   （NaN? False）
+108.9s 179 可训练参数             : 340
+108.9s 180 拿到非零梯度的参数     : 340  (100.0%)
+108.9s 181 回归头权重梯度绝对值和 : 2800.21   （必须 > 0，否则头没接上）
+108.9s 182 主干首参数梯度绝对值和 : 2234.92   （必须 > 0，否则主干被冻结）
+108.9s 183 → 梯度流验证通过。
+111.6s 184 {'loss': '4.348', 'grad_norm': '147.9', 'learning_rate': '0', 'epoch': '0.002849'}
+113.5s 185 {'loss': '3.784', 'grad_norm': '128.7', 'learning_rate': '3.846e-07', 'epoch': '0.005698'}
+115.7s 186 {'loss': '4.135', 'grad_norm': '221', 'learning_rate': '7.692e-07', 'epoch': '0.008547'}
+117.4s 187 {'loss': '3.609', 'grad_norm': '234.7', 'learning_rate': '1.154e-06', 'epoch': '0.0114'}
+119.6s 188 {'loss': '2.414', 'grad_norm': '300.1', 'learning_rate': '1.538e-06', 'epoch': '0.01425'}
+119.6s 189 {'train_runtime': '9.998', 'train_samples_per_second': '4.001', 'train_steps_per_second': '0.5', 'train_loss': '3.658', 'epoch': '0.01425'}
+119.9s 190 冒烟训练 loss 轨迹: 3.6581929206848143
+119.9s 191 → 冒烟测试通过（每个 Trainer 都是独立构造 args，不复用对象）。
+120.6s 192 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）| micro-batch=8 | 梯度累积=1 | 有效 batch=8（目标 8） | 峰值显存约 13.26 GiB
+120.6s 193 （档位由「两条基线中较大者的参数量」选定 → 同一台机器上两条基线必然同档，对照口径不会被显存差异污染）
+120.6s 194 训练时长投影：5 次运行共约 62,880.0 个样本·轮 → 约 7.0 小时（Kaggle 上限 12 小时，预算 11.0 小时）
+122.8s 195 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+156.9s 196 {'eval_loss': '4.049', 'eval_model_preparation_time': '0.0057', 'eval_en-nn|ModAvg_指标1_ρ': '0.01084', 'eval_en-nn|ModAvg_指标2_ρ': '0.02317', 'eval_en-nn|ModAvg_指标3_RMSE': '3.342', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '-0.0146', 'eval_en-nn|HeadAvg_指标2_ρ': '-0.006622', 'eval_en-nn|HeadAvg_指标3_RMSE': '2.961', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_合计|_指标1_ρ': '-0.001881', 'eval_合计|_指标2_ρ': '0.008274', 'eval_合计|_指标3_RMSE': '3.151', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 679, 'eval_合计|_目标数': 89, 'eval_合计|_综合分': '0.006392', 'eval_runtime': '31.76', 'eval_samples_per_second': '21.38', 'eval_steps_per_second': '1.354', 'epoch': 0}
+156.9s 197 随机初始化模型基线（31.8s）: 指标1 ρ=-0.0019 | 指标2 ρ=0.0083 | RMSE=3.1514
+156.9s 198 随机初始化时的评估 loss = 4.0494（图 F 的 epoch 0 起点）
+251.7s 199 {'loss': '1.647', 'grad_norm': '20.5', 'learning_rate': '1.615e-05', 'epoch': '0.1225'}
+344.3s 200 {'loss': '0.9238', 'grad_norm': '17.99', 'learning_rate': '1.934e-05', 'epoch': '0.245'}
+440.0s 201 {'loss': '0.5129', 'grad_norm': '13.19', 'learning_rate': '1.848e-05', 'epoch': '0.3675'}
+536.5s 202 {'loss': '0.3829', 'grad_norm': '10.06', 'learning_rate': '1.762e-05', 'epoch': '0.49'}
+633.1s 203 {'loss': '0.5017', 'grad_norm': '38.57', 'learning_rate': '1.676e-05', 'epoch': '0.6125'}
+728.8s 204 {'loss': '0.3765', 'grad_norm': '25.95', 'learning_rate': '1.59e-05', 'epoch': '0.735'}
+821.0s 205 {'loss': '0.5625', 'grad_norm': '10.89', 'learning_rate': '1.504e-05', 'epoch': '0.8575'}
+918.2s 206 {'loss': '0.4099', 'grad_norm': '7.397', 'learning_rate': '1.419e-05', 'epoch': '0.9801'}
+970.3s 207 {'eval_loss': '0.4983', 'eval_model_preparation_time': '0.0057', 'eval_en-nn|ModAvg_指标1_ρ': '0.3206', 'eval_en-nn|ModAvg_指标2_ρ': '0.05017', 'eval_en-nn|ModAvg_指标3_RMSE': '1.041', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.2377', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1354', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.9711', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_合计|_指标1_ρ': '0.2791', 'eval_合计|_指标2_ρ': '0.09278', 'eval_合计|_指标3_RMSE': '1.006', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 679, 'eval_合计|_目标数': 89, 'eval_合计|_综合分': '0.3719', 'eval_runtime': '37.93', 'eval_samples_per_second': '17.9', 'eval_steps_per_second': '1.134', 'epoch': '1'}
+1063.1s 208 {'loss': '0.3864', 'grad_norm': '5.015', 'learning_rate': '1.333e-05', 'epoch': '1.103'}
+1160.1s 209 {'loss': '0.3527', 'grad_norm': '5.205', 'learning_rate': '1.247e-05', 'epoch': '1.225'}
+1256.5s 210 {'loss': '0.2624', 'grad_norm': '11.38', 'learning_rate': '1.161e-05', 'epoch': '1.348'}
+1350.3s 211 {'loss': '0.2639', 'grad_norm': '21.65', 'learning_rate': '1.075e-05', 'epoch': '1.47'}
+1445.4s 212 {'loss': '0.2219', 'grad_norm': '22.49', 'learning_rate': '9.89e-06', 'epoch': '1.593'}
+1539.4s 213 {'loss': '0.3105', 'grad_norm': '11.58', 'learning_rate': '9.031e-06', 'epoch': '1.715'}
+1633.5s 214 {'loss': '0.2357', 'grad_norm': '2.518', 'learning_rate': '8.172e-06', 'epoch': '1.838'}
+1728.7s 215 {'loss': '0.2693', 'grad_norm': '5.37', 'learning_rate': '7.313e-06', 'epoch': '1.96'}
+1796.5s 216 {'eval_loss': '0.4329', 'eval_model_preparation_time': '0.0057', 'eval_en-nn|ModAvg_指标1_ρ': '0.4297', 'eval_en-nn|ModAvg_指标2_ρ': '0.1437', 'eval_en-nn|ModAvg_指标3_RMSE': '1.003', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4039', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1301', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.83', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_合计|_指标1_ρ': '0.4168', 'eval_合计|_指标2_ρ': '0.1369', 'eval_合计|_指标3_RMSE': '0.9163', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 679, 'eval_合计|_目标数': 89, 'eval_合计|_综合分': '0.5537', 'eval_runtime': '37.97', 'eval_samples_per_second': '17.88', 'eval_steps_per_second': '1.132', 'epoch': '2'}
+1871.2s 217 {'loss': '0.2092', 'grad_norm': '24.73', 'learning_rate': '6.454e-06', 'epoch': '2.083'}
+1966.2s 218 {'loss': '0.1199', 'grad_norm': '6.671', 'learning_rate': '5.594e-06', 'epoch': '2.205'}
+2061.7s 219 {'loss': '0.1332', 'grad_norm': '5.573', 'learning_rate': '4.735e-06', 'epoch': '2.328'}
+2157.2s 220 {'loss': '0.114', 'grad_norm': '2.511', 'learning_rate': '3.876e-06', 'epoch': '2.45'}
+2253.2s 221 {'loss': '0.08749', 'grad_norm': '5.679', 'learning_rate': '3.017e-06', 'epoch': '2.573'}
+2347.1s 222 {'loss': '0.1585', 'grad_norm': '37.89', 'learning_rate': '2.158e-06', 'epoch': '2.695'}
+2443.1s 223 {'loss': '0.1397', 'grad_norm': '5.106', 'learning_rate': '1.299e-06', 'epoch': '2.818'}
+2536.5s 224 {'loss': '0.09718', 'grad_norm': '2.048', 'learning_rate': '4.396e-07', 'epoch': '2.94'}
+2621.0s 225 {'eval_loss': '0.3822', 'eval_model_preparation_time': '0.0057', 'eval_en-nn|ModAvg_指标1_ρ': '0.4276', 'eval_en-nn|ModAvg_指标2_ρ': '0.1141', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9005', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4309', 'eval_en-nn|HeadAvg_指标2_ρ': '0.06433', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.8301', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_合计|_指标1_ρ': '0.4293', 'eval_合计|_指标2_ρ': '0.08922', 'eval_合计|_指标3_RMSE': '0.8653', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 679, 'eval_合计|_目标数': 89, 'eval_合计|_综合分': '0.5185', 'eval_runtime': '37.96', 'eval_samples_per_second': '17.89', 'eval_steps_per_second': '1.133', 'epoch': '3'}
+2631.1s 226 {'train_runtime': '2474', 'train_samples_per_second': '3.396', 'train_steps_per_second': '0.426', 'train_loss': '0.3574', 'epoch': '3'}
+2651.1s 227 训练完成，用时 41.6 分钟，loss=0.3574
+2651.1s 228 日志快照：训练点 24 个 | 评估点 3 个
+2728.0s 229 {'eval_loss': '0.4329', 'eval_model_preparation_time': '0.0057', 'eval_en-nn|ModAvg_指标1_ρ': '0.4297', 'eval_en-nn|ModAvg_指标2_ρ': '0.1437', 'eval_en-nn|ModAvg_指标3_RMSE': '1.003', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4039', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1301', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.83', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_合计|_指标1_ρ': '0.4168', 'eval_合计|_指标2_ρ': '0.1369', 'eval_合计|_指标3_RMSE': '0.9163', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 679, 'eval_合计|_目标数': 89, 'eval_合计|_综合分': '0.5537', 'eval_runtime': '37.91', 'eval_samples_per_second': '17.91', 'eval_steps_per_second': '1.134', 'epoch': '3'}
+2728.0s 230 --- 训练后指标 ---
+2728.0s 231 en-nn|ModAvg_指标1_ρ                 0.4297
+2728.0s 232 en-nn|ModAvg_指标2_ρ                 0.1437
+2728.0s 233 en-nn|ModAvg_指标3_RMSE              1.0026
+2728.0s 234 en-nn|HeadAvg_指标1_ρ                0.4039
+2728.0s 235 en-nn|HeadAvg_指标2_ρ                0.1301
+2728.0s 236 en-nn|HeadAvg_指标3_RMSE             0.8300
+2728.0s 237 合计|_指标1_ρ                          0.4168
+2728.0s 238 合计|_指标2_ρ                          0.1369
+2728.0s 239 合计|_指标3_RMSE                       0.9163
+2728.0s 240 合计|_综合分                            0.5537
+2728.0s 241 → 运行 single_en-nn 完成，产物在 /kaggle/working/outputs/qwen/single_en-nn
+2729.0s 242 ==============================================================================
+2729.0s 243 运行 2/5：single_de-nn  |  参与子集 ['de-nn']
+2729.0s 244 ==============================================================================
+2734.5s 245 训练 2667 条 | 验证 631 条 | 评测设置 2 个
+2734.5s 246 本次运行轮数 = 3（单子集诊断）
+2736.4s 247 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+2738.3s 248 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+2738.3s 249 显存预算：Qwen/Qwen2.5-1.5B-Instruct | 1544M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+2738.3s 250 档位表（固定开销与 batch 无关，降 batch 救不了）：
+2738.3s 251 档   含义                                       固定    bs=1 需    bs=8 需  判定
+2738.3s 252 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+2738.3s 253 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+2738.3s 254 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+2738.3s 255 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+2738.3s 256 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+2738.3s 257 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+2738.3s 258 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+2738.3s 259 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 11.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+2740.5s 260 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+2792.5s 261 {'eval_loss': '1.567', 'eval_model_preparation_time': '0.0055', 'eval_de-nn|ModAvg_指标1_ρ': '-0.08207', 'eval_de-nn|ModAvg_指标2_ρ': '0.0463', 'eval_de-nn|ModAvg_指标3_RMSE': '2.134', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '-0.05502', 'eval_de-nn|HeadAvg_指标2_ρ': '-0.04161', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.432', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_合计|_指标1_ρ': '-0.06854', 'eval_合计|_指标2_ρ': '0.002341', 'eval_合计|_指标3_RMSE': '1.783', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 631, 'eval_合计|_目标数': 91, 'eval_合计|_综合分': '-0.0662', 'eval_runtime': '49.73', 'eval_samples_per_second': '12.69', 'eval_steps_per_second': '0.804', 'epoch': 0}
+2792.5s 262 随机初始化模型基线（49.7s）: 指标1 ρ=-0.0685 | 指标2 ρ=0.0023 | RMSE=1.7832
+2792.5s 263 随机初始化时的评估 loss = 1.5674（图 F 的 epoch 0 起点）
+2909.7s 264 {'loss': '0.8399', 'grad_norm': '75.28', 'learning_rate': '1.6e-05', 'epoch': '0.1228'}
+3031.2s 265 {'loss': '0.8108', 'grad_norm': '59.57', 'learning_rate': '1.935e-05', 'epoch': '0.2455'}
+3155.8s 266 {'loss': '0.6161', 'grad_norm': '20.6', 'learning_rate': '1.849e-05', 'epoch': '0.3683'}
+3276.6s 267 {'loss': '0.4647', 'grad_norm': '7.462', 'learning_rate': '1.763e-05', 'epoch': '0.491'}
+3399.8s 268 {'loss': '0.4545', 'grad_norm': '11.97', 'learning_rate': '1.676e-05', 'epoch': '0.6138'}
+3520.5s 269 {'loss': '0.3533', 'grad_norm': '9.517', 'learning_rate': '1.59e-05', 'epoch': '0.7365'}
+3643.8s 270 {'loss': '0.5156', 'grad_norm': '12', 'learning_rate': '1.504e-05', 'epoch': '0.8593'}
+3762.2s 271 {'loss': '0.424', 'grad_norm': '9.361', 'learning_rate': '1.418e-05', 'epoch': '0.982'}
+3829.7s 272 {'eval_loss': '0.7322', 'eval_model_preparation_time': '0.0055', 'eval_de-nn|ModAvg_指标1_ρ': '0.1459', 'eval_de-nn|ModAvg_指标2_ρ': '0.1236', 'eval_de-nn|ModAvg_指标3_RMSE': '0.644', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.2958', 'eval_de-nn|HeadAvg_指标2_ρ': '0.05547', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.752', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_合计|_指标1_ρ': '0.2209', 'eval_合计|_指标2_ρ': '0.08952', 'eval_合计|_指标3_RMSE': '1.198', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 631, 'eval_合计|_目标数': 91, 'eval_合计|_综合分': '0.3104', 'eval_runtime': '51.52', 'eval_samples_per_second': '12.25', 'eval_steps_per_second': '0.776', 'epoch': '1'}
+3944.6s 273 {'loss': '0.4011', 'grad_norm': '24.23', 'learning_rate': '1.332e-05', 'epoch': '1.105'}
+4065.6s 274 {'loss': '0.3113', 'grad_norm': '15.01', 'learning_rate': '1.246e-05', 'epoch': '1.228'}
+4188.4s 275 {'loss': '0.3315', 'grad_norm': '10.49', 'learning_rate': '1.16e-05', 'epoch': '1.35'}
+4308.8s 276 {'loss': '0.2988', 'grad_norm': '14.69', 'learning_rate': '1.074e-05', 'epoch': '1.473'}
+4431.1s 277 {'loss': '0.2265', 'grad_norm': '33.18', 'learning_rate': '9.874e-06', 'epoch': '1.596'}
+4550.6s 278 {'loss': '0.2947', 'grad_norm': '6.399', 'learning_rate': '9.013e-06', 'epoch': '1.719'}
+4671.4s 279 {'loss': '0.1901', 'grad_norm': '4.729', 'learning_rate': '8.151e-06', 'epoch': '1.841'}
+4794.9s 280 {'loss': '0.2158', 'grad_norm': '11.44', 'learning_rate': '7.29e-06', 'epoch': '1.964'}
+4879.1s 281 {'eval_loss': '0.3271', 'eval_model_preparation_time': '0.0055', 'eval_de-nn|ModAvg_指标1_ρ': '0.2132', 'eval_de-nn|ModAvg_指标2_ρ': '0.1547', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6235', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6534', 'eval_de-nn|HeadAvg_指标2_ρ': '0.2861', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9618', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_合计|_指标1_ρ': '0.4333', 'eval_合计|_指标2_ρ': '0.2204', 'eval_合计|_指标3_RMSE': '0.7926', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 631, 'eval_合计|_目标数': 91, 'eval_合计|_综合分': '0.6537', 'eval_runtime': '51.53', 'eval_samples_per_second': '12.24', 'eval_steps_per_second': '0.776', 'epoch': '2'}
+4974.7s 282 {'loss': '0.1976', 'grad_norm': '4.855', 'learning_rate': '6.429e-06', 'epoch': '2.087'}
+5096.3s 283 {'loss': '0.1226', 'grad_norm': '1.548', 'learning_rate': '5.567e-06', 'epoch': '2.21'}
+5217.2s 284 {'loss': '0.134', 'grad_norm': '11.32', 'learning_rate': '4.706e-06', 'epoch': '2.332'}
+5339.2s 285 {'loss': '0.1156', 'grad_norm': '1.124', 'learning_rate': '3.845e-06', 'epoch': '2.455'}
+5462.4s 286 {'loss': '0.14', 'grad_norm': '7.231', 'learning_rate': '2.983e-06', 'epoch': '2.578'}
+5584.1s 287 {'loss': '0.1739', 'grad_norm': '17.38', 'learning_rate': '2.122e-06', 'epoch': '2.701'}
+5700.2s 288 {'loss': '0.1137', 'grad_norm': '2.111', 'learning_rate': '1.261e-06', 'epoch': '2.823'}
+5822.7s 289 {'loss': '0.1677', 'grad_norm': '7.714', 'learning_rate': '3.992e-07', 'epoch': '2.946'}
+5925.4s 290 {'eval_loss': '0.3349', 'eval_model_preparation_time': '0.0055', 'eval_de-nn|ModAvg_指标1_ρ': '0.266', 'eval_de-nn|ModAvg_指标2_ρ': '0.441', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5982', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.658', 'eval_de-nn|HeadAvg_指标2_ρ': '0.3333', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.997', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_合计|_指标1_ρ': '0.462', 'eval_合计|_指标2_ρ': '0.3871', 'eval_合计|_指标3_RMSE': '0.7976', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 631, 'eval_合计|_目标数': 91, 'eval_合计|_综合分': '0.8492', 'eval_runtime': '51.44', 'eval_samples_per_second': '12.27', 'eval_steps_per_second': '0.778', 'epoch': '3'}
+5934.8s 291 {'train_runtime': '3142', 'train_samples_per_second': '2.546', 'train_steps_per_second': '0.319', 'train_loss': '0.3269', 'epoch': '3'}
+5936.1s 292 训练完成，用时 52.4 分钟，loss=0.3269
+5936.1s 293 日志快照：训练点 24 个 | 评估点 3 个
+6039.9s 294 {'eval_loss': '0.3349', 'eval_model_preparation_time': '0.0055', 'eval_de-nn|ModAvg_指标1_ρ': '0.266', 'eval_de-nn|ModAvg_指标2_ρ': '0.441', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5982', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.658', 'eval_de-nn|HeadAvg_指标2_ρ': '0.3333', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.997', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_合计|_指标1_ρ': '0.462', 'eval_合计|_指标2_ρ': '0.3871', 'eval_合计|_指标3_RMSE': '0.7976', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 2, 'eval_合计|_样例数': 631, 'eval_合计|_目标数': 91, 'eval_合计|_综合分': '0.8492', 'eval_runtime': '50.85', 'eval_samples_per_second': '12.41', 'eval_steps_per_second': '0.787', 'epoch': '3'}
+6039.9s 295 --- 训练后指标 ---
+6039.9s 296 de-nn|ModAvg_指标1_ρ                 0.2660
+6039.9s 297 de-nn|ModAvg_指标2_ρ                 0.4410
+6039.9s 298 de-nn|ModAvg_指标3_RMSE              0.5982
+6039.9s 299 de-nn|HeadAvg_指标1_ρ                0.6580
+6039.9s 300 de-nn|HeadAvg_指标2_ρ                0.3333
+6039.9s 301 de-nn|HeadAvg_指标3_RMSE             0.9970
+6039.9s 302 合计|_指标1_ρ                          0.4620
+6039.9s 303 合计|_指标2_ρ                          0.3871
+6039.9s 304 合计|_指标3_RMSE                       0.7976
+6039.9s 305 合计|_综合分                            0.8492
+6040.3s 306 → 运行 single_de-nn 完成，产物在 /kaggle/working/outputs/qwen/single_de-nn
+6041.2s 307 ==============================================================================
+6041.2s 308 运行 3/5：single_en-pv  |  参与子集 ['en-pv']
+6041.2s 309 ==============================================================================
+6046.0s 310 训练 1264 条 | 验证 293 条 | 评测设置 1 个
+6046.0s 311 本次运行轮数 = 3（单子集诊断）
+6047.9s 312 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+6049.8s 313 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+6049.8s 314 显存预算：Qwen/Qwen2.5-1.5B-Instruct | 1544M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+6049.8s 315 档位表（固定开销与 batch 无关，降 batch 救不了）：
+6049.8s 316 档   含义                                       固定    bs=1 需    bs=8 需  判定
+6049.8s 317 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+6049.8s 318 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+6049.8s 319 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+6049.8s 320 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+6049.8s 321 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+6049.8s 322 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+6049.8s 323 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+6049.8s 324 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 11.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+6052.1s 325 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+6068.8s 326 {'eval_loss': '0.8705', 'eval_model_preparation_time': '0.0053', 'eval_en-pv|Avg_指标1_ρ': '0.2142', 'eval_en-pv|Avg_指标2_ρ': '0.06207', 'eval_en-pv|Avg_指标3_RMSE': '1.33', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_合计|_指标1_ρ': '0.2142', 'eval_合计|_指标2_ρ': '0.06207', 'eval_合计|_指标3_RMSE': '1.33', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 293, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '0.2763', 'eval_runtime': '14.44', 'eval_samples_per_second': '20.29', 'eval_steps_per_second': '1.316', 'epoch': 0}
+6068.8s 327 随机初始化模型基线（14.4s）: 指标1 ρ=0.2142 | 指标2 ρ=0.0621 | RMSE=1.3300
+6068.8s 328 随机初始化时的评估 loss = 0.8705（图 F 的 epoch 0 起点）
+6110.3s 329 {'loss': '1.831', 'grad_norm': '66.45', 'learning_rate': '1.565e-05', 'epoch': '0.1203'}
+6151.3s 330 {'loss': '1.24', 'grad_norm': '116.7', 'learning_rate': '1.938e-05', 'epoch': '0.2405'}
+6192.5s 331 {'loss': '1.002', 'grad_norm': '98.34', 'learning_rate': '1.854e-05', 'epoch': '0.3608'}
+6233.5s 332 {'loss': '0.6951', 'grad_norm': '42.35', 'learning_rate': '1.769e-05', 'epoch': '0.481'}
+6274.5s 333 {'loss': '0.7164', 'grad_norm': '58.38', 'learning_rate': '1.685e-05', 'epoch': '0.6013'}
+6315.0s 334 {'loss': '0.8454', 'grad_norm': '41.98', 'learning_rate': '1.601e-05', 'epoch': '0.7215'}
+6354.4s 335 {'loss': '0.6309', 'grad_norm': '55.68', 'learning_rate': '1.517e-05', 'epoch': '0.8418'}
+6396.0s 336 {'loss': '0.5887', 'grad_norm': '4.814', 'learning_rate': '1.432e-05', 'epoch': '0.962'}
+6423.6s 337 {'eval_loss': '0.7305', 'eval_model_preparation_time': '0.0053', 'eval_en-pv|Avg_指标1_ρ': '0.4781', 'eval_en-pv|Avg_指标2_ρ': '0.7335', 'eval_en-pv|Avg_指标3_RMSE': '1.207', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_合计|_指标1_ρ': '0.4781', 'eval_合计|_指标2_ρ': '0.7335', 'eval_合计|_指标3_RMSE': '1.207', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 293, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '1.212', 'eval_runtime': '15.04', 'eval_samples_per_second': '19.48', 'eval_steps_per_second': '1.264', 'epoch': '1'}
+6461.6s 338 {'loss': '0.5453', 'grad_norm': '28.03', 'learning_rate': '1.348e-05', 'epoch': '1.082'}
+6502.2s 339 {'loss': '0.4529', 'grad_norm': '42.17', 'learning_rate': '1.264e-05', 'epoch': '1.203'}
+6542.2s 340 {'loss': '0.4208', 'grad_norm': '20.86', 'learning_rate': '1.18e-05', 'epoch': '1.323'}
+6582.9s 341 {'loss': '0.378', 'grad_norm': '13.7', 'learning_rate': '1.095e-05', 'epoch': '1.443'}
+6623.3s 342 {'loss': '0.3989', 'grad_norm': '37.88', 'learning_rate': '1.011e-05', 'epoch': '1.563'}
+6664.8s 343 {'loss': '0.488', 'grad_norm': '11.46', 'learning_rate': '9.268e-06', 'epoch': '1.684'}
+6706.5s 344 {'loss': '0.2435', 'grad_norm': '8.817', 'learning_rate': '8.426e-06', 'epoch': '1.804'}
+6747.6s 345 {'loss': '0.3947', 'grad_norm': '23.67', 'learning_rate': '7.583e-06', 'epoch': '1.924'}
+6788.1s 346 {'eval_loss': '0.4994', 'eval_model_preparation_time': '0.0053', 'eval_en-pv|Avg_指标1_ρ': '0.516', 'eval_en-pv|Avg_指标2_ρ': '0.616', 'eval_en-pv|Avg_指标3_RMSE': '0.9843', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_合计|_指标1_ρ': '0.516', 'eval_合计|_指标2_ρ': '0.616', 'eval_合计|_指标3_RMSE': '0.9843', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 293, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '1.132', 'eval_runtime': '15.03', 'eval_samples_per_second': '19.49', 'eval_steps_per_second': '1.264', 'epoch': '2'}
+6813.2s 347 {'loss': '0.2803', 'grad_norm': '6.762', 'learning_rate': '6.741e-06', 'epoch': '2.044'}
+6855.4s 348 {'loss': '0.1982', 'grad_norm': '19.4', 'learning_rate': '5.898e-06', 'epoch': '2.165'}
+6895.3s 349 {'loss': '0.1432', 'grad_norm': '7.641', 'learning_rate': '5.055e-06', 'epoch': '2.285'}
+6936.8s 350 {'loss': '0.1499', 'grad_norm': '10.08', 'learning_rate': '4.213e-06', 'epoch': '2.405'}
+6977.5s 351 {'loss': '0.1357', 'grad_norm': '23.55', 'learning_rate': '3.37e-06', 'epoch': '2.525'}
+7019.8s 352 {'loss': '0.1615', 'grad_norm': '11.05', 'learning_rate': '2.528e-06', 'epoch': '2.646'}
+7060.7s 353 {'loss': '0.1799', 'grad_norm': '12.14', 'learning_rate': '1.685e-06', 'epoch': '2.766'}
+7101.0s 354 {'loss': '0.1402', 'grad_norm': '15.63', 'learning_rate': '8.426e-07', 'epoch': '2.886'}
+7155.0s 355 {'eval_loss': '0.4882', 'eval_model_preparation_time': '0.0053', 'eval_en-pv|Avg_指标1_ρ': '0.4912', 'eval_en-pv|Avg_指标2_ρ': '0.6752', 'eval_en-pv|Avg_指标3_RMSE': '0.9727', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_合计|_指标1_ρ': '0.4912', 'eval_合计|_指标2_ρ': '0.6752', 'eval_合计|_指标3_RMSE': '0.9727', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 293, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '1.166', 'eval_runtime': '15.06', 'eval_samples_per_second': '19.45', 'eval_steps_per_second': '1.261', 'epoch': '3'}
+7165.5s 356 {'train_runtime': '1096', 'train_samples_per_second': '3.458', 'train_steps_per_second': '0.432', 'train_loss': '0.4971', 'epoch': '3'}
+7180.3s 357 训练完成，用时 18.5 分钟，loss=0.4971
+7180.3s 358 日志快照：训练点 24 个 | 评估点 3 个
+7211.2s 359 {'eval_loss': '0.7305', 'eval_model_preparation_time': '0.0053', 'eval_en-pv|Avg_指标1_ρ': '0.4781', 'eval_en-pv|Avg_指标2_ρ': '0.7335', 'eval_en-pv|Avg_指标3_RMSE': '1.207', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_合计|_指标1_ρ': '0.4781', 'eval_合计|_指标2_ρ': '0.7335', 'eval_合计|_指标3_RMSE': '1.207', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 293, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '1.212', 'eval_runtime': '15.61', 'eval_samples_per_second': '18.77', 'eval_steps_per_second': '1.217', 'epoch': '3'}
+7211.2s 360 --- 训练后指标 ---
+7211.2s 361 en-pv|Avg_指标1_ρ                    0.4781
+7211.2s 362 en-pv|Avg_指标2_ρ                    0.7335
+7211.2s 363 en-pv|Avg_指标3_RMSE                 1.2073
+7211.2s 364 合计|_指标1_ρ                          0.4781
+7211.2s 365 合计|_指标2_ρ                          0.7335
+7211.2s 366 合计|_指标3_RMSE                       1.2073
+7211.2s 367 合计|_综合分                            1.2116
+7211.2s 368 → 运行 single_en-pv 完成，产物在 /kaggle/working/outputs/qwen/single_en-pv
+7212.3s 369 ==============================================================================
+7212.3s 370 运行 4/5：single_de-pv  |  参与子集 ['de-pv']
+7212.3s 371 ==============================================================================
+7217.5s 372 训练 1202 条 | 验证 288 条 | 评测设置 1 个
+7217.5s 373 本次运行轮数 = 3（单子集诊断）
+7219.5s 374 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+7221.5s 375 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+7221.5s 376 显存预算：Qwen/Qwen2.5-1.5B-Instruct | 1544M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+7221.5s 377 档位表（固定开销与 batch 无关，降 batch 救不了）：
+7221.5s 378 档   含义                                       固定    bs=1 需    bs=8 需  判定
+7221.5s 379 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+7221.5s 380 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+7221.5s 381 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+7221.5s 382 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+7221.5s 383 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+7221.5s 384 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+7221.5s 385 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+7221.5s 386 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 11.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+7223.8s 387 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+7247.0s 388 {'eval_loss': '0.6616', 'eval_model_preparation_time': '0.0049', 'eval_de-pv|Avg_指标1_ρ': '0.1223', 'eval_de-pv|Avg_指标2_ρ': '-0.03582', 'eval_de-pv|Avg_指标3_RMSE': '1.142', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.1223', 'eval_合计|_指标2_ρ': '-0.03582', 'eval_合计|_指标3_RMSE': '1.142', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 288, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '0.08653', 'eval_runtime': '20.94', 'eval_samples_per_second': '13.75', 'eval_steps_per_second': '0.86', 'epoch': 0}
+7247.0s 389 随机初始化模型基线（20.9s）: 指标1 ρ=0.1223 | 指标2 ρ=-0.0358 | RMSE=1.1423
+7247.0s 390 随机初始化时的评估 loss = 0.6616（图 F 的 epoch 0 起点）
+7297.6s 391 {'loss': '1.523', 'grad_norm': '83.25', 'learning_rate': '1.545e-05', 'epoch': '0.1192'}
+7349.1s 392 {'loss': '1.634', 'grad_norm': '127.6', 'learning_rate': '1.94e-05', 'epoch': '0.2384'}
+7399.7s 393 {'loss': '0.9533', 'grad_norm': '58.35', 'learning_rate': '1.856e-05', 'epoch': '0.3576'}
+7449.5s 394 {'loss': '0.895', 'grad_norm': '77.02', 'learning_rate': '1.773e-05', 'epoch': '0.4768'}
+7500.9s 395 {'loss': '0.9554', 'grad_norm': '75.88', 'learning_rate': '1.689e-05', 'epoch': '0.596'}
+7552.2s 396 {'loss': '0.547', 'grad_norm': '25.34', 'learning_rate': '1.606e-05', 'epoch': '0.7152'}
+7605.2s 397 {'loss': '0.5631', 'grad_norm': '40.94', 'learning_rate': '1.522e-05', 'epoch': '0.8344'}
+7656.6s 398 {'loss': '0.6072', 'grad_norm': '65.23', 'learning_rate': '1.439e-05', 'epoch': '0.9536'}
+7694.6s 399 {'eval_loss': '0.6529', 'eval_model_preparation_time': '0.0049', 'eval_de-pv|Avg_指标1_ρ': '0.3622', 'eval_de-pv|Avg_指标2_ρ': '0.3887', 'eval_de-pv|Avg_指标3_RMSE': '1.127', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.3622', 'eval_合计|_指标2_ρ': '0.3887', 'eval_合计|_指标3_RMSE': '1.127', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 288, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '0.7509', 'eval_runtime': '21.6', 'eval_samples_per_second': '13.33', 'eval_steps_per_second': '0.833', 'epoch': '1'}
+7736.6s 400 {'loss': '0.522', 'grad_norm': '14.76', 'learning_rate': '1.355e-05', 'epoch': '1.073'}
+7786.4s 401 {'loss': '0.4866', 'grad_norm': '8.485', 'learning_rate': '1.271e-05', 'epoch': '1.192'}
+7837.8s 402 {'loss': '0.4486', 'grad_norm': '9.895', 'learning_rate': '1.188e-05', 'epoch': '1.311'}
+7887.0s 403 {'loss': '0.4836', 'grad_norm': '28.51', 'learning_rate': '1.104e-05', 'epoch': '1.43'}
+7938.7s 404 {'loss': '0.4571', 'grad_norm': '56.95', 'learning_rate': '1.021e-05', 'epoch': '1.55'}
+7989.0s 405 {'loss': '0.3271', 'grad_norm': '6.182', 'learning_rate': '9.374e-06', 'epoch': '1.669'}
+8042.0s 406 {'loss': '0.4658', 'grad_norm': '10.82', 'learning_rate': '8.538e-06', 'epoch': '1.788'}
+8092.5s 407 {'loss': '0.4003', 'grad_norm': '45.75', 'learning_rate': '7.703e-06', 'epoch': '1.907'}
+8152.0s 408 {'eval_loss': '0.6341', 'eval_model_preparation_time': '0.0049', 'eval_de-pv|Avg_指标1_ρ': '0.3418', 'eval_de-pv|Avg_指标2_ρ': '0.3504', 'eval_de-pv|Avg_指标3_RMSE': '1.123', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.3418', 'eval_合计|_指标2_ρ': '0.3504', 'eval_合计|_指标3_RMSE': '1.123', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 288, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '0.6922', 'eval_runtime': '21.81', 'eval_samples_per_second': '13.2', 'eval_steps_per_second': '0.825', 'epoch': '2'}
+8174.1s 409 {'loss': '0.2491', 'grad_norm': '12.35', 'learning_rate': '6.868e-06', 'epoch': '2.026'}
+8228.0s 410 {'loss': '0.1706', 'grad_norm': '8.697', 'learning_rate': '6.032e-06', 'epoch': '2.146'}
+8277.7s 411 {'loss': '0.298', 'grad_norm': '38.41', 'learning_rate': '5.197e-06', 'epoch': '2.265'}
+8327.6s 412 {'loss': '0.197', 'grad_norm': '10.17', 'learning_rate': '4.362e-06', 'epoch': '2.384'}
+8379.1s 413 {'loss': '0.1995', 'grad_norm': '20.68', 'learning_rate': '3.527e-06', 'epoch': '2.503'}
+8429.7s 414 {'loss': '0.1368', 'grad_norm': '6.361', 'learning_rate': '2.691e-06', 'epoch': '2.623'}
+8480.0s 415 {'loss': '0.1426', 'grad_norm': '7.657', 'learning_rate': '1.856e-06', 'epoch': '2.742'}
+8531.0s 416 {'loss': '0.1619', 'grad_norm': '5.226', 'learning_rate': '1.021e-06', 'epoch': '2.861'}
+8583.5s 417 {'loss': '0.1559', 'grad_norm': '5.005', 'learning_rate': '1.856e-07', 'epoch': '2.98'}
+8611.7s 418 {'eval_loss': '0.5113', 'eval_model_preparation_time': '0.0049', 'eval_de-pv|Avg_指标1_ρ': '0.4037', 'eval_de-pv|Avg_指标2_ρ': '0.499', 'eval_de-pv|Avg_指标3_RMSE': '1.001', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4037', 'eval_合计|_指标2_ρ': '0.499', 'eval_合计|_指标3_RMSE': '1.001', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 288, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '0.9027', 'eval_runtime': '21.78', 'eval_samples_per_second': '13.22', 'eval_steps_per_second': '0.827', 'epoch': '3'}
+8622.1s 419 {'train_runtime': '1375', 'train_samples_per_second': '2.623', 'train_steps_per_second': '0.329', 'train_loss': '0.5174', 'epoch': '3'}
+8623.3s 420 训练完成，用时 22.9 分钟，loss=0.5174
+8623.3s 421 日志快照：训练点 25 个 | 评估点 3 个
+8668.2s 422 {'eval_loss': '0.5113', 'eval_model_preparation_time': '0.0049', 'eval_de-pv|Avg_指标1_ρ': '0.4037', 'eval_de-pv|Avg_指标2_ρ': '0.499', 'eval_de-pv|Avg_指标3_RMSE': '1.001', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4037', 'eval_合计|_指标2_ρ': '0.499', 'eval_合计|_指标3_RMSE': '1.001', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 1, 'eval_合计|_样例数': 288, 'eval_合计|_目标数': 30, 'eval_合计|_综合分': '0.9027', 'eval_runtime': '22.8', 'eval_samples_per_second': '12.63', 'eval_steps_per_second': '0.79', 'epoch': '3'}
+8668.2s 423 --- 训练后指标 ---
+8668.2s 424 de-pv|Avg_指标1_ρ                    0.4037
+8668.2s 425 de-pv|Avg_指标2_ρ                    0.4990
+8668.2s 426 de-pv|Avg_指标3_RMSE                 1.0005
+8668.2s 427 合计|_指标1_ρ                          0.4037
+8668.2s 428 合计|_指标2_ρ                          0.4990
+8668.2s 429 合计|_指标3_RMSE                       1.0005
+8668.2s 430 合计|_综合分                            0.9027
+8668.6s 431 → 运行 single_de-pv 完成，产物在 /kaggle/working/outputs/qwen/single_de-pv
+8669.6s 432 ==============================================================================
+8669.6s 433 运行 5/5：joint  |  参与子集 ['en-nn', 'de-nn', 'en-pv', 'de-pv']
+8669.6s 434 ==============================================================================
+8676.9s 435 训练 7934 条 | 验证 1891 条 | 评测设置 6 个
+8676.9s 436 本次运行轮数 = 5（联合运行，提交用）
+8678.9s 437 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+8680.8s 438 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+8680.8s 439 显存预算：Qwen/Qwen2.5-1.5B-Instruct | 1544M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+8680.8s 440 档位表（固定开销与 batch 无关，降 batch 救不了）：
+8680.8s 441 档   含义                                       固定    bs=1 需    bs=8 需  判定
+8680.8s 442 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+8680.8s 443 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+8680.8s 444 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+8680.8s 445 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+8680.8s 446 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+8680.8s 447 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+8680.8s 448 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+8680.8s 449 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 11.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+8683.2s 450 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+8806.2s 451 {'eval_loss': '1.009', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.09677', 'eval_en-nn|ModAvg_指标2_ρ': '0.05271', 'eval_en-nn|ModAvg_指标3_RMSE': '1.294', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.002041', 'eval_en-nn|HeadAvg_指标2_ρ': '-0.1309', 'eval_en-nn|HeadAvg_指标3_RMSE': '1.062', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '-0.08207', 'eval_de-nn|ModAvg_指标2_ρ': '0.0463', 'eval_de-nn|ModAvg_指标3_RMSE': '2.134', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '-0.05501', 'eval_de-nn|HeadAvg_指标2_ρ': '-0.04161', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.432', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.2142', 'eval_en-pv|Avg_指标2_ρ': '0.06207', 'eval_en-pv|Avg_指标3_RMSE': '1.33', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.1223', 'eval_de-pv|Avg_指标2_ρ': '-0.03582', 'eval_de-pv|Avg_指标3_RMSE': '1.142', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.04971', 'eval_合计|_指标2_ρ': '-0.007885', 'eval_合计|_指标3_RMSE': '1.399', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.04183', 'eval_runtime': '120.6', 'eval_samples_per_second': '15.68', 'eval_steps_per_second': '0.987', 'epoch': 0}
+8806.2s 452 随机初始化模型基线（120.6s）: 指标1 ρ=0.0497 | 指标2 ρ=-0.0079 | RMSE=1.3991
+8806.2s 453 随机初始化时的评估 loss = 1.0088（图 F 的 epoch 0 起点）
+9131.4s 454 {'loss': '0.9036', 'grad_norm': '4.316', 'learning_rate': '9.919e-06', 'epoch': '0.125'}
+9454.5s 455 {'loss': '0.6338', 'grad_norm': '41.87', 'learning_rate': '1.992e-05', 'epoch': '0.25'}
+9773.1s 456 {'loss': '0.5847', 'grad_norm': '43.38', 'learning_rate': '1.948e-05', 'epoch': '0.375'}
+10085.4s 457 {'loss': '0.5063', 'grad_norm': '13.79', 'learning_rate': '1.895e-05', 'epoch': '0.5'}
+10398.2s 458 {'loss': '0.5108', 'grad_norm': '23.65', 'learning_rate': '1.843e-05', 'epoch': '0.625'}
+10724.1s 459 {'loss': '0.5225', 'grad_norm': '11.4', 'learning_rate': '1.79e-05', 'epoch': '0.75'}
+11062.2s 460 {'loss': '0.3915', 'grad_norm': '19.97', 'learning_rate': '1.737e-05', 'epoch': '0.875'}
+11379.3s 461 {'loss': '0.4598', 'grad_norm': '45.13', 'learning_rate': '1.685e-05', 'epoch': '1'}
+11505.6s 462 {'eval_loss': '0.5232', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.3874', 'eval_en-nn|ModAvg_指标2_ρ': '0.2318', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9698', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4995', 'eval_en-nn|HeadAvg_指标2_ρ': '0.02104', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.9462', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.1654', 'eval_de-nn|ModAvg_指标2_ρ': '0.008728', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6137', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.5637', 'eval_de-nn|HeadAvg_指标2_ρ': '-0.116', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.143', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5007', 'eval_en-pv|Avg_指标2_ρ': '0.584', 'eval_en-pv|Avg_指标3_RMSE': '1.218', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.2202', 'eval_de-pv|Avg_指标2_ρ': '0.1488', 'eval_de-pv|Avg_指标3_RMSE': '1.097', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.3895', 'eval_合计|_指标2_ρ': '0.1464', 'eval_合计|_指标3_RMSE': '0.9979', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.5359', 'eval_runtime': '126.3', 'eval_samples_per_second': '14.97', 'eval_steps_per_second': '0.942', 'epoch': '1'}
+11841.0s 463 {'loss': '0.3291', 'grad_norm': '24.78', 'learning_rate': '1.632e-05', 'epoch': '1.125'}
+12167.1s 464 {'loss': '0.2942', 'grad_norm': '4.747', 'learning_rate': '1.579e-05', 'epoch': '1.25'}
+12488.7s 465 {'loss': '0.3273', 'grad_norm': '30.66', 'learning_rate': '1.527e-05', 'epoch': '1.375'}
+12812.9s 466 {'loss': '0.3331', 'grad_norm': '1.714', 'learning_rate': '1.474e-05', 'epoch': '1.5'}
+13130.1s 467 {'loss': '0.3332', 'grad_norm': '12.74', 'learning_rate': '1.421e-05', 'epoch': '1.625'}
+13459.5s 468 {'loss': '0.2992', 'grad_norm': '8.566', 'learning_rate': '1.369e-05', 'epoch': '1.75'}
+13775.0s 469 {'loss': '0.3472', 'grad_norm': '14.25', 'learning_rate': '1.316e-05', 'epoch': '1.875'}
+14096.0s 470 {'loss': '0.2257', 'grad_norm': '0.1657', 'learning_rate': '1.264e-05', 'epoch': '2'}
+14223.2s 471 {'eval_loss': '0.4439', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.4227', 'eval_en-nn|ModAvg_指标2_ρ': '0.1749', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9071', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4281', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1446', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.8029', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2122', 'eval_de-nn|ModAvg_指标2_ρ': '0.1383', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6045', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6869', 'eval_de-nn|HeadAvg_指标2_ρ': '0.2796', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9651', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5453', 'eval_en-pv|Avg_指标2_ρ': '0.6881', 'eval_en-pv|Avg_指标3_RMSE': '1.012', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.08337', 'eval_de-pv|Avg_指标2_ρ': '0.4171', 'eval_de-pv|Avg_指标3_RMSE': '1.267', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.3964', 'eval_合计|_指标2_ρ': '0.3071', 'eval_合计|_指标3_RMSE': '0.9264', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.7036', 'eval_runtime': '127.2', 'eval_samples_per_second': '14.87', 'eval_steps_per_second': '0.936', 'epoch': '2'}
+14551.5s 472 {'loss': '0.2031', 'grad_norm': '3.63', 'learning_rate': '1.211e-05', 'epoch': '2.125'}
+14876.1s 473 {'loss': '0.1723', 'grad_norm': '4.317', 'learning_rate': '1.158e-05', 'epoch': '2.25'}
+15199.2s 474 {'loss': '0.1732', 'grad_norm': '24.5', 'learning_rate': '1.106e-05', 'epoch': '2.375'}
+15523.7s 475 {'loss': '0.1445', 'grad_norm': '6.055', 'learning_rate': '1.053e-05', 'epoch': '2.5'}
+15844.9s 476 {'loss': '0.1444', 'grad_norm': '9.429', 'learning_rate': '1e-05', 'epoch': '2.625'}
+16170.0s 477 {'loss': '0.1713', 'grad_norm': '1.155', 'learning_rate': '9.478e-06', 'epoch': '2.75'}
+16499.2s 478 {'loss': '0.1277', 'grad_norm': '6.464', 'learning_rate': '8.952e-06', 'epoch': '2.875'}
+16810.5s 479 {'loss': '0.1449', 'grad_norm': '2.654', 'learning_rate': '8.425e-06', 'epoch': '3'}
+16936.6s 480 {'eval_loss': '0.3938', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.4558', 'eval_en-nn|ModAvg_指标2_ρ': '0.157', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8551', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4174', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3146', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.8509', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3003', 'eval_de-nn|ModAvg_指标2_ρ': '0.2439', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6467', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6926', 'eval_de-nn|HeadAvg_指标2_ρ': '0.3867', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9742', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5487', 'eval_en-pv|Avg_指标2_ρ': '0.5915', 'eval_en-pv|Avg_指标3_RMSE': '0.9581', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.4733', 'eval_de-pv|Avg_指标2_ρ': '0.3597', 'eval_de-pv|Avg_指标3_RMSE': '0.9711', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4813', 'eval_合计|_指标2_ρ': '0.3423', 'eval_合计|_指标3_RMSE': '0.876', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.8236', 'eval_runtime': '126', 'eval_samples_per_second': '15', 'eval_steps_per_second': '0.944', 'epoch': '3'}
+17266.0s 481 {'loss': '0.08911', 'grad_norm': '11.33', 'learning_rate': '7.899e-06', 'epoch': '3.125'}
+17591.1s 482 {'loss': '0.08059', 'grad_norm': '1.409', 'learning_rate': '7.373e-06', 'epoch': '3.25'}
+17904.4s 483 {'loss': '0.07959', 'grad_norm': '5.444', 'learning_rate': '6.846e-06', 'epoch': '3.375'}
+18229.1s 484 {'loss': '0.07958', 'grad_norm': '12.52', 'learning_rate': '6.32e-06', 'epoch': '3.5'}
+18541.4s 485 {'loss': '0.08143', 'grad_norm': '2.748', 'learning_rate': '5.794e-06', 'epoch': '3.625'}
+18855.2s 486 {'loss': '0.08193', 'grad_norm': '11.04', 'learning_rate': '5.267e-06', 'epoch': '3.75'}
+19179.6s 487 {'loss': '0.07861', 'grad_norm': '2.918', 'learning_rate': '4.741e-06', 'epoch': '3.875'}
+19505.2s 488 {'loss': '0.06673', 'grad_norm': '4.011', 'learning_rate': '4.215e-06', 'epoch': '4'}
+19632.3s 489 {'eval_loss': '0.3847', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.4764', 'eval_en-nn|ModAvg_指标2_ρ': '0.206', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8613', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4611', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2969', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7949', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2952', 'eval_de-nn|ModAvg_指标2_ρ': '0.3476', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5951', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6857', 'eval_de-nn|HeadAvg_指标2_ρ': '0.3499', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9845', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5321', 'eval_en-pv|Avg_指标2_ρ': '0.56', 'eval_en-pv|Avg_指标3_RMSE': '0.9647', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.4822', 'eval_de-pv|Avg_指标2_ρ': '0.4176', 'eval_de-pv|Avg_指标3_RMSE': '0.9815', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4888', 'eval_合计|_指标2_ρ': '0.363', 'eval_合计|_指标3_RMSE': '0.8637', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.8518', 'eval_runtime': '127', 'eval_samples_per_second': '14.88', 'eval_steps_per_second': '0.937', 'epoch': '4'}
+19967.2s 490 {'loss': '0.03467', 'grad_norm': '1.57', 'learning_rate': '3.688e-06', 'epoch': '4.125'}
+20283.6s 491 {'loss': '0.03773', 'grad_norm': '5.179', 'learning_rate': '3.162e-06', 'epoch': '4.25'}
+20609.8s 492 {'loss': '0.03941', 'grad_norm': '7.171', 'learning_rate': '2.636e-06', 'epoch': '4.375'}
+20920.8s 493 {'loss': '0.03494', 'grad_norm': '1.89', 'learning_rate': '2.11e-06', 'epoch': '4.5'}
+21249.6s 494 {'loss': '0.03428', 'grad_norm': '2.782', 'learning_rate': '1.583e-06', 'epoch': '4.625'}
+21567.8s 495 {'loss': '0.03364', 'grad_norm': '2.218', 'learning_rate': '1.057e-06', 'epoch': '4.75'}
+21884.2s 496 {'loss': '0.04489', 'grad_norm': '0.4725', 'learning_rate': '5.306e-07', 'epoch': '4.875'}
+22205.1s 497 {'loss': '0.04108', 'grad_norm': '14.71', 'learning_rate': '4.244e-09', 'epoch': '5'}
+22331.2s 498 {'eval_loss': '0.3722', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.4783', 'eval_en-nn|ModAvg_指标2_ρ': '0.1494', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8428', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4695', 'eval_en-nn|HeadAvg_指标2_ρ': '0.271', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7698', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3176', 'eval_de-nn|ModAvg_指标2_ρ': '0.3627', 'eval_de-nn|ModAvg_指标3_RMSE': '0.567', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6876', 'eval_de-nn|HeadAvg_指标2_ρ': '0.3168', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9733', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5425', 'eval_en-pv|Avg_指标2_ρ': '0.5893', 'eval_en-pv|Avg_指标3_RMSE': '0.9488', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.5039', 'eval_de-pv|Avg_指标2_ρ': '0.4999', 'eval_de-pv|Avg_指标3_RMSE': '0.9739', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4999', 'eval_合计|_指标2_ρ': '0.3648', 'eval_合计|_指标3_RMSE': '0.8459', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.8647', 'eval_runtime': '126.2', 'eval_samples_per_second': '14.99', 'eval_steps_per_second': '0.943', 'epoch': '5'}
+22341.0s 499 {'train_runtime': '1.353e+04', 'train_samples_per_second': '2.931', 'train_steps_per_second': '0.366', 'train_loss': '0.2305', 'epoch': '5'}
+22342.2s 500 训练完成，用时 225.6 分钟，loss=0.2305
+22342.2s 501 日志快照：训练点 40 个 | 评估点 5 个
+22596.0s 502 {'eval_loss': '0.3722', 'eval_model_preparation_time': '0.0056', 'eval_en-nn|ModAvg_指标1_ρ': '0.4783', 'eval_en-nn|ModAvg_指标2_ρ': '0.1494', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8428', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4695', 'eval_en-nn|HeadAvg_指标2_ρ': '0.271', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7698', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3176', 'eval_de-nn|ModAvg_指标2_ρ': '0.3627', 'eval_de-nn|ModAvg_指标3_RMSE': '0.567', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6876', 'eval_de-nn|HeadAvg_指标2_ρ': '0.3168', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9733', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5425', 'eval_en-pv|Avg_指标2_ρ': '0.5893', 'eval_en-pv|Avg_指标3_RMSE': '0.9488', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.5039', 'eval_de-pv|Avg_指标2_ρ': '0.4999', 'eval_de-pv|Avg_指标3_RMSE': '0.9739', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4999', 'eval_合计|_指标2_ρ': '0.3648', 'eval_合计|_指标3_RMSE': '0.8459', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '0.8647', 'eval_runtime': '126.4', 'eval_samples_per_second': '14.96', 'eval_steps_per_second': '0.941', 'epoch': '5'}
+22596.0s 503 --- 训练后指标 ---
+22596.0s 504 en-nn|ModAvg_指标1_ρ                 0.4783
+22596.0s 505 en-nn|ModAvg_指标2_ρ                 0.1494
+22596.0s 506 en-nn|ModAvg_指标3_RMSE              0.8428
+22596.0s 507 en-nn|HeadAvg_指标1_ρ                0.4695
+22596.0s 508 en-nn|HeadAvg_指标2_ρ                0.2710
+22596.0s 509 en-nn|HeadAvg_指标3_RMSE             0.7698
+22596.0s 510 de-nn|ModAvg_指标1_ρ                 0.3176
+22596.0s 511 de-nn|ModAvg_指标2_ρ                 0.3627
+22596.0s 512 de-nn|ModAvg_指标3_RMSE              0.5670
+22596.0s 513 de-nn|HeadAvg_指标1_ρ                0.6876
+22596.0s 514 de-nn|HeadAvg_指标2_ρ                0.3168
+22596.0s 515 de-nn|HeadAvg_指标3_RMSE             0.9733
+22596.0s 516 en-pv|Avg_指标1_ρ                    0.5425
+22596.0s 517 en-pv|Avg_指标2_ρ                    0.5893
+22596.0s 518 en-pv|Avg_指标3_RMSE                 0.9488
+22596.0s 519 de-pv|Avg_指标1_ρ                    0.5039
+22596.0s 520 de-pv|Avg_指标2_ρ                    0.4999
+22596.0s 521 de-pv|Avg_指标3_RMSE                 0.9739
+22596.0s 522 合计|_指标1_ρ                          0.4999
+22596.0s 523 合计|_指标2_ρ                          0.3648
+22596.0s 524 合计|_指标3_RMSE                       0.8459
+22596.0s 525 合计|_综合分                            0.8647
+22606.3s 526 模型已保存到: /kaggle/working/outputs/qwen/joint/final
+22606.3s 527 → 运行 joint 完成，产物在 /kaggle/working/outputs/qwen/joint
+22607.3s 528 
+22607.3s 529 ==============================================================================
+22607.3s 530 全部 5 次运行完成
+22607.3s 531 ==============================================================================
+22607.4s 532 主图使用的运行: joint | 评测设置: 6
+22608.2s 533 ================================================================================================
+22608.2s 534 表 1  评估标准 —— joint（联合运行覆盖全部评测设置）
+22608.2s 535 ================================================================================================
+22608.2s 536 运行    子集     标签列  指标1 ρ  指标2 ρ  指标3 RMSE  组内std退化目标数  样例数
+22608.2s 537 joint en-nn  ModAvg 0.4783 0.1494    0.8428           0  679
+22608.2s 538 joint en-nn HeadAvg 0.4695 0.2710    0.7698           0  679
+22608.2s 539 joint de-nn  ModAvg 0.3176 0.3627    0.5670           0  631
+22608.2s 540 joint de-nn HeadAvg 0.6876 0.3168    0.9733           0  631
+22608.2s 541 joint en-pv     Avg 0.5425 0.5893    0.9488           0  293
+22608.2s 542 joint de-pv     Avg 0.5039 0.4999    0.9739           0  288
+22608.2s 543 
+22608.2s 544 合计（各评测设置取平均）：指标1 ρ=0.4999 | 指标2 ρ=0.3648 | RMSE=0.8459
+22608.2s 545 best-checkpoint 选择指标（合计|_综合分，= 指标1 + 指标2）= 0.8647
+22608.2s 546 → 指标 2 若是 nan，说明该设置下模型对同一目标的所有例句给出了相同分数，会在官方评测中直接出局。
+22608.2s 547 
+22608.2s 548 已保存: /kaggle/working/outputs/summary/results_all_runs.csv
+22608.2s 549 
+22608.2s 550 ==============================================================================
+22608.2s 551 本次运行的完整口径
+22608.2s 552 ==============================================================================
+22608.2s 553 
+22608.2s 554 【必须与另一条基线逐字相同】18 项
+22608.2s 555 optim                    = adafactor
+22608.2s 556 fit_tier                 = t3
+22608.2s 557 trainable_scope          = 1.0
+22608.2s 558 mixed_precision          = fp32
+22608.2s 559 lr                       = 2e-05
+22608.2s 560 epochs                   = 3
+22608.2s 561 run_epochs               = 3
+22608.2s 562 joint_epochs             = 5
+22608.2s 563 metric_for_best_model    = 合计|_综合分
+22608.2s 564 max_length               = 160
+22608.2s 565 weight_decay             = 0.01
+22608.2s 566 warmup_ratio             = 0.05
+22608.2s 567 huber_delta              = 2.0
+22608.2s 568 lambda_rank              = 0.0
+22608.2s 569 mu_std                   = 0.05
+22608.2s 570 seed                     = 42
+22608.2s 571 n_outputs                = 2
+22608.2s 572 effective_batch          = 8
+22608.2s 573 
+22608.2s 574 【允许不同（各有明确理由，不影响可比性）】8 项
+22608.2s 575 model_key                = qwen      ← 模型身份
+22608.2s 576 model_id                 = Qwen/Qwen2.5-1.5B-Instruct      ← 模型身份
+22608.2s 577 pooling                  = last      ← 架构决定的池化方式（mean / last）
+22608.2s 578 micro_batch              = 8      ← batch 分解方式（乘积与 effective_batch 相同即等价）
+22608.2s 579 grad_accum               = 1      ← batch 分解方式（乘积与 effective_batch 相同即等价）
+22608.2s 580 gradient_checkpointing   = True      ← 只影响速度与显存，数学上等价（激活重算不改数值）
+22608.2s 581 gpu_index                = 0      ← 用哪一张**同型号**卡（只影响并行调度，不影响数值）
+22608.2s 582 train_subset             = ['en-nn']      ← 本次运行的子集（single vs joint 本就不同）
+22608.2s 583 
+22608.2s 584 口径文件: /kaggle/working/outputs/summary/run_settings_single_en-nn.json
+22608.2s 585 ⚠️ 跑完两条基线后，请 diff 两边的 run_settings_*.json：
+22608.2s 586 「必须逐字相同」的 18 项若有任何一项不同 → 对照结论被污染，需把两边改成一致后重跑。
+22608.2s 587 尤其注意 fit_tier / optim：档位由「两条基线中较大者的参数量 + 本机显存」统一决定，同一台机器上必然相同；若不同，说明两边跑的**不是同一台机器**。
+22610.2s 588 已保存: /kaggle/working/outputs/summary/figA_pred_vs_gold.png
+22611.2s 589 已保存: /kaggle/working/outputs/summary/figB_evaluation_standard.png
+22613.0s 590 已保存: /kaggle/working/outputs/summary/figC_group_std.png
+22614.0s 591 已保存: /kaggle/working/outputs/summary/figD_run_comparison.png
+22614.0s 592 ================================================================================================
+22614.0s 593 区块二  参考对照（不是评估标准，仅用于解读上面的数字）
+22614.0s 594 ================================================================================================
+22614.0s 595 运行              对照系统   指标1 ρ   指标2 ρ  指标3 RMSE
+22614.0s 596 single_en-nn             训练后模型  0.4168  0.1369    0.9163
+22614.0s 597 single_en-nn             随机初始化 -0.0019  0.0083    3.1514
+22614.0s 598 single_en-nn type-level oracle  0.7704     NaN    0.5050
+22614.0s 599 single_de-nn             训练后模型  0.4620  0.3871    0.7976
+22614.0s 600 single_de-nn             随机初始化 -0.0685  0.0023    1.7832
+22614.0s 601 single_de-nn type-level oracle  0.8444     NaN    0.3741
+22614.0s 602 single_en-pv             训练后模型  0.4781  0.7335    1.2073
+22614.0s 603 single_en-pv             随机初始化  0.2142  0.0621    1.3300
+22614.0s 604 single_en-pv type-level oracle  0.7002     NaN    0.7876
+22614.0s 605 single_de-pv             训练后模型  0.4037  0.4990    1.0005
+22614.0s 606 single_de-pv             随机初始化  0.1223 -0.0358    1.1423
+22614.0s 607 single_de-pv type-level oracle  0.7726     NaN    0.6785
+22614.0s 608 joint             训练后模型  0.4999  0.3648    0.8459
+22614.0s 609 joint             随机初始化  0.0497 -0.0079    1.3991
+22614.0s 610 joint type-level oracle  0.7837     NaN    0.5374
+22614.0s 611 
+22614.0s 612 --- 三个系统分别是什么 ---
+22614.0s 613 随机初始化      ：同一模型、同一份数据，但一步都没训练。它是「瞎猜」的下界；训练后模型必须显著高于它，否则等于没训。
+22614.0s 614 type-level oracle：给每个目标赋它自己的真实均值（不看语境）。它在指标 1 / RMSE 上接近满分，但指标 2 必然是 nan（同一目标的所有例句拿到同一个分数 → 组内 std 恒为 0 → 相关系数未定义）。
+22614.0s 615 → 我们的模型如果指标 2 也接近 nan，说明还没有真正做到「因句而异」。
+22614.8s 616 已保存: /kaggle/working/outputs/summary/figE_reference_comparison.png
+22615.7s 617 已保存: /kaggle/working/outputs/summary/figF_loss_curves.png
+22615.9s 618 [single_en-nn / en-nn] -> en-nn-pred.tsv
+22615.9s 619 [single_de-nn / de-nn] -> de-nn-pred.tsv
+22615.9s 620 [single_en-pv / en-pv] -> en-pv-pred.tsv
+22615.9s 621 [single_de-pv / de-pv] -> de-pv-pred.tsv
+22615.9s 622 [joint / en-nn] -> en-nn-pred.tsv
+22616.0s 623 [joint / de-nn] -> de-nn-pred.tsv
+22616.0s 624 [joint / en-pv] -> en-pv-pred.tsv
+22616.0s 625 [joint / de-pv] -> de-pv-pred.tsv
+22616.0s 626 
+22616.0s 627 → 无表头、列数正确、值域 [0,5]、ContextID 原样透传。
+22616.0s 628 → 正式提交时把 4 个 *-train.tsv 换成官方测试 TSV，文件名保持 en-nn-pred.tsv 等 4 个。
+22629.3s 629 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+22629.3s 630 cells[i][c] = re.sub('\\\\\|', '|', cell)
+22629.6s 631 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+22629.6s 632 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+22630.7s 633 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+22630.9s 634 [NbConvertApp] Writing 1641778 bytes to __notebook__.ipynb
+22633.4s 635 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+22634.9s 636 [NbConvertApp] Support files will be in __results___files/
+22634.9s 637 [NbConvertApp] Making directory __results___files
+22634.9s 638 [NbConvertApp] Making directory __results___files
+22634.9s 639 [NbConvertApp] Making directory __results___files
+22634.9s 640 [NbConvertApp] Making directory __results___files
+22634.9s 641 [NbConvertApp] Making directory __results___files
+22634.9s 642 [NbConvertApp] Making directory __results___files
+22634.9s 643 [NbConvertApp] Writing 1349773 bytes to __results__.html

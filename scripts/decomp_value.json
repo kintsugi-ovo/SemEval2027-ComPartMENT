@@ -1,0 +1,86 @@
+{
+  "en-nn": {
+    "ModAvg": {
+      "total_var": 0.9937,
+      "between_var": 0.7318,
+      "within_var": 0.2618,
+      "within_obs_var": 0.2999,
+      "within_noise_var": 0.2418,
+      "within_signal_var": 0.0581,
+      "signal_share": 0.1937,
+      "type_share": 0.7365
+    },
+    "HeadAvg": {
+      "total_var": 0.7862,
+      "between_var": 0.5344,
+      "within_var": 0.2518,
+      "within_obs_var": 0.2891,
+      "within_noise_var": 0.2146,
+      "within_signal_var": 0.0745,
+      "signal_share": 0.2578,
+      "type_share": 0.6798
+    },
+    "mod_head_target_level": {
+      "pearson": 0.2355,
+      "spearman": 0.1663,
+      "mod_gt_head_frac": 0.3694,
+      "head_gt_mod_frac": 0.6261,
+      "same_sign_frac": 0.5676
+    },
+    "mod_head_rowwise_corr": 0.2537
+  },
+  "de-nn": {
+    "ModAvg": {
+      "total_var": 0.4727,
+      "between_var": 0.3647,
+      "within_var": 0.108,
+      "within_obs_var": 0.1175,
+      "within_noise_var": 0.1264,
+      "within_signal_var": 0.0,
+      "signal_share": 0.0,
+      "type_share": 0.7716
+    },
+    "HeadAvg": {
+      "total_var": 1.3703,
+      "between_var": 1.2049,
+      "within_var": 0.1654,
+      "within_obs_var": 0.1774,
+      "within_noise_var": 0.1783,
+      "within_signal_var": 0.0,
+      "signal_share": 0.0,
+      "type_share": 0.8793
+    },
+    "mod_head_target_level": {
+      "pearson": 0.1176,
+      "spearman": 0.118,
+      "mod_gt_head_frac": 0.7028,
+      "head_gt_mod_frac": 0.282,
+      "same_sign_frac": 0.5553
+    },
+    "mod_head_rowwise_corr": 0.1587
+  },
+  "en-pv": {
+    "Avg": {
+      "total_var": 1.1877,
+      "between_var": 0.6157,
+      "within_var": 0.572,
+      "within_obs_var": 0.6329,
+      "within_noise_var": 0.2508,
+      "within_signal_var": 0.3821,
+      "signal_share": 0.6037,
+      "type_share": 0.5184
+    }
+  },
+  "de-pv": {
+    "Avg": {
+      "total_var": 1.1348,
+      "between_var": 0.7248,
+      "within_var": 0.41,
+      "within_obs_var": 0.4484,
+      "within_noise_var": 0.2382,
+      "within_signal_var": 0.2102,
+      "signal_share": 0.4688,
+      "type_share": 0.6387
+    }
+  }
+}

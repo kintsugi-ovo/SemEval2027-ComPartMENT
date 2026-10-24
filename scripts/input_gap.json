@@ -1,0 +1,178 @@
+{
+  "en-nn": {
+    "rows": 3480,
+    "targets": 444,
+    "rows_per_target": 7.84,
+    "label_const_within_target": {
+      "ModAvg": false,
+      "HeadAvg": false
+    },
+    "std_const_within_target": {
+      "ModStd": false,
+      "HeadStd": false
+    },
+    "label_nunique_max": {
+      "ModAvg": 10,
+      "HeadAvg": 10
+    },
+    "compound_eq_mod_plus_head": 0.0,
+    "compound_eq_mod_lowerhead": 0.0,
+    "fugen_top": [
+      [
+        " ",
+        3480
+      ]
+    ],
+    "head_is_suffix_of_compound": 1.0,
+    "mod_is_prefix_of_compound": 1.0,
+    "mod_example": [
+      "account",
+      "acid",
+      "air",
+      "arcade",
+      "arm",
+      "armchair"
+    ],
+    "head_example": [
+      "book",
+      "solution",
+      "pressure",
+      "temperature",
+      "game",
+      "length"
+    ]
+  },
+  "de-nn": {
+    "rows": 3298,
+    "targets": 461,
+    "rows_per_target": 7.15,
+    "label_const_within_target": {
+      "ModAvg": false,
+      "HeadAvg": false
+    },
+    "std_const_within_target": {
+      "ModStd": false,
+      "HeadStd": false
+    },
+    "label_nunique_max": {
+      "ModAvg": 10,
+      "HeadAvg": 10
+    },
+    "compound_eq_mod_plus_head": 0.0,
+    "compound_eq_mod_lowerhead": 0.5913,
+    "fugen_top": [
+      [
+        "s",
+        807
+      ],
+      [
+        "n",
+        274
+      ],
+      [
+        "??",
+        135
+      ],
+      [
+        "en",
+        50
+      ],
+      [
+        "e",
+        30
+      ],
+      [
+        "es",
+        24
+      ],
+      [
+        "er",
+        18
+      ],
+      [
+        "ens",
+        10
+      ]
+    ],
+    "head_is_suffix_of_compound": 1.0,
+    "mod_is_prefix_of_compound": 0.9591,
+    "mod_example": [
+      "Abitur",
+      "Ablage",
+      "Abschied",
+      "Abstand",
+      "Abzug",
+      "Acker"
+    ],
+    "head_example": [
+      "Zeugnis",
+      "Fläche",
+      "Spiel",
+      "Fähigkeit",
+      "Stand",
+      "Rand"
+    ]
+  },
+  "en-pv": {
+    "rows": 1557,
+    "targets": 158,
+    "rows_per_target": 9.85,
+    "label_const_within_target": {
+      "Avg": false
+    },
+    "std_const_within_target": {
+      "Std": false
+    },
+    "label_nunique_max": {
+      "Avg": 10
+    },
+    "pv_eq_base_plus_particle": 0.0,
+    "pv_eq_particle_plus_base": 0.0,
+    "particle_is_prefix": 0.0,
+    "base_example": [
+      "crack",
+      "boil",
+      "strike",
+      "tear",
+      "take",
+      "water"
+    ],
+    "particle_example": [
+      "down",
+      "off",
+      "out",
+      "up"
+    ]
+  },
+  "de-pv": {
+    "rows": 1490,
+    "targets": 158,
+    "rows_per_target": 9.43,
+    "label_const_within_target": {
+      "Avg": false
+    },
+    "std_const_within_target": {
+      "Std": false
+    },
+    "label_nunique_max": {
+      "Avg": 10
+    },
+    "pv_eq_base_plus_particle": 0.0,
+    "pv_eq_particle_plus_base": 1.0,
+    "particle_is_prefix": 1.0,
+    "base_example": [
+      "hauen",
+      "statten",
+      "lehnen",
+      "drücken",
+      "bringen",
+      "neigen"
+    ],
+    "particle_example": [
+      "ab",
+      "an",
+      "auf",
+      "aus"
+    ]
+  }
+}

@@ -1,0 +1,279 @@
+6.2s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+6.2s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+6.2s 3 0.00s - to python to disable frozen modules.
+6.2s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+6.8s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+6.8s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+6.8s 7 0.00s - to python to disable frozen modules.
+6.8s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+7.9s 9 [环境] CUDA_VISIBLE_DEVICES=0 （本进程只看见这 1 张卡 → Trainer 不会套 nn.DataParallel → 梯度显存不翻倍）
+35.8s 10 torch 2.11.0+cu128
+35.8s 11 绘图字体: Liberation Sans | 图注语言: en (English only)
+35.9s 12 {
+35.9s 13 "MODEL_KEY": "qwen",
+35.9s 14 "MAX_LENGTH": 160,
+35.9s 15 "BATCH_SIZE": 8,
+35.9s 16 "LR": 2e-05,
+35.9s 17 "EPOCHS": 3,
+35.9s 18 "JOINT_EPOCHS": 3,
+35.9s 19 "WARMUP_RATIO": 0.1,
+35.9s 20 "HUBER_DELTA": 1.0,
+35.9s 21 "SUBSET_LOSS_PROFILE": {
+35.9s 22 "en-nn": {
+35.9s 23 "order": 0.08,
+35.9s 24 "mse": 0.05,
+35.9s 25 "guard": 0.06,
+35.9s 26 "xrank": 0.0,
+35.9s 27 "kappa": 0.15
+35.9s 28 },
+35.9s 29 "de-nn": {
+35.9s 30 "order": 0.08,
+35.9s 31 "mse": 0.05,
+35.9s 32 "guard": 0.06,
+35.9s 33 "xrank": 0.0,
+35.9s 34 "kappa": 0.15
+35.9s 35 },
+35.9s 36 "en-pv": {
+35.9s 37 "order": 0.08,
+35.9s 38 "mse": 0.05,
+35.9s 39 "guard": 0.06,
+35.9s 40 "xrank": 0.06,
+35.9s 41 "kappa": 0.5
+35.9s 42 },
+35.9s 43 "de-pv": {
+35.9s 44 "order": 0.08,
+35.9s 45 "mse": 0.05,
+35.9s 46 "guard": 0.06,
+35.9s 47 "xrank": 0.06,
+35.9s 48 "kappa": 0.5
+35.9s 49 }
+35.9s 50 },
+35.9s 51 "AUTO_BALANCE": true,
+35.9s 52 "ORDER_TAU": 1.0,
+35.9s 53 "XRANK_MARGIN": 0.05,
+35.9s 54 "XRANK_TAU": 2.0,
+35.9s 55 "BEST_METRIC_KEY": "合计|_综合分",
+35.9s 56 "SMOKE": false,
+35.9s 57 "RUN_PLAN": [
+35.9s 58 [
+35.9s 59 "single",
+35.9s 60 "en-nn"
+35.9s 61 ],
+35.9s 62 [
+35.9s 63 "single",
+35.9s 64 "de-nn"
+35.9s 65 ],
+35.9s 66 [
+35.9s 67 "single",
+35.9s 68 "en-pv"
+35.9s 69 ],
+35.9s 70 [
+35.9s 71 "single",
+35.9s 72 "de-pv"
+35.9s 73 ],
+35.9s 74 [
+35.9s 75 "joint",
+35.9s 76 null
+35.9s 77 ]
+35.9s 78 ]
+35.9s 79 }
+36.4s 80 {'device': 'cuda', 'bf16': False, 'fp16': True, 'tf32': True, 'workers': 2, 'torch': '2.11.0+cu128', 'platform': 'Linux', 'python': '3.13.15'}
+36.4s 81 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5 | 原生bf16=False | fp16=True
+36.4s 82 物理卡：1 张可见（合计 14.6 GiB）；本 notebook 绑定物理 GPU0，在进程内编号为 cuda:0
+36.4s 83 → 单卡模式：Trainer 看到 n_gpu=1 → **不会**自动套 nn.DataParallel（DataParallel 的反向传播会额外复制一整份梯度，Qwen-1.5B 要多花 5.75 GiB）
+36.8s 84 WORK_DIR  = /kaggle/working
+36.8s 85 DATA_ROOT = /kaggle/input/datasets/kintsugi0v0/compartment-data/train
+36.8s 86 OUTPUT_ROOT = /kaggle/working/outputs
+37.2s 87 en-nn 原始形状: (3480, 9)
+37.2s 88 列名: ['ContextID', 'Compound', 'Mod', 'Head', 'ModAvg', 'ModStd', 'HeadAvg', 'HeadStd', 'Context']
+37.2s 89 Compound  ModAvg  HeadAvg                                                                                                                                                                    Context
+37.2s 90 0  account book     3.5      3.8  Correspondence, letterbooks, account books, and writings together with family papers concerning Charles, Clement, Edward, James, Nicholas, Thomas, and William S. Biddle.
+37.2s 91 1  account book     3.0      3.9                                                                                               Let me see, (looking at my account book ) that is two weeks wages making $8.
+37.2s 92 2  account book     4.4      4.1                              She drops her black silk b
+37.2s 93 
+37.2s 94 --- 标签分布 ---
+37.2s 95 ModAvg: 均值 3.659 | 标准差 0.997 | 最小 0.00 | 最大 5.00
+37.2s 96 HeadAvg: 均值 3.913 | 标准差 0.887 | 最小 0.00 | 最大 5.00
+37.2s 97 
+37.2s 98 --- 句子长度（词）分位 ---
+37.2s 99 {'p50': 25.0, 'p90': 39.0, 'p95': 42.0, 'p99': 45.0, 'max': 48.0}
+37.2s 100 → 句子很短，MAX_LENGTH=160 足够，不会因为截断丢掉关键信息。
+37.3s 101 [en-nn] 形状 (3480, 12) | 目标数 444 | 每目标例句数中位 8.0 | ContextID 是否还在: False
+37.7s 102 [de-nn] 形状 (3298, 12) | 目标数 461 | 每目标例句数中位 6.0 | ContextID 是否还在: False
+38.0s 103 [en-pv] 形状 (1557, 10) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+38.0s 104 [de-pv] 形状 (1490, 10) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+38.0s 105 归一化与词干工具就绪
+38.1s 106 MWE   : potato cake
+38.1s 107 原句  : Cakes of white flour and of whole meal are to be seen, as in other places; but potato cakes belong more especially to Ireland.
+38.1s 108 
+38.1s 109 句子切成 24 个词: ['cakes', 'of', 'white', 'flour', 'and', 'of', 'whole', 'meal', 'are', 'to', 'be', 'seen', 'as', 'in']
+38.1s 110 
+38.1s 111 归一化与词干:
+38.1s 112 fold(MWE) = potatocake
+38.1s 113 词干键(复合词) = ['pot', 'pota', 'potat']
+38.1s 114 
+38.1s 115 最小版本（只做 S0 精确匹配）: 命中 → 'potato cake'
+38.1s 116 → 精确匹配在复合词上够用，但在小品词动词上只能覆盖约三分之一；
+38.1s 117 所以下一格把级联封装成一个函数，逐级放宽。
+38.1s 118 策略  : S0 精确匹配
+38.1s 119 标记后: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+38.1s 120 最终输入: MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+38.3s 121 en-nn 定位覆盖（n=3480）成功标出 span 100.0% | S0 精确匹配 3432 | S3 英文词干前缀 48
+38.5s 122 de-nn 定位覆盖（n=3298）成功标出 span 96.0% | S0 精确匹配 3162 | S1 历史转写还原 132 | S2a 德语前缀型(屈折) 4
+38.5s 123 en-pv 定位覆盖（n=1557）成功标出 span 86.3% | S3 英文词干前缀 819 | S0 精确匹配 523 | S5 未定位 214 | S4 相邻窗口 1
+38.6s 124 de-pv 定位覆盖（n=1490）成功标出 span 77.7% | S2a 德语前缀型(屈折) 735 | S5 未定位 332 | S0 精确匹配 310 | S2b 德语后置型(动词分离) 112 | S1 历史转写还原 1
+38.8s 125 官方源连通性探测: 通  (https://huggingface.co/api/models/Qwen/Qwen2.5-1.5B-Instruct)
+38.8s 126 → 使用官方 huggingface.co（云端 GPU 直连即走这条）
+39.2s 127 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+39.2s 128 
+39.2s 129 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+48.2s 130 权重就绪: Qwen/Qwen2.5-1.5B-Instruct @ https://huggingface.co
+48.2s 131 -> /root/.cache/huggingface/hub/models--Qwen--Qwen2.5-1.5B-Instruct/snapshots/989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+61.3s 132 tokenizer: Qwen2Tokenizer | pad: <|endoftext|> | padding_side: right
+66.5s 133 en-nn 训练集 (2801, 15) | 验证集 (679, 15)
+66.5s 134 目标交集: 0 （必须为 0）
+66.5s 135 en-nn·ModAvg: train 均值 3.669 | val 均值 3.615
+66.5s 136 en-nn·HeadAvg: train 均值 3.903 | val 均值 3.955
+66.5s 137 示例解码: MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+66.6s 138 序列长度: 中位 40 | 均值 41 | 最长 108
+66.6s 139 定长补齐到 160 的 token 总量: 448,160
+66.6s 140 动态补齐的 token 总量            : 166,969
+66.6s 141 → 动态补齐省下 62.7% 的 token，注意力开销按平方计，实际省得更多。
+66.6s 142 input_ids        shape=(4, 56) dtype=torch.int64
+66.6s 143 attention_mask   shape=(4, 56) dtype=torch.int64
+66.6s 144 labels           shape=(4, 2) dtype=torch.float32
+66.6s 145 loss_mask        shape=(4, 2) dtype=torch.float32
+66.6s 146 group_index      shape=(4,) dtype=torch.int64
+66.6s 147 subset_index     shape=(4,) dtype=torch.int64
+66.6s 148 
+66.6s 149 labels 样例   : [[4.400000095367432, 3.0999999046325684], [4.0, 4.599999904632568], [4.300000190734863, 2.299999952316284], [4.5, 4.800000190734863]]
+66.6s 150 loss_mask 样例: [[1.0, 1.0], [1.0, 1.0], [1.0, 1.0], [1.0, 1.0]]
+66.6s 151 subset_index  : [0, 0, 0, 0]
+66.6s 152 → labels 是 [B, 2] 的 float 张量，没有 -100 填充；loss_mask 标出哪一列真有标签。
+67.6s 153 主干类型: Qwen2Model
+67.6s 154 config: hidden_size=64 num_attention_heads=4 attention_head_size=- head_dim=-
+67.6s 155 last_hidden_state shape: (1, 18, 64)
+67.6s 156 → [batch, 序列长度, 隐层维度]。真正的「句子向量」还需要池化，这就是下面要做的。
+67.6s 157 from_pretrained 的精度参数名: torch_dtype
+67.7s 158 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+67.7s 159 
+67.7s 160 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+69.8s 161 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+71.6s 162 主干       : Qwen/Qwen2.5-1.5B-Instruct（SMOKE=False）
+71.6s 163 池化方式   : last
+71.6s 164 输出维度   : 2（统一 2 列）
+71.6s 165 总参数     : 1543.7M | 回归头 3.1K (0.0002%)
+71.6s 166 设备       : cuda
+72.1s 167 前向 logits shape: (2, 2)
+72.1s 168 是否含 NaN: False
+72.2s 169 type-level 基线：指标1 Spearman = 0.786 | 指标3 RMSE = 0.517
+72.2s 170 组内预测 std 的唯一取值个数 = 1（0 表示每个目标内完全相同）
+72.2s 171 → 指标 2 的输入是常数数组，相关系数**未定义（nan）**：该系统在指标 2 上直接出局。
+72.2s 172 → 这就是为什么本任务必须「逐例句预测」，不能先聚合成目标级分数再回归。
+72.3s 173 ① 完美预测      : 指标1=1.000 指标2=1.000 RMSE=0.000  ✓
+72.3s 174 ② 常数预测      : 指标1=nan 指标2=nan（未定义）              ✓
+72.3s 175 ③ 反向预测      : 指标1=-1.000                              ✓
+72.3s 176 ④ 人工 std 恒为 0: 指标2=nan（被解释变量无方差）           ✓
+72.3s 177 → 指标实现通过四组断言，接下来所有结果都由它产出。
+72.3s 178 transformers 兼容层: {'eval_key': 'eval_strategy', 'tokenizer_kw': 'processing_class', 'save_only_model': True}
+72.4s 179 各子集的损失配置（占比 / κ）：
+72.4s 180 en-nn  order=0.08  mse=0.05  guard=0.06  xrank=0.00  kappa=0.15
+72.4s 181 de-nn  order=0.08  mse=0.05  guard=0.06  xrank=0.00  kappa=0.15
+72.4s 182 en-pv  order=0.08  mse=0.05  guard=0.06  xrank=0.06  kappa=0.50
+72.4s 183 de-pv  order=0.08  mse=0.05  guard=0.06  xrank=0.06  kappa=0.50
+72.4s 184 
+72.4s 185 L_huber = 0.3317   绝对值误差（指标 1 的锚 / 指标 3 的主体）
+72.4s 186 L_order  (en-nn / en-pv) = 0.0161 / 0.0533   组内相对顺序（目标0真实 1<4，预测 1.5>3.0 → 被罚）
+72.4s 187 L_mse    (en-nn / en-pv) = 0.0625 / 0.1410   指标 3（RMSE）的显式二次项
+72.4s 188 L_guard  (en-nn / en-pv) = 0.0000 / 0.0900   反收缩下界（en-nn κ=0.15 → 下界 0.32 < 预测 1.06，不触发；en-pv κ=0.50 → 下界 0.71 > 预测 0.28 → 被罚）
+72.4s 189 L_xrank  (en-nn / en-pv) = 0.0000 / 0.0571   跨目标 std 的序（en-nn 的 xrank 占比=0 ⇒ 该子集关闭；en-pv 在组 1/2 之间比较 ⇒ 有值）
+72.4s 190 
+72.4s 191 → 绝对值项是锚；排序项纠正组内顺序；MSE 项对齐 RMSE；
+72.4s 192 guard 项**反向**对抗「指标 1/3 把组内方差压平」—— 这正是指标 2 被伤害的根源；
+72.4s 193 xrank 项只在 pv 上开（nn 的指标 2 天花板只有 0.00–0.08，强行优化只会拟合噪声结构）。
+72.4s 194 → v2 的「组内 std 等值匹配」已被删除：人工 std 里掺着不可复现的标注噪声，
+72.4s 195 等值匹配 = 要求模型去拟合噪声（实测零收益且拖慢 21–40%）。
+72.5s 196 CompartmentTrainer / TargetGroupedSampler 已定义
+72.6s 197 Trainer 工厂与档位探测就绪
+72.6s 198 ==============================================================================
+72.6s 199 运行 1/5：single_en-nn  |  参与子集 ['en-nn']
+72.6s 200 ==============================================================================
+77.8s 201 训练 2801 条 | 验证 679 条 | 评测设置 2 个
+77.8s 202 本次运行轮数 = 3（单子集诊断）
+79.7s 203 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+81.6s 204 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+81.6s 205 显存预算：Qwen/Qwen2.5-1.5B-Instruct | 1544M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+81.6s 206 档位表（固定开销与 batch 无关，降 batch 救不了）：
+81.6s 207 档   含义                                       固定    bs=1 需    bs=8 需  判定
+81.6s 208 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+81.6s 209 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+81.6s 210 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+81.6s 211 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+81.6s 212 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+81.6s 213 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+81.6s 214 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+81.6s 215 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 11.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+82.2s 216 ==============================================================================
+82.2s 217 试探档位 t3：全参微调 · Adafactor · 无 AMP | optim=adafactor | 可训层比例=100% | 混合精度=关 | gradient_checkpointing=True | 固定开销 11.8 GiB（按参考 1550M 算）
+82.2s 218 ==============================================================================
+84.0s 219 主干加载成功: Qwen/Qwen2.5-1.5B-Instruct | attn_implementation=sdpa
+91.1s 220 {'loss': '3.388', 'grad_norm': 'nan', 'learning_rate': '1.905e-07', 'epoch': '0.005698'}
+91.1s 221 {'train_runtime': '4.644', 'train_samples_per_second': '3.445', 'train_steps_per_second': '0.431', 'train_loss': '3.388', 'epoch': '0.005698'}
+91.1s 222 t3 micro-batch=8: 通过，峰值显存 13.26 GiB，每样本 313.81 ms
+92.3s 223 loss                   : nan   （NaN? True）
+92.3s 224 可训练参数             : 340
+92.3s 225 拿到非零梯度的参数     : 0  (0.0%)
+92.3s 226 回归头权重梯度绝对值和 : nan   （必须 > 0，否则头没接上）
+92.3s 227 主干首参数梯度绝对值和 : nan   （必须 > 0，否则主干被冻结）
+95.5s 228 Traceback (most recent call last):
+95.5s 229 File "<string>", line 1, in <module>
+95.5s 230 import sys;import papermill as pm;pm.execute_notebook("__notebook__.ipynb","__notebook__.ipynb",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)
+95.5s 231 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+95.5s 232 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 131, in execute_notebook
+95.5s 233 raise_for_execution_errors(nb, output_path)
+95.5s 234 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+95.5s 235 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 251, in raise_for_execution_errors
+95.5s 236 raise error
+95.5s 237 papermill.exceptions.PapermillExecutionError:
+95.5s 238 ---------------------------------------------------------------------------
+95.5s 239 Exception encountered at "In [32]":
+95.5s 240 ---------------------------------------------------------------------------
+95.5s 241 AssertionError                            Traceback (most recent call last)
+95.5s 242 /tmp/ipykernel_24/1608448052.py in <cell line: 0>()
+95.5s 243 45         # 【★ 自动降档】显存不够就在下一档重试，直到某一档能真跑通；
+95.5s 244 46         #   全部档位都失败时给出精确诊断（而不是一句 out of memory）。
+95.5s 245 ---> 47         _tier, _bs, _peak, _sps = prepare_for_training(build_model, _data)
+95.5s 246 48         apply_tier(_tier)
+95.5s 247 49         BATCH_SIZE = _bs
+95.5s 248 
+95.5s 249 /tmp/ipykernel_24/2807582124.py in prepare_for_training(build_fn, data)
+95.5s 250 219                 bs, peak, sps = BATCH_SIZE, float("nan"), float("nan")
+95.5s 251 220             try:
+95.5s 252 --> 221                 run_preflight_checks(model, data, OUTPUT_ROOT / "_preflight")
+95.5s 253 222             except FitOOMError as e:
+95.5s 254 223                 last_err = f"档位 {t['name']}：开训前检查阶段仍 OOM（{str(e)[:160]}）"
+95.5s 255 
+95.5s 256 /tmp/ipykernel_24/2797663068.py in run_preflight_checks(model, data, out_dir)
+95.5s 257 3     """梯度流验证 + 冒烟测试（外层只干一件事：把 OOM 翻译成 FitOOMError）。"""
+95.5s 258 4     try:
+95.5s 259 ----> 5         _preflight_body(model, data, out_dir)
+95.5s 260 6     except RuntimeError as e:
+95.5s 261 7         if _is_oom(e):
+95.5s 262 
+95.5s 263 /tmp/ipykernel_24/2797663068.py in _preflight_body(model, data, out_dir)
+95.5s 264 37     print(f"回归头权重梯度绝对值和 : {_head_g:.6g}   （必须 > 0，否则头没接上）")
+95.5s 265 38     print(f"主干首参数梯度绝对值和 : {_bb_g:.6g}   （必须 > 0，否则主干被冻结）")
+95.5s 266 ---> 39     assert _head_g > 0, "回归头没有梯度：回归头没接进计算图"
+95.5s 267 40     assert _bb_g > 0, "主干没有梯度：主干被冻结了"
+95.5s 268 41     assert not torch.isnan(_gl), "loss 出现 NaN：多半是 fp16 加载或标签里有脏值"
+95.5s 269 
+95.5s 270 AssertionError: 回归头没有梯度：回归头没接进计算图
+95.5s 271 
+97.7s 272 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+97.7s 273 cells[i][c] = re.sub('\\\\\|', '|', cell)
+97.9s 274 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+97.9s 275 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+98.6s 276 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+98.8s 277 [NbConvertApp] Writing 429046 bytes to __notebook__.ipynb
+101.4s 278 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+102.5s 279 [NbConvertApp] Writing 1183097 bytes to __results__.html

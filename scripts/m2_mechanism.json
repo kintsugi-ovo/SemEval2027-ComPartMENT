@@ -1,0 +1,38 @@
+{
+  "en-nn|ModAvg": {
+    "m2_probe": -0.12082056520258772,
+    "rho_predstd_vs_ambiguity": 0.0306,
+    "rho_goldstd_vs_ambiguity": 0.4788,
+    "rho_predstd_vs_noise_expect": 0.0306
+  },
+  "en-nn|HeadAvg": {
+    "m2_probe": -0.059090909090909104,
+    "rho_predstd_vs_ambiguity": -0.1609,
+    "rho_goldstd_vs_ambiguity": 0.4626,
+    "rho_predstd_vs_noise_expect": -0.1609
+  },
+  "de-nn|ModAvg": {
+    "m2_probe": 0.03960975910485027,
+    "rho_predstd_vs_ambiguity": -0.0276,
+    "rho_goldstd_vs_ambiguity": 0.7273,
+    "rho_predstd_vs_noise_expect": -0.0276
+  },
+  "de-nn|HeadAvg": {
+    "m2_probe": 0.0018803076306582618,
+    "rho_predstd_vs_ambiguity": -0.0446,
+    "rho_goldstd_vs_ambiguity": 0.7426,
+    "rho_predstd_vs_noise_expect": -0.0446
+  },
+  "en-pv|Avg": {
+    "m2_probe": 0.5124633431085044,
+    "rho_predstd_vs_ambiguity": -0.1243,
+    "rho_goldstd_vs_ambiguity": -0.0139,
+    "rho_predstd_vs_noise_expect": -0.1243
+  },
+  "de-pv|Avg": {
+    "m2_probe": 0.1312316715542522,
+    "rho_predstd_vs_ambiguity": -0.2086,
+    "rho_goldstd_vs_ambiguity": -0.3076,
+    "rho_predstd_vs_noise_expect": -0.2086
+  }
+}

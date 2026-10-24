@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# 模型权重与训练产物
+*.safetensors
+*.bin
+*.pt
+*.pth
+outputs/
+checkpoints/
+runs/
+wandb/
+
+# 评测提交产物
+*.zip
+!train.zip
+
+# 系统
+.DS_Store
+Thumbs.db

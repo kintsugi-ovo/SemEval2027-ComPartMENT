@@ -1,0 +1,352 @@
+10.2s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+10.2s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+10.2s 3 0.00s - to python to disable frozen modules.
+10.2s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+11.0s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+11.0s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+11.0s 7 0.00s - to python to disable frozen modules.
+11.0s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+12.3s 9 [环境] CUDA_VISIBLE_DEVICES=0 （本进程只看见这 1 张卡 → Trainer 不会套 nn.DataParallel → 梯度显存不翻倍）
+62.7s 10 torch 2.11.0+cu128
+62.8s 11 绘图字体: Liberation Sans | 图注语言: en (English only)
+62.8s 12 {
+62.8s 13 "MODEL_KEY": "deberta",
+62.8s 14 "MAX_LENGTH": 160,
+62.8s 15 "BATCH_SIZE": 8,
+62.8s 16 "LR": 2e-05,
+62.8s 17 "EPOCHS": 3,
+62.8s 18 "JOINT_EPOCHS": 3,
+62.8s 19 "WARMUP_RATIO": 0.1,
+62.8s 20 "HUBER_DELTA": 1.0,
+62.8s 21 "SUBSET_LOSS_PROFILE": {
+62.8s 22 "en-nn": {
+62.8s 23 "order": 0.08,
+62.8s 24 "mse": 0.05,
+62.8s 25 "guard": 0.06,
+62.8s 26 "xrank": 0.0,
+62.8s 27 "kappa": 0.15
+62.8s 28 },
+62.8s 29 "de-nn": {
+62.8s 30 "order": 0.08,
+62.8s 31 "mse": 0.05,
+62.8s 32 "guard": 0.06,
+62.8s 33 "xrank": 0.0,
+62.8s 34 "kappa": 0.15
+62.8s 35 },
+62.8s 36 "en-pv": {
+62.8s 37 "order": 0.08,
+62.8s 38 "mse": 0.05,
+62.8s 39 "guard": 0.06,
+62.8s 40 "xrank": 0.06,
+62.8s 41 "kappa": 0.5
+62.8s 42 },
+62.8s 43 "de-pv": {
+62.8s 44 "order": 0.08,
+62.8s 45 "mse": 0.05,
+62.8s 46 "guard": 0.06,
+62.8s 47 "xrank": 0.06,
+62.8s 48 "kappa": 0.5
+62.8s 49 }
+62.8s 50 },
+62.8s 51 "AUTO_BALANCE": true,
+62.8s 52 "ORDER_TAU": 1.0,
+62.8s 53 "XRANK_MARGIN": 0.05,
+62.8s 54 "XRANK_TAU": 2.0,
+62.8s 55 "BEST_METRIC_KEY": "合计|_综合分",
+62.8s 56 "SMOKE": false,
+62.8s 57 "RUN_PLAN": [
+62.8s 58 [
+62.8s 59 "single",
+62.8s 60 "en-nn"
+62.8s 61 ],
+62.8s 62 [
+62.8s 63 "single",
+62.8s 64 "de-nn"
+62.8s 65 ],
+62.8s 66 [
+62.8s 67 "single",
+62.8s 68 "en-pv"
+62.8s 69 ],
+62.8s 70 [
+62.8s 71 "single",
+62.8s 72 "de-pv"
+62.8s 73 ],
+62.8s 74 [
+62.8s 75 "joint",
+62.8s 76 null
+62.8s 77 ]
+62.8s 78 ]
+62.8s 79 }
+63.3s 80 {'device': 'cuda', 'bf16': False, 'fp16': True, 'tf32': True, 'workers': 2, 'torch': '2.11.0+cu128', 'platform': 'Linux', 'python': '3.13.15'}
+63.3s 81 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5 | 原生bf16=False | fp16=True
+63.3s 82 物理卡：1 张可见（合计 14.6 GiB）；本 notebook 绑定物理 GPU0，在进程内编号为 cuda:0
+63.3s 83 → 单卡模式：Trainer 看到 n_gpu=1 → **不会**自动套 nn.DataParallel（DataParallel 的反向传播会额外复制一整份梯度，Qwen-1.5B 要多花 5.75 GiB）
+64.3s 84 WORK_DIR  = /kaggle/working
+64.3s 85 DATA_ROOT = /kaggle/input/datasets/kintsugi0v0/compartment-data/train
+64.3s 86 OUTPUT_ROOT = /kaggle/working/outputs
+65.6s 87 en-nn 原始形状: (3480, 9)
+65.6s 88 列名: ['ContextID', 'Compound', 'Mod', 'Head', 'ModAvg', 'ModStd', 'HeadAvg', 'HeadStd', 'Context']
+65.6s 89 Compound  ModAvg  HeadAvg                                                                                                                                                                    Context
+65.6s 90 0  account book     3.5      3.8  Correspondence, letterbooks, account books, and writings together with family papers concerning Charles, Clement, Edward, James, Nicholas, Thomas, and William S. Biddle.
+65.6s 91 1  account book     3.0      3.9                                                                                               Let me see, (looking at my account book ) that is two weeks wages making $8.
+65.6s 92 2  account book     4.4      4.1                              She drops her black silk b
+65.6s 93 
+65.6s 94 --- 标签分布 ---
+65.6s 95 ModAvg: 均值 3.659 | 标准差 0.997 | 最小 0.00 | 最大 5.00
+65.6s 96 HeadAvg: 均值 3.913 | 标准差 0.887 | 最小 0.00 | 最大 5.00
+65.6s 97 
+65.6s 98 --- 句子长度（词）分位 ---
+65.6s 99 {'p50': 25.0, 'p90': 39.0, 'p95': 42.0, 'p99': 45.0, 'max': 48.0}
+65.6s 100 → 句子很短，MAX_LENGTH=160 足够，不会因为截断丢掉关键信息。
+65.8s 101 [en-nn] 形状 (3480, 12) | 目标数 444 | 每目标例句数中位 8.0 | ContextID 是否还在: False
+66.7s 102 [de-nn] 形状 (3298, 12) | 目标数 461 | 每目标例句数中位 6.0 | ContextID 是否还在: False
+67.3s 103 [en-pv] 形状 (1557, 10) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+67.8s 104 [de-pv] 形状 (1490, 10) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+67.8s 105 归一化与词干工具就绪
+67.9s 106 MWE   : potato cake
+67.9s 107 原句  : Cakes of white flour and of whole meal are to be seen, as in other places; but potato cakes belong more especially to Ireland.
+67.9s 108 
+67.9s 109 句子切成 24 个词: ['cakes', 'of', 'white', 'flour', 'and', 'of', 'whole', 'meal', 'are', 'to', 'be', 'seen', 'as', 'in']
+67.9s 110 
+67.9s 111 归一化与词干:
+67.9s 112 fold(MWE) = potatocake
+67.9s 113 词干键(复合词) = ['pot', 'pota', 'potat']
+67.9s 114 
+67.9s 115 最小版本（只做 S0 精确匹配）: 命中 → 'potato cake'
+67.9s 116 → 精确匹配在复合词上够用，但在小品词动词上只能覆盖约三分之一；
+67.9s 117 所以下一格把级联封装成一个函数，逐级放宽。
+67.9s 118 策略  : S0 精确匹配
+67.9s 119 标记后: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+67.9s 120 最终输入: MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+68.0s 121 en-nn 定位覆盖（n=3480）成功标出 span 100.0% | S0 精确匹配 3432 | S3 英文词干前缀 48
+68.1s 122 de-nn 定位覆盖（n=3298）成功标出 span 96.0% | S0 精确匹配 3162 | S1 历史转写还原 132 | S2a 德语前缀型(屈折) 4
+68.3s 123 en-pv 定位覆盖（n=1557）成功标出 span 86.3% | S3 英文词干前缀 819 | S0 精确匹配 523 | S5 未定位 214 | S4 相邻窗口 1
+68.4s 124 de-pv 定位覆盖（n=1490）成功标出 span 77.7% | S2a 德语前缀型(屈折) 735 | S5 未定位 332 | S0 精确匹配 310 | S2b 德语后置型(动词分离) 112 | S1 历史转写还原 1
+68.8s 125 官方源连通性探测: 通  (https://huggingface.co/api/models/microsoft/deberta-v2-xlarge)
+68.8s 126 → 使用官方 huggingface.co（云端 GPU 直连即走这条）
+69.2s 127 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+69.2s 128 
+69.2s 129 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+74.0s 130 权重就绪: microsoft/deberta-v2-xlarge @ https://huggingface.co
+74.0s 131 -> /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+82.4s 132 [transformers] The tokenizer you are loading from '/root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+82.4s 133 
+82.4s 134 [transformers] The tokenizer you are loading from '/root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7' with an incorrect regex pattern: https://huggingface.co/mistralai/Mistral-Small-3.1-24B-Instruct-2503/discussions/84#69121093e8b480e709447d5e. This will lead to incorrect tokenization. You should set the `fix_mistral_regex=True` flag when loading this tokenizer to fix this issue.
+82.4s 135 tokenizer: DebertaV2Tokenizer | pad: [PAD] | padding_side: right
+85.2s 136 en-nn 训练集 (2801, 15) | 验证集 (679, 15)
+85.2s 137 目标交集: 0 （必须为 0）
+85.2s 138 en-nn·ModAvg: train 均值 3.669 | val 均值 3.615
+85.2s 139 en-nn·HeadAvg: train 均值 3.903 | val 均值 3.955
+85.2s 140 示例解码: [CLS] MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.[SEP]
+85.3s 141 序列长度: 中位 41 | 均值 41 | 最长 83
+85.3s 142 定长补齐到 160 的 token 总量: 448,160
+85.3s 143 动态补齐的 token 总量            : 161,682
+85.3s 144 → 动态补齐省下 63.9% 的 token，注意力开销按平方计，实际省得更多。
+85.3s 145 input_ids        shape=(4, 56) dtype=torch.int64
+85.3s 146 token_type_ids   shape=(4, 56) dtype=torch.int64
+85.3s 147 attention_mask   shape=(4, 56) dtype=torch.int64
+85.3s 148 labels           shape=(4, 2) dtype=torch.float32
+85.3s 149 loss_mask        shape=(4, 2) dtype=torch.float32
+85.3s 150 group_index      shape=(4,) dtype=torch.int64
+85.3s 151 subset_index     shape=(4,) dtype=torch.int64
+85.3s 152 
+85.3s 153 labels 样例   : [[4.400000095367432, 3.0999999046325684], [4.0, 4.599999904632568], [4.300000190734863, 2.299999952316284], [4.5, 4.800000190734863]]
+85.3s 154 loss_mask 样例: [[1.0, 1.0], [1.0, 1.0], [1.0, 1.0], [1.0, 1.0]]
+85.3s 155 subset_index  : [0, 0, 0, 0]
+85.3s 156 → labels 是 [B, 2] 的 float 张量，没有 -100 填充；loss_mask 标出哪一列真有标签。
+86.1s 157 主干类型: DebertaV2Model
+86.1s 158 config: hidden_size=64 num_attention_heads=4 attention_head_size=16 head_dim=-
+86.1s 159 last_hidden_state shape: (1, 20, 64)
+86.1s 160 → [batch, 序列长度, 隐层维度]。真正的「句子向量」还需要池化，这就是下面要做的。
+86.2s 161 from_pretrained 的精度参数名: torch_dtype
+86.2s 162 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+86.2s 163 
+86.2s 164 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+88.6s 165 [transformers] [1mDebertaV2Model LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+88.6s 166 Key                                     | Status     |  |
+88.6s 167 ----------------------------------------+------------+--+-
+88.6s 168 lm_predictions.lm_head.dense.bias       | UNEXPECTED |  |
+88.6s 169 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  |
+88.6s 170 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  |
+88.6s 171 lm_predictions.lm_head.bias             | UNEXPECTED |  |
+88.6s 172 lm_predictions.lm_head.dense.weight     | UNEXPECTED |  |
+88.6s 173 
+88.6s 174 Notes:
+88.6s 175 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+88.6s 176 
+88.6s 177 [transformers] [1mDebertaV2Model LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+88.6s 178 Key                                     | Status     |  |
+88.6s 179 ----------------------------------------+------------+--+-
+88.6s 180 lm_predictions.lm_head.dense.bias       | UNEXPECTED |  |
+88.6s 181 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  |
+88.6s 182 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  |
+88.6s 183 lm_predictions.lm_head.bias             | UNEXPECTED |  |
+88.6s 184 lm_predictions.lm_head.dense.weight     | UNEXPECTED |  |
+88.6s 185 
+88.6s 186 Notes:
+88.6s 187 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+88.8s 188 主干加载成功: microsoft/deberta-v2-xlarge | attn_implementation=eager
+89.8s 189 主干       : microsoft/deberta-v2-xlarge（SMOKE=False）
+89.8s 190 池化方式   : mean
+89.8s 191 输出维度   : 2（统一 2 列）
+89.8s 192 总参数     : 884.6M | 回归头 3.1K (0.0003%)
+89.8s 193 设备       : cuda
+91.6s 194 前向 logits shape: (2, 2)
+91.6s 195 是否含 NaN: False
+91.7s 196 type-level 基线：指标1 Spearman = 0.786 | 指标3 RMSE = 0.517
+91.7s 197 组内预测 std 的唯一取值个数 = 1（0 表示每个目标内完全相同）
+91.7s 198 → 指标 2 的输入是常数数组，相关系数**未定义（nan）**：该系统在指标 2 上直接出局。
+91.7s 199 → 这就是为什么本任务必须「逐例句预测」，不能先聚合成目标级分数再回归。
+91.8s 200 ① 完美预测      : 指标1=1.000 指标2=1.000 RMSE=0.000  ✓
+91.8s 201 ② 常数预测      : 指标1=nan 指标2=nan（未定义）              ✓
+91.8s 202 ③ 反向预测      : 指标1=-1.000                              ✓
+91.8s 203 ④ 人工 std 恒为 0: 指标2=nan（被解释变量无方差）           ✓
+91.8s 204 → 指标实现通过四组断言，接下来所有结果都由它产出。
+91.8s 205 transformers 兼容层: {'eval_key': 'eval_strategy', 'tokenizer_kw': 'processing_class', 'save_only_model': True}
+92.0s 206 各子集的损失配置（占比 / κ）：
+92.0s 207 en-nn  order=0.08  mse=0.05  guard=0.06  xrank=0.00  kappa=0.15
+92.0s 208 de-nn  order=0.08  mse=0.05  guard=0.06  xrank=0.00  kappa=0.15
+92.0s 209 en-pv  order=0.08  mse=0.05  guard=0.06  xrank=0.06  kappa=0.50
+92.0s 210 de-pv  order=0.08  mse=0.05  guard=0.06  xrank=0.06  kappa=0.50
+92.0s 211 
+92.0s 212 L_huber = 0.3317   绝对值误差（指标 1 的锚 / 指标 3 的主体）
+92.0s 213 L_order  (en-nn / en-pv) = 0.0161 / 0.0533   组内相对顺序（目标0真实 1<4，预测 1.5>3.0 → 被罚）
+92.0s 214 L_mse    (en-nn / en-pv) = 0.0625 / 0.1410   指标 3（RMSE）的显式二次项
+92.0s 215 L_guard  (en-nn / en-pv) = 0.0000 / 0.0900   反收缩下界（en-nn κ=0.15 → 下界 0.32 < 预测 1.06，不触发；en-pv κ=0.50 → 下界 0.71 > 预测 0.28 → 被罚）
+92.0s 216 L_xrank  (en-nn / en-pv) = 0.0000 / 0.0571   跨目标 std 的序（en-nn 的 xrank 占比=0 ⇒ 该子集关闭；en-pv 在组 1/2 之间比较 ⇒ 有值）
+92.0s 217 
+92.0s 218 → 绝对值项是锚；排序项纠正组内顺序；MSE 项对齐 RMSE；
+92.0s 219 guard 项**反向**对抗「指标 1/3 把组内方差压平」—— 这正是指标 2 被伤害的根源；
+92.0s 220 xrank 项只在 pv 上开（nn 的指标 2 天花板只有 0.00–0.08，强行优化只会拟合噪声结构）。
+92.0s 221 → v2 的「组内 std 等值匹配」已被删除：人工 std 里掺着不可复现的标注噪声，
+92.0s 222 等值匹配 = 要求模型去拟合噪声（实测零收益且拖慢 21–40%）。
+92.1s 223 CompartmentTrainer / TargetGroupedSampler 已定义
+92.1s 224 Trainer 工厂与档位探测就绪
+92.3s 225 ==============================================================================
+92.3s 226 运行 1/5：single_en-nn  |  参与子集 ['en-nn']
+92.3s 227 ==============================================================================
+95.1s 228 训练 2801 条 | 验证 679 条 | 评测设置 2 个
+95.1s 229 本次运行轮数 = 3（单子集诊断）
+97.0s 230 [transformers] [1mDebertaV2Model LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+97.0s 231 Key                                     | Status     |  |
+97.0s 232 ----------------------------------------+------------+--+-
+97.0s 233 lm_predictions.lm_head.dense.bias       | UNEXPECTED |  |
+97.0s 234 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  |
+97.0s 235 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  |
+97.0s 236 lm_predictions.lm_head.bias             | UNEXPECTED |  |
+97.0s 237 lm_predictions.lm_head.dense.weight     | UNEXPECTED |  |
+97.0s 238 
+97.0s 239 Notes:
+97.0s 240 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+97.0s 241 
+97.0s 242 [transformers] [1mDebertaV2Model LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+97.0s 243 Key                                     | Status     |  |
+97.0s 244 ----------------------------------------+------------+--+-
+97.0s 245 lm_predictions.lm_head.dense.bias       | UNEXPECTED |  |
+97.0s 246 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  |
+97.0s 247 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  |
+97.0s 248 lm_predictions.lm_head.bias             | UNEXPECTED |  |
+97.0s 249 lm_predictions.lm_head.dense.weight     | UNEXPECTED |  |
+97.0s 250 
+97.0s 251 Notes:
+97.0s 252 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+97.2s 253 主干加载成功: microsoft/deberta-v2-xlarge | attn_implementation=eager
+98.2s 254 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+98.2s 255 显存预算：microsoft/deberta-v2-xlarge | 885M 参数（实际） | 选档参考 1550M（两条基线取较大者，保证同档） | 单卡容量 14.6 GiB | 安全系数 90%
+98.2s 256 档位表（固定开销与 batch 无关，降 batch 救不了）：
+98.2s 257 档   含义                                       固定    bs=1 需    bs=8 需  判定
+98.2s 258 t0  全参微调 · fp32 AdamW · AMP               26.0G     26.3G     28.0G  ✗ 超出预算 13.1 GiB
+98.2s 259 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+98.2s 260 t2  全参微调 · Adafactor · AMP                14.7G     15.0G     16.2G  ✗ 超出预算 13.1 GiB
+98.2s 261 t3  全参微调 · Adafactor · 无 AMP              11.8G     12.1G     13.3G  ✓ 装得下
+98.2s 262 t4  顶部 50% 层 · Adafactor · AMP            11.7G     12.0G     13.2G  ✓ 装得下
+98.2s 263 t5  顶部 50% 层 · Adafactor · 无 AMP           8.8G      9.1G     10.3G  ✓ 装得下
+98.2s 264 t6  顶部 25% 层 · Adafactor · 无 AMP           7.3G      7.6G      8.8G  ✓ 装得下
+98.2s 265 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 6.8 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+98.8s 266 ==============================================================================
+98.8s 267 试探档位 t3：全参微调 · Adafactor · 无 AMP | optim=adafactor | 可训层比例=100% | 混合精度=关 | gradient_checkpointing=True | 固定开销 11.8 GiB（按参考 1550M 算）
+98.8s 268 ==============================================================================
+100.6s 269 [transformers] [1mDebertaV2Model LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+100.6s 270 Key                                     | Status     |  |
+100.6s 271 ----------------------------------------+------------+--+-
+100.6s 272 lm_predictions.lm_head.dense.bias       | UNEXPECTED |  |
+100.6s 273 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  |
+100.6s 274 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  |
+100.6s 275 lm_predictions.lm_head.bias             | UNEXPECTED |  |
+100.6s 276 lm_predictions.lm_head.dense.weight     | UNEXPECTED |  |
+100.6s 277 
+100.6s 278 Notes:
+100.6s 279 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+100.6s 280 
+100.6s 281 [transformers] [1mDebertaV2Model LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--microsoft--deberta-v2-xlarge/snapshots/1d134961d4db8e7e8eb1bc1ab81cb370244c57f7
+100.6s 282 Key                                     | Status     |  |
+100.6s 283 ----------------------------------------+------------+--+-
+100.6s 284 lm_predictions.lm_head.dense.bias       | UNEXPECTED |  |
+100.6s 285 lm_predictions.lm_head.LayerNorm.weight | UNEXPECTED |  |
+100.6s 286 lm_predictions.lm_head.LayerNorm.bias   | UNEXPECTED |  |
+100.6s 287 lm_predictions.lm_head.bias             | UNEXPECTED |  |
+100.6s 288 lm_predictions.lm_head.dense.weight     | UNEXPECTED |  |
+100.6s 289 
+100.6s 290 Notes:
+100.6s 291 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+100.8s 292 主干加载成功: microsoft/deberta-v2-xlarge | attn_implementation=eager
+106.2s 293 {'loss': '1.267', 'grad_norm': 'nan', 'learning_rate': '1.905e-07', 'epoch': '0.005698'}
+106.2s 294 {'train_runtime': '3.717', 'train_samples_per_second': '4.305', 'train_steps_per_second': '0.538', 'train_loss': '1.267', 'epoch': '0.005698'}
+106.2s 295 t3 micro-batch=8: 通过，峰值显存 8.09 GiB，每样本 255.49 ms
+107.2s 296 loss                   : nan   （NaN? True）
+107.2s 297 可训练参数             : 396
+107.2s 298 拿到非零梯度的参数     : 0  (0.0%)
+107.2s 299 回归头权重梯度绝对值和 : nan   （必须 > 0，否则头没接上）
+107.2s 300 主干首参数梯度绝对值和 : nan   （必须 > 0，否则主干被冻结）
+110.6s 301 Traceback (most recent call last):
+110.6s 302 File "<string>", line 1, in <module>
+110.6s 303 import sys;import papermill as pm;pm.execute_notebook("__notebook__.ipynb","__notebook__.ipynb",progress_bar=False,log_output=True,stdout_file=sys.stdout,stderr_file=sys.stderr,allow_errors=False,timeout=43200)
+110.6s 304 ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+110.6s 305 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 131, in execute_notebook
+110.6s 306 raise_for_execution_errors(nb, output_path)
+110.6s 307 ~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+110.6s 308 File "/usr/local/lib/python3.13/dist-packages/papermill/execute.py", line 251, in raise_for_execution_errors
+110.6s 309 raise error
+110.6s 310 papermill.exceptions.PapermillExecutionError:
+110.6s 311 ---------------------------------------------------------------------------
+110.6s 312 Exception encountered at "In [32]":
+110.6s 313 ---------------------------------------------------------------------------
+110.6s 314 AssertionError                            Traceback (most recent call last)
+110.6s 315 /tmp/ipykernel_23/1608448052.py in <cell line: 0>()
+110.6s 316 45         # 【★ 自动降档】显存不够就在下一档重试，直到某一档能真跑通；
+110.6s 317 46         #   全部档位都失败时给出精确诊断（而不是一句 out of memory）。
+110.6s 318 ---> 47         _tier, _bs, _peak, _sps = prepare_for_training(build_model, _data)
+110.6s 319 48         apply_tier(_tier)
+110.6s 320 49         BATCH_SIZE = _bs
+110.6s 321 
+110.6s 322 /tmp/ipykernel_23/2807582124.py in prepare_for_training(build_fn, data)
+110.6s 323 219                 bs, peak, sps = BATCH_SIZE, float("nan"), float("nan")
+110.6s 324 220             try:
+110.6s 325 --> 221                 run_preflight_checks(model, data, OUTPUT_ROOT / "_preflight")
+110.6s 326 222             except FitOOMError as e:
+110.6s 327 223                 last_err = f"档位 {t['name']}：开训前检查阶段仍 OOM（{str(e)[:160]}）"
+110.6s 328 
+110.6s 329 /tmp/ipykernel_23/2797663068.py in run_preflight_checks(model, data, out_dir)
+110.6s 330 3     """梯度流验证 + 冒烟测试（外层只干一件事：把 OOM 翻译成 FitOOMError）。"""
+110.6s 331 4     try:
+110.6s 332 ----> 5         _preflight_body(model, data, out_dir)
+110.6s 333 6     except RuntimeError as e:
+110.6s 334 7         if _is_oom(e):
+110.6s 335 
+110.6s 336 /tmp/ipykernel_23/2797663068.py in _preflight_body(model, data, out_dir)
+110.6s 337 37     print(f"回归头权重梯度绝对值和 : {_head_g:.6g}   （必须 > 0，否则头没接上）")
+110.6s 338 38     print(f"主干首参数梯度绝对值和 : {_bb_g:.6g}   （必须 > 0，否则主干被冻结）")
+110.6s 339 ---> 39     assert _head_g > 0, "回归头没有梯度：回归头没接进计算图"
+110.6s 340 40     assert _bb_g > 0, "主干没有梯度：主干被冻结了"
+110.6s 341 41     assert not torch.isnan(_gl), "loss 出现 NaN：多半是 fp16 加载或标签里有脏值"
+110.6s 342 
+110.6s 343 AssertionError: 回归头没有梯度：回归头没接进计算图
+110.6s 344 
+112.8s 345 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+112.8s 346 cells[i][c] = re.sub('\\\\\|', '|', cell)
+113.0s 347 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+113.0s 348 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+113.8s 349 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+113.9s 350 [NbConvertApp] Writing 432425 bytes to __notebook__.ipynb
+116.3s 351 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+117.4s 352 [NbConvertApp] Writing 1186401 bytes to __results__.html
