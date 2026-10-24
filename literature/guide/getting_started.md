@@ -4,7 +4,7 @@
 > 目标：**读完后能独立跑通一条完整且合法的提交管线**，而不是读完一篇综述。
 >
 > 本指南以**数据结构**为骨架组织——因为这个任务的 90% 的坑都不在模型里，而在「这张表到底是什么结构」上。
-> 学术脉络与论文详解见 [`ComPartMENT_文献综述与入门指南.md`](ComPartMENT_文献综述与入门指南.md)；
+> 学术脉络与论文详解见 [文献综述](literature_review.md)；
 > 从零理解「组合性预测」这个概念本身，见 [`教学指南`](tutorial.md)(教学指南_组合性预测从零到一.md)。
 
 ---
@@ -157,9 +157,8 @@ ContextID   Avg    Context
 
 > ⚠️ 由此得到一条硬性工程约束：**读入测试集时不能无条件引用 `ModAvg` / `HeadAvg` / `Avg` / `Std`**，否则代码在本地跑得好好的，一提交就崩。
 
-![图14](../reports/figures/fig14_data_structure.png)
+![图14](../../figures/fig14_data_structure.png)
 
-复现：`python3 scripts/run_structure.py`
 
 ---
 
@@ -169,7 +168,7 @@ ContextID   Avg    Context
 
 ### 约束一：`ContextID` 里有金标泄漏，必须第一时间销毁
 
-实测（`reports/figures/fig11_order_leakage.png`）：
+实测（`figures/fig11_order_leakage.png`）：
 
 | 关系 | Spearman ρ |
 |---|---|
@@ -286,7 +285,7 @@ def eval_all(df, key, cols):
 2. **指标 2 有一个被很多人忽略的「作弊上界」**。我实测了一个「每行填该目标的真实均值」的系统：指标 1 可达 ρ = 0.70–0.92（`de-nn Head` 高达 **0.918**），RMSE 0.33–0.76，但**指标 2 全部 `nan`**。这说明指标 1 和 3 **并不强制你使用语境**——只有指标 2 在管这件事。
 3. **指标 1 和指标 2 存在张力**：过度压缩输出方差 → 指标 2 掉分；过度放大/加噪声 → 指标 1 的排序被破坏。**把「输出缩放系数」当显式旋钮，在 dev 上画 指标1 ρ vs 指标2 ρ 的帕累托前沿**，不要用单一验证指标选点。
 
-![图12](../reports/figures/fig12_eval_metrics.png)
+![图12](../../figures/fig12_eval_metrics.png)
 
 ---
 
@@ -361,7 +360,7 @@ Couch Potato、ComposiGen、ACL 2025 都做了 LLM 路线，但有两个必须�
 
 ## 第 7 步：导出与提交
 
-这是最容易翻车的地方。完整规则与自检骨架见 [`预处理分析计划.md` §9](../../reports/preprocessing_plan.md)，这里只列清单。
+这是最容易翻车的地方。完整规则与自检骨架见 [`预处理分析计划.md` §9](../../PREPROCESSING.md)，这里只列清单。
 
 ### 只有 4 个文件，不是 6 个
 
@@ -442,5 +441,5 @@ body.to_csv("en-nn-pred.tsv", sep="\t", index=False, header=False)  # 无表头
 1. **今天**：跑通基线 B（目标均值 + 噪声），用 Trial 的 `scores.txt` 校验指标实现与提交格式。
 2. **本周**：完成定位级联，把定位成功率打到 100% / 100% / 86% / 78% 以上。
 3. **下周**：上路线 2，做完整的层扫描。这是主力投入所在。
-4. 完整规则清单（20+ 条 R 编号规则）：[`预处理分析计划.md`](../../reports/preprocessing_plan.md)
+4. 完整规则清单（20+ 条 R 编号规则）：[`预处理分析计划.md`](../../PREPROCESSING.md)
 5. 概念理解：[`教学指南`](tutorial.md)(教学指南_组合性预测从零到一.md)

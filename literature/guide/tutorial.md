@@ -2653,8 +2653,8 @@ std：      4.24         0.42         0.21        ← 三个都乘了 3
 |---|---|---|
 | [**入门指南**](getting_started.md) | 工程路径，以数据结构为骨架，从读懂一张表到产出合法提交 | 准备动手时 |
 | [`ComPartMENT_文献综述与入门指南.md`](literature_review.md) | 学术脉络与 39 篇文献详解 | 要写论文 / 找引用时 |
-| [`../../reports/preprocessing_plan.md`](../../reports/preprocessing_plan.md) | 20+ 条预处理规则、流水线伪代码、提交格式规范 | 写代码前查清单 |
-| [`reports/data_analysis.md`](../前期分析记录) | 项目记忆：任务目标、已验证事实、建模决策 | **任何工作开始前先读** |
+| [`../../PREPROCESSING.md`](../../PREPROCESSING.md) | 20+ 条预处理规则、流水线伪代码、提交格式规范 | 写代码前查清单 |
+| [`AGENTS.md`](../../AGENTS.md) | 项目记忆：任务目标、已验证事实、建模决策 | **任何工作开始前先读** |
 
 **开源代码**
 
@@ -2668,14 +2668,8 @@ std：      4.24         0.42         0.21        ← 三个都乘了 3
 
 ## 附录 C 本项目数据实测对照表
 
-以下数字全部由 `scripts/` 下的脚本在官方训练集上实测得出，**不是引用他人结论**：
+以下数字全部在本仓库的训练集上实测得出，**不是引用他人结论**：
 
-```bash
-python3 scripts/run_eda.py        # 图1-11  + scripts/stats.json
-python3 scripts/run_ctxvar.py     # 图12    + scripts/context_variance.json
-python3 scripts/run_era_effect.py # 图13    + scripts/era_effect.json
-python3 scripts/run_structure.py  # 图14    + scripts/data_structure.json
-```
 
 | 主题 | 实测结论 | 图 |
 |---|---|---|

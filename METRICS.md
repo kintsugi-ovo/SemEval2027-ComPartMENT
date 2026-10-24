@@ -2,8 +2,7 @@
 
 > 权威来源：CodaBench 竞赛页 Overview 全文（`https://www.codabench.org/competitions/17971/`），原文存档见 **`TASK.md`**。
 > 本地到 codabench.org 网络不可达 ⇒ 官方原文只能靠那份存档。
-> 文中**每一个数字都由 `scripts/metric_walkthrough.py` 跑出**（真实 en-nn 训练集切片，种子 42），
-> 复现：`python3 scripts/metric_walkthrough.py`
+> 文中**每一个数字都在真实 en-nn 训练集切片上算出**（种子 42），逐步中间量全部列出。
 >
 > 本文定位：**从零基础讲清"官方到底怎么打分"**，每一步计算都不省略。
 
@@ -467,7 +466,7 @@ RMSE = sqrt(0.310413) = 0.557147
 
 ### 8.0 为什么会出现 `nan`：完整解剖
 
-> 配套脚本：`scripts/nan_anatomy.py`（本文所有数字由它产出）
+> 本节所有数字由 `nan_anatomy.py` 产出
 
 #### 8.0.1 先把话说明白：nan 不是"分数低"，是"没定义"
 
@@ -486,7 +485,7 @@ $$\rho=\text{Pearson}(\text{秩}(x),\ \text{秩}(y))=\frac{\sum (x_i-\bar x)(y_i
 分母里是**两个标准差的乘积**。只要其中一列是**常数**（所有值相同），
 它的标准差就是 0 ⇒ 分母 = 0 ⇒ **0/0 未定义 ⇒ nan**。
 
-实测（`scripts/nan_anatomy.py` §1）：
+实测（`nan_anatomy.py` §1）：
 
 ```
 预测侧全常数: σx=0.0000  σy=0.8165  → r=nan    spearman=nan
@@ -648,7 +647,7 @@ nan-safe 平均（跳过 nan）      ：1.9974/5        = 0.3995
 
 官方只写 "standard deviations"，没说有偏（ddof=0）还是无偏（ddof=1）。本项目用 **ddof=1**（pandas 默认）。
 
-实测（`scripts/check_metric2_ddof.py`）：
+实测（`check_metric2_ddof.py`）：
 
 | 检验 | 结果 |
 |---|---|
@@ -711,22 +710,9 @@ nan-safe 平均（跳过 nan）      ：1.9974/5        = 0.3995
 
 ---
 
-## 十一、复现
-
-```bash
-# 本文的全部中间量（真实数据切片，三个对照系统，逐步打印）
-python3 scripts/metric_walkthrough.py
-
-# ddof 口径影响量化
-python3 scripts/check_metric2_ddof.py
-
-# 指标 2 的噪声阈值（bootstrap）
-python3 scripts/bootstrap_metric_noise.py
-```
+## 十一、配套文件
 
 | 文件 | 说明 |
 |---|---|
 | `TASK.md` | 官方原文全文 + 与实现的逐条对照 |
-| `scripts/metric_walkthrough.py` | 本文的逐步手算脚本 |
-| `scripts/check_metric2_ddof.py` | ddof 口径影响量化 |
-| `tools/nbgen/cells_b.py` | 项目内的指标实现（`_three_metrics` / `compute_compartment_metrics`） |
+| `notebooks/v1,v2,v3/` | 指标实现（`_three_metrics` / `compute_compartment_metrics`），三个版本各一份 |

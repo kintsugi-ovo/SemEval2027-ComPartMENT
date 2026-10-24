@@ -1,20 +1,15 @@
 # ComPartMENT 数据分析计划与预处理方案
 
-> 📌 **文档分工（2026-10 修订）**
-> - **本文件** = 预处理**规则集**（R1.x–R9.x 编号规则 + 流水线伪代码 + 验收清单 + 提交格式规范）。
-> - **`reports/data_analysis.md`** = 逐图逐表的**证据与解读**（17 张图各代表什么意义、结论有多硬、对应采取什么处理动作），
->   以及**三套可选预处理方案**（A 最小可用 / B 形态学完备（推荐）/ C 跨语言统一）与取舍依据。
->
-> 两份文档的规则必须一致；**有冲突时以 `数据分析报告.md` 的实测数值为准**。
+> 📌 **本文件 = 预处理规则集**：R1.x–R9.x 编号规则 + 流水线伪代码 + 验收清单 + 提交格式规范。
+> 支撑证据以 `figures/` 下的实测图为准。
 >
 > 📌 **v3 修订（2026-10）**：标签的数值构造已被精确反解（**n = 10 个 0-5 整数评分，ddof=1**），
 > 据此把**均值噪声从 `Std²` 修正为 `Std²/10`**，指标 1 的 ρ 理论上限从 0.46–0.62 修正为 **0.85–0.93**；
-> 修正点见本文件 §6.4 与数据分析报告 §6–§7。
+> 修正点见本文件 §6.4。
 >
-> 配套脚本：`scripts/run_eda.py`（一条命令复现全部统计与图表）
-> 图表目录：`reports/figures/` ｜ 原始统计：`scripts/stats.json`
-> 数据：`train/{en,de}-{nn,pv}-train.tsv`（官方训练集，2026-09-08 发布）
-> 本文中每个数字都由上述脚本在本地数据上实测得出，未使用任何估计值。
+> 图表目录：`figures/`（19 张实测图）
+> 数据：`data/train/{en,de}-{nn,pv}-train.tsv`（官方训练集，2026-09-08 发布）
+> 本文中每个数字都在本地数据上实测得出，未使用任何估计值。
 >
 > 📌 **v2 修订（依据官方数据集明细页与提交格式说明）**：新增 §1.1 全量规模与官方划分协议、§6.5 的 R5.5/R5.6 划分规定、§8.1 年代效应实测与 R8.x 改写、**§9 推理输出契约与提交格式规范**（含 R9.1–R9.8）、图 13。修订点在文中以 **【v2】** 标注。
 
@@ -587,39 +582,36 @@ df["subset"] = name                                     # 显式特征 / 分层�
 
 | 图 | 文件 | 内容 |
 |---|---|---|
-| 1 | `reports/figures/fig1_overview.png` | 四个子集的规模对比 |
-| 2 | `reports/figures/fig2_score_dist.png` | 评分分布与不均衡 |
-| 3 | `reports/figures/fig3_context_spread.png` | 跨语境分数波动（极差分布 + 显著比例） |
-| 4 | `reports/figures/fig4_per_example.png` | 波动最大/最稳定目标的逐例句轨迹 |
-| 5 | `reports/figures/fig5_constituent_role.png` | 修饰语 vs 中心语贡献不对称 |
-| 6 | `reports/figures/fig6_annot_noise.png` | 标注离散度结构 |
-| 7 | `reports/figures/fig7_locate_cascade.png` | 定位策略的增量贡献 |
-| 8 | `reports/figures/fig8_locate_breakdown.png` | 定位结果构成分解 |
-| 9 | `reports/figures/fig9_style_features.png` | 可用作年代代理的表层特征 |
-| 10 | `reports/figures/fig10_quality.png` | 括号剥离副作用 + 例句覆盖不均衡 |
-| 11 | `reports/figures/fig11_order_leakage.png` | **行序伪影与泄漏演示** |
-| 12 | `reports/figures/fig12_eval_metrics.png` | **三项指标的实测可达成性（指标二会淘汰 type-level）** |
-| 13 | `reports/figures/fig13_era_effect.png` | **年代效应诊断：表层年代信号稀疏，解释不了目标内方差，也刷不了指标二** |
-| 14 | `reports/figures/fig14_data_structure.png` | **数据契约：列结构、成分拼接律、词序律** |
-| 15 | `reports/figures/fig15_label_structure.png` | **标签数值结构：n=10 的矩条件、0–5 约束、目标级 std 可算性** |
-| 16 | `reports/figures/fig16_information_gain.png` | **同目标例句的独立度与聚合潜力** |
-| 17 | `reports/figures/fig17_noise_ceiling.png` | **噪声天花板：n=10 反解把噪声修正 10 倍，ρ 上限 0.85–0.93** |
+| 1 | `figures/fig1_overview.png` | 四个子集的规模对比 |
+| 2 | `figures/fig2_score_dist.png` | 评分分布与不均衡 |
+| 3 | `figures/fig3_context_spread.png` | 跨语境分数波动（极差分布 + 显著比例） |
+| 4 | `figures/fig4_per_example.png` | 波动最大/最稳定目标的逐例句轨迹 |
+| 5 | `figures/fig5_constituent_role.png` | 修饰语 vs 中心语贡献不对称 |
+| 6 | `figures/fig6_annot_noise.png` | 标注离散度结构 |
+| 7 | `figures/fig7_locate_cascade.png` | 定位策略的增量贡献 |
+| 8 | `figures/fig8_locate_breakdown.png` | 定位结果构成分解 |
+| 9 | `figures/fig9_style_features.png` | 可用作年代代理的表层特征 |
+| 10 | `figures/fig10_quality.png` | 括号剥离副作用 + 例句覆盖不均衡 |
+| 11 | `figures/fig11_order_leakage.png` | **行序伪影与泄漏演示** |
+| 12 | `figures/fig12_eval_metrics.png` | **三项指标的实测可达成性（指标二会淘汰 type-level）** |
+| 13 | `figures/fig13_era_effect.png` | **年代效应诊断：表层年代信号稀疏，解释不了目标内方差，也刷不了指标二** |
+| 14 | `figures/fig14_data_structure.png` | **数据契约：列结构、成分拼接律、词序律** |
+| 15 | `figures/fig15_label_structure.png` | **标签数值结构：n=10 的矩条件、0–5 约束、目标级 std 可算性** |
+| 16 | `figures/fig16_information_gain.png` | **同目标例句的独立度与聚合潜力** |
+| 17 | `figures/fig17_noise_ceiling.png` | **噪声天花板：n=10 反解把噪声修正 10 倍，ρ 上限 0.85–0.93** |
 
 ---
 
-## 附：复现方式
+## 附：图表说明
 
-```bash
-cd /Users/piaoxiang/Desktop/ComPartMENT
-python3 scripts/run_eda.py             # 产出图1-11 + scripts/stats.json
-python3 scripts/run_ctxvar.py          # 产出图12 + scripts/context_variance.json
-python3 scripts/run_era_effect.py      # 产出图13 + scripts/era_effect.json
-python3 scripts/run_structure.py       # 产出图14 + scripts/data_structure.json
-python3 scripts/run_label_structure.py # 产出图15-17 + scripts/label_structure.json
-```
+| 图 | 产出内容 |
+|---|---|
+| 图 1–11 | 规模、标签分布、语境波动、逐例轨迹、成分角色、标注分歧、定位级联与分解、表层年代特征、括号剥离副作用 |
+| 图 12 | 三项指标的可达成性：作弊上界、指标 2 的目标级样本量 |
+| 图 13 | 年代代理信号的覆盖率与相关性 |
+| 图 14 | 数据契约 |
+| 图 15–17 | 标签数值结构、同目标例句独立度、噪声天花板 |
 
-依赖：`pandas`、`numpy`、`matplotlib`、`seaborn`、`scipy`。
-图表使用 `Arial Unicode MS` 渲染（同时覆盖中文与德语变音符号）；若该字体缺失，脚本会自动回退到 `Hiragino Sans GB` / `Songti SC`。
+图表使用 `Arial Unicode MS` 渲染（同时覆盖中文与德语变音符号）；若该字体缺失，回退到 `Hiragino Sans GB` / `Songti SC`。
 
-> 注意：`sns.set_style()` 会覆盖 `rcParams`，字体必须在它之后设置——脚本已按此顺序编写。
-> **数值标签一律加白色底框**（`bbox` + `zorder`）而非盲目位移；**图例优先移出绘图区**。
+> 数值标签一律加白色底框（`bbox` + `zorder`）而非盲目位移；**图例优先移出绘图区**。

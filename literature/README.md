@@ -4,20 +4,19 @@
 
 | 文档 | 用途 | 什么时候读 |
 |---|---|---|
-| [**入门指南**](getting_started.md) | 以数据结构为骨架的工程路径 | 准备动手时，**优先读这份** |
-| [**教学指南：从零基础到读懂 ComPartMENT**](tutorial.md) | 五段式讲透核心概念 | 完全不懂「组合性预测」时 |
-| [`ComPartMENT_文献综述与入门指南.md`](literature_review.md) | 学术脉络与 39 篇文献详解 | 要写论文 / 找引用时 |
-| [`../../reports/preprocessing_plan.md`](../../reports/preprocessing_plan.md) | 20+ 条预处理规则与流水线 | 写代码前查清单 |
-| [`reports/data_analysis.md`](../前期分析记录) | 项目记忆 | **任何工作开始前先读** |
+| [**入门指南**](guide/getting_started.md) | 以数据结构为骨架的工程路径 | 准备动手时，**优先读这份** |
+| [**教学指南：从零基础到读懂 ComPartMENT**](guide/tutorial.md) | 五段式讲透核心概念 | 完全不懂「组合性预测」时 |
+| [文献综述](guide/literature_review.md) | 学术脉络与 39 篇文献详解 | 要写论文 / 找引用时 |
+| [`PREPROCESSING.md`](../PREPROCESSING.md) | 20+ 条预处理规则与流水线 | 写代码前查清单 |
+| [`AGENTS.md`](../AGENTS.md) | 项目记忆 | **任何工作开始前先读** |
 
 ---
 
 ## 📁 资源目录
 
-- PDF 原文：`pdfs/`
-- 提取的纯文本：`txt/`
-- 检索原始数据：`metadata/`
-- 任务官方训练数据：`../train/`
+- PDF 原文：`papers/`
+- 导读文档：`guide/`
+- 任务官方训练数据：`../data/train/`
 
 ---
 
