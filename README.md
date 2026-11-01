@@ -59,13 +59,15 @@
 ├── METRICS.md              官方三项指标的逐步演算 + 本地实现的口径对照
 ├── PREPROCESSING.md        预处理规则集（R 编号规则 + 流水线 + 提交格式规范）
 ├── data/train/             官方训练集 TSV：{en,de}-{nn,pv}-train.tsv
-├── notebooks/              训练管线（两个基线各一份，按版本分目录）
-│   ├── v1/                 首个跑通的完整管线
+├── notebooks/              训练管线（按版本分目录）
+│   ├── v1/                 首个跑通的完整管线（DeBERTa + Qwen）
 │   ├── v2/                 超参与选择指标调整版
-│   └── v3/                 指标→损失项显式映射版（当前主线）
+│   ├── v3/                 指标→损失项显式映射版
+│   └── v4/                 两组机制对照（Qwen 无回归头、DeBERTa 软标签对比学习）
 ├── logs/                   云端实跑原始日志
 │   ├── v1/ v2/             各自一轮完整实跑
-│   └── v3/round1..3/       三轮实跑
+│   ├── v3/round1..3/       三轮实跑
+│   └── v4/                 两组机制对照的实跑日志
 ├── figures/                19 张实测图
 └── literature/             文献与导读
     ├── papers/             39 篇相关论文 PDF
@@ -75,75 +77,86 @@
 
 ---
 
-## 5. 版本与结果
+## 5. 结果
 
-`single_*` 为单子集训练，`joint` 为四个子集合并训练，其数值为六个评测设置的平均。
+四个版本的管线在 `notebooks/v1` – `notebooks/v4`，实跑日志在 `logs/v1` – `logs/v4`。下表为 joint 运行
+（四个子集合并训练，覆盖 6 个评测设置）的数值，表格中的数字直接取自对应日志。
 
-### v1
+### Qwen
 
-**DeBERTa-v2-xlarge**
+表 1　Qwen 无回归头（v4）
 
-| 运行 | Compositionality correlation | Context variance correlation | RMSE |
+| 评测设置 | Compositionality correlation | Context variance correlation | RMSE |
 |---|---|---|---|
-| single_en-nn | 0.4659 | 0.3446 | 0.8210 |
-| single_de-nn | 0.4017 | 0.2792 | 0.7935 |
-| single_en-pv | 0.5574 | 0.6538 | 0.9229 |
-| single_de-pv | 0.0776 | 0.3775 | 1.0890 |
-| joint | 0.3790 | 0.3402 | 0.9162 |
+| en-nn ModAvg | 0.4988 | 0.2912 | 0.8222 |
+| en-nn HeadAvg | 0.4164 | 0.2728 | 0.7985 |
+| de-nn ModAvg | 0.2963 | 0.1627 | 0.5725 |
+| de-nn HeadAvg | 0.6940 | 0.4461 | 0.8991 |
+| en-pv Avg | 0.5612 | 0.7486 | 0.9258 |
+| de-pv Avg | 0.5223 | 0.2076 | 0.9461 |
+| 合计 | 0.4982 | 0.3548 | 0.8274 |
 
-**Qwen2.5-1.5B-Instruct**
+表 2　Qwen 有回归头（v3）
 
-| 运行 | Compositionality correlation | Context variance correlation | RMSE |
+| 评测设置 | Compositionality correlation | Context variance correlation | RMSE |
 |---|---|---|---|
-| single_en-nn | 0.4692 | 0.1925 | 0.8423 |
-| single_de-nn | 0.5035 | 0.2512 | 0.7707 |
-| single_en-pv | 0.4989 | 0.6574 | 0.9525 |
-| single_de-pv | 0.3795 | 0.3317 | 1.2004 |
-| joint | 0.4950 | 0.3864 | 0.8429 |
+| en-nn ModAvg | 0.4480 | 0.2679 | 0.9246 |
+| en-nn HeadAvg | 0.4627 | 0.2792 | 0.8242 |
+| de-nn ModAvg | 0.3169 | 0.3070 | 0.5934 |
+| de-nn HeadAvg | 0.6609 | 0.4448 | 1.0999 |
+| en-pv Avg | 0.4767 | 0.5546 | 1.2440 |
+| de-pv Avg | 0.4046 | 0.6472 | 1.2257 |
+| 合计 | 0.4616 | 0.4168 | 0.9853 |
 
-### v2
+表 3　Qwen 差值（无回归头 − 有回归头）
 
-**DeBERTa-v2-xlarge**
-
-| 运行 | Compositionality correlation | Context variance correlation | RMSE |
+| 评测设置 | Δ Compositionality correlation | Δ Context variance correlation | Δ RMSE |
 |---|---|---|---|
-| single_en-nn | 0.4608 | 0.3631 | 0.8369 |
-| single_de-nn | 0.0605 | 0.1847 | 0.9514 |
-| single_en-pv | 0.2509 | 0.1964 | 1.1711 |
-| single_de-pv | 0.2689 | 0.2133 | 1.0635 |
-| joint | 0.2002 | 0.0690 | 1.1237 |
+| en-nn ModAvg | +0.0508 | +0.0233 | −0.1024 |
+| en-nn HeadAvg | −0.0463 | −0.0064 | −0.0257 |
+| de-nn ModAvg | −0.0206 | −0.1443 | −0.0209 |
+| de-nn HeadAvg | +0.0331 | +0.0013 | −0.2008 |
+| en-pv Avg | +0.0845 | +0.1940 | −0.3182 |
+| de-pv Avg | +0.1177 | −0.4396 | −0.2796 |
+| 合计 | +0.0366 | −0.0620 | −0.1579 |
 
-**Qwen2.5-1.5B-Instruct**
+### DeBERTa
 
-| 运行 | Compositionality correlation | Context variance correlation | RMSE |
+表 4　DeBERTa 无软标签（v1）
+
+| 评测设置 | Compositionality correlation | Context variance correlation | RMSE |
 |---|---|---|---|
-| single_en-nn | 0.4168 | 0.1369 | 0.9163 |
-| single_de-nn | 0.4620 | 0.3871 | 0.7976 |
-| single_en-pv | 0.4781 | 0.7335 | 1.2073 |
-| single_de-pv | 0.4037 | 0.4990 | 1.0005 |
-| joint | 0.4999 | 0.3648 | 0.8459 |
+| en-nn ModAvg | 0.4594 | 0.4729 | 0.8829 |
+| en-nn HeadAvg | 0.3803 | 0.2113 | 0.8630 |
+| de-nn ModAvg | 0.0383 | 0.1259 | 0.6259 |
+| de-nn HeadAvg | 0.5272 | 0.3583 | 1.1613 |
+| en-pv Avg | 0.5860 | 0.4879 | 0.9017 |
+| de-pv Avg | 0.2830 | 0.3846 | 1.0626 |
+| 合计 | 0.3790 | 0.3402 | 0.9162 |
 
-### v3
+表 5　DeBERTa 有软标签（v4）
 
-**DeBERTa-v2-xlarge**
-
-| 运行 | Compositionality correlation | Context variance correlation | RMSE |
+| 评测设置 | Compositionality correlation | Context variance correlation | RMSE |
 |---|---|---|---|
-| single_en-nn | 0.0670 | 0.0662 | 0.9652 |
-| single_de-nn | 0.0044 | 0.0661 | 0.9925 |
-| single_en-pv | 0.6252 | 0.7179 | 0.8583 |
-| single_de-pv | 0.1838 | 0.2721 | 1.1128 |
-| joint | 0.3431 | 0.1956 | 0.9711 |
+| en-nn ModAvg | 0.2154 | 0.2297 | 1.0527 |
+| en-nn HeadAvg | 0.3139 | 0.1042 | 0.8578 |
+| de-nn ModAvg | −0.0117 | −0.0234 | 0.6836 |
+| de-nn HeadAvg | 0.4637 | 0.3230 | 1.2215 |
+| en-pv Avg | 0.6546 | 0.6908 | 0.8960 |
+| de-pv Avg | 0.1594 | 0.3762 | 1.1616 |
+| 合计 | 0.2992 | 0.2834 | 0.9789 |
 
-**Qwen2.5-1.5B-Instruct**
+表 6　DeBERTa 差值（有软标签 − 无软标签）
 
-| 运行 | Compositionality correlation | Context variance correlation | RMSE |
+| 评测设置 | Δ Compositionality correlation | Δ Context variance correlation | Δ RMSE |
 |---|---|---|---|
-| single_en-nn | 0.4492 | 0.2654 | 0.8560 |
-| single_de-nn | 0.4521 | 0.3184 | 0.8367 |
-| single_en-pv | 0.5182 | 0.7019 | 1.0380 |
-| single_de-pv | 0.3457 | 0.2036 | 1.1048 |
-| joint | 0.4616 | 0.4168 | 0.9853 |
+| en-nn ModAvg | −0.2440 | −0.2432 | +0.1698 |
+| en-nn HeadAvg | −0.0664 | −0.1071 | −0.0052 |
+| de-nn ModAvg | −0.0500 | −0.1493 | +0.0577 |
+| de-nn HeadAvg | −0.0635 | −0.0353 | +0.0602 |
+| en-pv Avg | +0.0686 | +0.2029 | −0.0057 |
+| de-pv Avg | −0.1236 | −0.0084 | +0.0990 |
+| 合计 | −0.0798 | −0.0568 | +0.0627 |
 
 ---
 

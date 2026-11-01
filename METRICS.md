@@ -715,4 +715,4 @@ nan-safe 平均（跳过 nan）      ：1.9974/5        = 0.3995
 | 文件 | 说明 |
 |---|---|
 | `TASK.md` | 官方原文全文 + 与实现的逐条对照 |
-| `notebooks/v1,v2,v3/` | 指标实现（`_three_metrics` / `compute_compartment_metrics`），三个版本各一份 |
+| `notebooks/v1,v2,v3,v4/` | 指标实现（`_three_metrics` / `compute_compartment_metrics`），每个版本各一份 |
