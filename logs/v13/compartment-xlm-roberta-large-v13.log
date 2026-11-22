@@ -1,0 +1,1063 @@
+12.0s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+12.0s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+12.0s 3 0.00s - to python to disable frozen modules.
+12.0s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+12.7s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+12.7s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+12.7s 7 0.00s - to python to disable frozen modules.
+12.7s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+14.3s 9 [环境] CUDA_VISIBLE_DEVICES=0 （本进程只看见这 1 张卡 → Trainer 不会套 nn.DataParallel → 梯度显存不翻倍）
+68.0s 10 torch 2.11.0+cu130
+68.1s 11 绘图字体: Liberation Sans | 图注语言: en (English only)
+68.1s 12 V13 四臂（2×2 析因）：['joint_base', 'joint_rank', 'joint_hetero', 'joint_rank_hetero']（对照 = 冻结配方 pool=mean | huber+guard）
+68.1s 13 {
+68.1s 14 "MODEL_KEY": "xlmr",
+68.1s 15 "POOL_MODE": "mean",
+68.1s 16 "MAX_LENGTH": 160,
+68.1s 17 "BATCH_SIZE": 8,
+68.1s 18 "GRAD_ACCUM": 2,
+68.1s 19 "TARGET_EFFECTIVE_BATCH": 16,
+68.1s 20 "LR": 2e-05,
+68.1s 21 "EPOCHS": 4,
+68.1s 22 "JOINT_EPOCHS": 4,
+68.1s 23 "WARMUP_RATIO": 0.1,
+68.1s 24 "HUBER_DELTA": 1.0,
+68.1s 25 "SUBSET_LOSS_PROFILE": {
+68.1s 26 "en-nn": {
+68.1s 27 "order": 0.0,
+68.1s 28 "mse": 0.0,
+68.1s 29 "guard": 0.06,
+68.1s 30 "xrank": 0.0,
+68.1s 31 "kappa": 0.15
+68.1s 32 },
+68.1s 33 "de-nn": {
+68.1s 34 "order": 0.0,
+68.1s 35 "mse": 0.0,
+68.1s 36 "guard": 0.06,
+68.1s 37 "xrank": 0.0,
+68.1s 38 "kappa": 0.15
+68.1s 39 },
+68.1s 40 "en-pv": {
+68.1s 41 "order": 0.0,
+68.1s 42 "mse": 0.0,
+68.1s 43 "guard": 0.06,
+68.1s 44 "xrank": 0.0,
+68.1s 45 "kappa": 0.5
+68.1s 46 },
+68.1s 47 "de-pv": {
+68.1s 48 "order": 0.0,
+68.1s 49 "mse": 0.0,
+68.1s 50 "guard": 0.06,
+68.1s 51 "xrank": 0.0,
+68.1s 52 "kappa": 0.5
+68.1s 53 }
+68.1s 54 },
+68.1s 55 "AUTO_BALANCE": true,
+68.1s 56 "ORDER_TAU": 1.0,
+68.1s 57 "XRANK_MARGIN": 0.05,
+68.1s 58 "XRANK_TAU": 2.0,
+68.1s 59 "BALANCE_EMA_BETA": 0.99,
+68.1s 60 "RANK_W": 0.1,
+68.1s 61 "RANK_TAU": 1.0,
+68.1s 62 "RANK_DY_MIN": 0.25,
+68.1s 63 "SIGMA_MIN": 0.3,
+68.1s 64 "SIGMA_MAX": 2.0,
+68.1s 65 "SIGMA_INIT": 1.0,
+68.1s 66 "CLOUD_SPS": 0.087,
+68.1s 67 "Z_M1": 0.023,
+68.1s 68 "Z_M2": 0.055,
+68.1s 69 "Z_M3": 0.046,
+68.1s 70 "LOSS_FINITE_CHECK_EVERY": 50,
+68.1s 71 "BEST_METRIC_KEY": "合计|_综合分",
+68.1s 72 "SMOKE": false,
+68.1s 73 "RUN_PLAN": [
+68.1s 74 [
+68.1s 75 "joint_base",
+68.1s 76 null
+68.1s 77 ],
+68.1s 78 [
+68.1s 79 "joint_rank",
+68.1s 80 null
+68.1s 81 ],
+68.1s 82 [
+68.1s 83 "joint_hetero",
+68.1s 84 null
+68.1s 85 ],
+68.1s 86 [
+68.1s 87 "joint_rank_hetero",
+68.1s 88 null
+68.1s 89 ]
+68.1s 90 ]
+68.1s 91 }
+68.6s 92 {'device': 'cuda', 'bf16': False, 'fp16': True, 'tf32': True, 'workers': 2, 'torch': '2.11.0+cu130', 'platform': 'Linux', 'python': '3.13.16'}
+68.6s 93 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5 | 原生bf16=False | fp16=True
+68.6s 94 物理卡：1 张可见（合计 14.6 GiB）；本 notebook 绑定物理 GPU0，在进程内编号为 cuda:0
+68.6s 95 → 单卡模式：Trainer 看到 n_gpu=1 → **不会**自动套 nn.DataParallel（DataParallel 的反向传播会额外复制一整份梯度，Qwen-1.5B 要多花 5.75 GiB）
+69.1s 96 DATA_MODE=orig（只用原始数据）
+69.4s 97 数据身份校验通过：4 个官方 TSV 的 md5 指纹逐位匹配
+69.5s 98 en-nn 原始形状: (3480, 9)
+69.5s 99 列名: ['ContextID', 'Compound', 'Mod', 'Head', 'ModAvg', 'ModStd', 'HeadAvg', 'HeadStd', 'Context']
+69.5s 100 Compound  ModAvg  HeadAvg                                                                                                                                                                    Context
+69.5s 101 0  account book     3.5      3.8  Correspondence, letterbooks, account books, and writings together with family papers concerning Charles, Clement, Edward, James, Nicholas, Thomas, and William S. Biddle.
+69.5s 102 1  account book     3.0      3.9                                                                                               Let me see, (looking at my account book ) that is two weeks wages making $8.
+69.5s 103 2  account book     4.4      4.1                              She drops her black silk b
+69.5s 104 
+69.5s 105 --- 标签分布 ---
+69.5s 106 ModAvg: 均值 3.659 | 标准差 0.997 | 最小 0.00 | 最大 5.00
+69.5s 107 HeadAvg: 均值 3.913 | 标准差 0.887 | 最小 0.00 | 最大 5.00
+69.5s 108 
+69.5s 109 --- 句子长度（词）分位 ---
+69.5s 110 {'p50': 25.0, 'p90': 39.0, 'p95': 42.0, 'p99': 45.0, 'max': 48.0}
+69.5s 111 → 句子很短，MAX_LENGTH=160 足够，不会因为截断丢掉关键信息。
+69.6s 112 [en-nn] 形状 (3480, 14) | 目标数 444 | 每目标例句数中位 8.0 | ContextID 是否还在: False
+69.6s 113 [de-nn] 形状 (3298, 14) | 目标数 461 | 每目标例句数中位 6.0 | ContextID 是否还在: False
+69.6s 114 [en-pv] 形状 (1557, 12) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+69.6s 115 [de-pv] 形状 (1490, 12) | 目标数 158 | 每目标例句数中位 10.0 | ContextID 是否还在: False
+69.7s 116 归一化与词干工具就绪
+69.7s 117 MWE   : potato cake
+69.7s 118 原句  : Cakes of white flour and of whole meal are to be seen, as in other places; but potato cakes belong more especially to Ireland.
+69.7s 119 
+69.7s 120 句子切成 24 个词: ['cakes', 'of', 'white', 'flour', 'and', 'of', 'whole', 'meal', 'are', 'to', 'be', 'seen', 'as', 'in']
+69.7s 121 
+69.7s 122 归一化与词干:
+69.7s 123 fold(MWE) = potatocake
+69.7s 124 词干键(复合词) = ['pot', 'pota', 'potat']
+69.7s 125 
+69.7s 126 最小版本（只做 S0 精确匹配）: 命中 → 'potato cake'
+69.7s 127 → 精确匹配在复合词上够用，但在小品词动词上只能覆盖约三分之一；
+69.7s 128 所以下一格把级联封装成一个函数，逐级放宽。
+69.8s 129 策略  : S0 精确匹配
+69.8s 130 标记后: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+69.8s 131 最终输入: MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.
+69.9s 132 en-nn 定位覆盖（n=3480）成功标出 span 100.0% | S0 精确匹配 3432 | S3 英文词干前缀 48
+70.1s 133 de-nn 定位覆盖（n=3298）成功标出 span 96.0% | S0 精确匹配 3162 | S1 历史转写还原 132 | S2a 德语前缀型(屈折) 4
+70.2s 134 en-pv 定位覆盖（n=1557）成功标出 span 86.3% | S3 英文词干前缀 819 | S0 精确匹配 523 | S5 未定位 214 | S4 相邻窗口 1
+70.3s 135 de-pv 定位覆盖（n=1490）成功标出 span 77.7% | S2a 德语前缀型(屈折) 735 | S5 未定位 332 | S0 精确匹配 310 | S2b 德语后置型(动词分离) 112 | S1 历史转写还原 1
+70.7s 136 官方源连通性探测: 通  (https://huggingface.co/api/models/FacebookAI/xlm-roberta-large)
+70.7s 137 → 使用官方 huggingface.co（云端 GPU 直连即走这条）
+70.9s 138 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+70.9s 139 
+70.9s 140 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+103.3s 141 权重就绪: FacebookAI/xlm-roberta-large @ https://huggingface.co
+103.3s 142 -> /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+105.7s 143 tokenizer: XLMRobertaTokenizer | pad: <pad> | padding_side: right
+110.8s 144 en-nn 训练集 (2801, 17) | 验证集 (679, 17)
+110.8s 145 目标交集: 0 （必须为 0）
+110.8s 146 en-nn·ModAvg: train 均值 3.669 | val 均值 3.615
+110.8s 147 en-nn·HeadAvg: train 均值 3.903 | val 均值 3.955
+110.8s 148 示例解码: <s> MWE: potato cake | Context: Cakes of white flour and of whole meal are to be seen, as in other places; but [[potato cake]]s belong more especially to Ireland.</s>
+111.0s 149 序列长度: 中位 48 | 均值 49 | 最长 96
+111.0s 150 定长补齐到 160 的 token 总量: 448,160
+111.0s 151 动态补齐的 token 总量            : 193,124
+111.0s 152 → 动态补齐省下 56.9% 的 token，注意力开销按平方计，实际省得更多。
+111.0s 153 input_ids        shape=(4, 64) dtype=torch.int64
+111.0s 154 attention_mask   shape=(4, 64) dtype=torch.int64
+111.0s 155 labels           shape=(4, 2) dtype=torch.float32
+111.0s 156 loss_mask        shape=(4, 2) dtype=torch.float32
+111.0s 157 group_index      shape=(4,) dtype=torch.int64
+111.0s 158 subset_index     shape=(4,) dtype=torch.int64
+111.0s 159 → labels 是 [B, 2] 的 float 张量；pv 第 2 列由 loss_mask=0 屏蔽。
+111.8s 160 主干类型: XLMRobertaModel
+111.8s 161 config: hidden_size=64 num_attention_heads=4 attention_head_size=- head_dim=-
+111.8s 162 last_hidden_state shape: (1, 22, 64)
+111.8s 163 → [batch, 序列长度, 隐层维度]。真正的「句子向量」还需要池化，这就是下面要做的。
+111.8s 164 from_pretrained 的精度参数名: torch_dtype
+111.9s 165 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+111.9s 166 
+111.9s 167 [transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+112.3s 168 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+112.3s 169 Key                       | Status     |  |
+112.3s 170 --------------------------+------------+--+-
+112.3s 171 lm_head.layer_norm.weight | UNEXPECTED |  |
+112.3s 172 lm_head.dense.weight      | UNEXPECTED |  |
+112.3s 173 lm_head.bias              | UNEXPECTED |  |
+112.3s 174 lm_head.dense.bias        | UNEXPECTED |  |
+112.3s 175 lm_head.layer_norm.bias   | UNEXPECTED |  |
+112.3s 176 
+112.3s 177 Notes:
+112.3s 178 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+112.3s 179 
+112.3s 180 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+112.3s 181 Key                       | Status     |  |
+112.3s 182 --------------------------+------------+--+-
+112.3s 183 lm_head.layer_norm.weight | UNEXPECTED |  |
+112.3s 184 lm_head.dense.weight      | UNEXPECTED |  |
+112.3s 185 lm_head.bias              | UNEXPECTED |  |
+112.3s 186 lm_head.dense.bias        | UNEXPECTED |  |
+112.3s 187 lm_head.layer_norm.bias   | UNEXPECTED |  |
+112.3s 188 
+112.3s 189 Notes:
+112.3s 190 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+112.5s 191 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+113.1s 192 主干       : FacebookAI/xlm-roberta-large（SMOKE=False）
+113.1s 193 池化方式   : mean（全句掩码均值；上游判读冻结）
+113.1s 194 读出头     : linear | Linear(1024 → 2)，2.0K 参数
+113.1s 195 总参数     : 559.9M | 设备: cuda
+116.1s 196 前向 logits shape: (2, 2) | 是否含 NaN: False
+116.1s 197 → 前向自检通过
+116.1s 198 type-level 基线：指标1 Spearman = 0.786 | 指标3 RMSE = 0.517
+116.1s 199 组内预测 std 的唯一取值个数 = 1（0 表示每个目标内完全相同）
+116.1s 200 → 指标 2 的输入是常数数组，相关系数**未定义（nan）**：该系统在指标 2 上直接出局。
+116.1s 201 → 这就是为什么本任务必须「逐例句预测」，不能先聚合成目标级分数再回归。
+116.3s 202 ① 完美预测      : 指标1=1.000 指标2=1.000 RMSE=0.000  ✓
+116.3s 203 ② 常数预测      : 指标1=nan 指标2=nan（未定义）              ✓
+116.3s 204 ③ 反向预测      : 指标1=-1.000                              ✓
+116.3s 205 ④ 人工 std 恒为 0: 指标2=nan（被解释变量无方差）           ✓
+116.3s 206 → 指标实现通过四组断言，接下来所有结果都由它产出。
+116.3s 207 transformers 兼容层: {'eval_key': 'eval_strategy', 'tokenizer_kw': 'processing_class', 'save_only_model': True}
+116.5s 208 rank_term(序大体正确) : 0.1539 （跨目标序已对 ⇒ 小）
+116.5s 209 rank_term(序反向)     : 1.4971 （⇒ 大）
+116.5s 210 rank_term(单目标批)   : 0.0 （无跨目标对 ⇒ 自动为 0）
+116.5s 211 rank_term(掩码列跳过) : 0.0878 （无效行不参与任何对）
+116.5s 212 NLE(σ=0.5)            : -0.4931
+116.5s 213 NLE(σ=2.0)（σ 过大）  : 0.7056 （log σ 项抬高 ⇒ σ 不是越大越保险）
+116.5s 214 NLE 最小的 σ ≈ 0.30（残差 RMS = 0.32）⇒ NLE 自动把 σ 学到残差尺度
+116.5s 215 guard（组内 std 健康）  : [0.0, 0.0, 0.0, 0.0] （⇒ 不触发）
+116.5s 216 guard（塌缩 std=0）     : [0.10112399607896805, 0.0, 1.123599886894226, 0.0] （⇒ 保险丝触发拉回）
+116.5s 217 → 四臂共用主项路径（base=huber / hetero=NLE）+ guard balancer；rank 臂另加固定权重排序项。
+116.6s 218 CompartmentTrainer / TargetGroupedSampler 已定义
+116.7s 219 Trainer 工厂与档位探测就绪
+116.8s 220 ★ V13 臂：joint_base | loss_mode=base | head=linear | pool=mean
+116.8s 221 ==============================================================================
+116.8s 222 运行 1/4：joint_base  |  参与子集 ['en-nn', 'de-nn', 'en-pv', 'de-pv']
+116.8s 223 ==============================================================================
+123.7s 224 训练 7934 条 | 验证 1891 条 | 评测设置 6 个
+123.7s 225 本次运行轮数 = 4（联合对照臂，覆盖全部评测设置）
+123.9s 226 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+123.9s 227 Key                       | Status     |  |
+123.9s 228 --------------------------+------------+--+-
+123.9s 229 lm_head.layer_norm.weight | UNEXPECTED |  |
+123.9s 230 lm_head.dense.weight      | UNEXPECTED |  |
+123.9s 231 lm_head.bias              | UNEXPECTED |  |
+123.9s 232 lm_head.dense.bias        | UNEXPECTED |  |
+123.9s 233 lm_head.layer_norm.bias   | UNEXPECTED |  |
+123.9s 234 
+123.9s 235 Notes:
+123.9s 236 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+123.9s 237 
+123.9s 238 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+123.9s 239 Key                       | Status     |  |
+123.9s 240 --------------------------+------------+--+-
+123.9s 241 lm_head.layer_norm.weight | UNEXPECTED |  |
+123.9s 242 lm_head.dense.weight      | UNEXPECTED |  |
+123.9s 243 lm_head.bias              | UNEXPECTED |  |
+123.9s 244 lm_head.dense.bias        | UNEXPECTED |  |
+123.9s 245 lm_head.layer_norm.bias   | UNEXPECTED |  |
+123.9s 246 
+123.9s 247 Notes:
+123.9s 248 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+124.1s 249 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+124.8s 250 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+124.8s 251 显存预算：FacebookAI/xlm-roberta-large | 560M 参数（实际） | 选档参考 560M（仅 auto 模式用；当前 FIT_MODE=t3） | 单卡容量 14.6 GiB | 安全系数 90%
+124.8s 252 档位表（固定开销与 batch 无关，降 batch 救不了）：
+124.8s 253 档   含义                                       固定    bs=1 需    bs=8 需  判定
+124.8s 254 t0  全参微调 · fp32 AdamW · AMP                9.4G      9.7G     11.4G  ✓ 装得下
+124.8s 255 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+124.8s 256 t2  全参微调 · Adafactor · AMP                 5.3G      5.6G      6.8G  ✓ 装得下
+124.8s 257 t3  全参微调 · Adafactor · 无 AMP               4.3G      4.6G      5.8G  ✓ 装得下
+124.8s 258 t4  顶部 50% 层 · Adafactor · AMP             4.2G      4.5G      5.7G  ✓ 装得下
+124.8s 259 t5  顶部 50% 层 · Adafactor · 无 AMP           3.2G      3.5G      4.7G  ✓ 装得下
+124.8s 260 t6  顶部 25% 层 · Adafactor · 无 AMP           2.6G      2.9G      4.1G  ✓ 装得下
+124.8s 261 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 4.3 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+125.1s 262 ★ 档位已锁定为 t3（FIT_MODE 显式指定）⇒ **不自动降档**
+125.1s 263 （降档 = 冻住一半主干 = 换了实验；本版机制要求全参微调。若这一档真跑不通，请先查「有效 batch / micro-batch / 读出结构」是否与设计一致，再考虑改档位，并把改动写进口径清单）
+125.1s 264 ==============================================================================
+125.1s 265 试探档位 t3：全参微调 · Adafactor · 无 AMP | optim=adafactor | 可训层比例=100% | 混合精度=关 | gradient_checkpointing=True | 固定开销 4.3 GiB（按参考 560M 算）
+125.1s 266 ==============================================================================
+125.3s 267 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+125.3s 268 Key                       | Status     |  |
+125.3s 269 --------------------------+------------+--+-
+125.3s 270 lm_head.layer_norm.weight | UNEXPECTED |  |
+125.3s 271 lm_head.dense.weight      | UNEXPECTED |  |
+125.3s 272 lm_head.bias              | UNEXPECTED |  |
+125.3s 273 lm_head.dense.bias        | UNEXPECTED |  |
+125.3s 274 lm_head.layer_norm.bias   | UNEXPECTED |  |
+125.3s 275 
+125.3s 276 Notes:
+125.3s 277 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+125.3s 278 
+125.3s 279 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+125.3s 280 Key                       | Status     |  |
+125.3s 281 --------------------------+------------+--+-
+125.3s 282 lm_head.layer_norm.weight | UNEXPECTED |  |
+125.3s 283 lm_head.dense.weight      | UNEXPECTED |  |
+125.3s 284 lm_head.bias              | UNEXPECTED |  |
+125.3s 285 lm_head.dense.bias        | UNEXPECTED |  |
+125.3s 286 lm_head.layer_norm.bias   | UNEXPECTED |  |
+125.3s 287 
+125.3s 288 Notes:
+125.3s 289 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+125.5s 290 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+126.1s 291 （体检用途的 Trainer：覆盖了 ['max_steps'] ⇒ 自动关闭口径断言；正式训练路径仍保留）
+130.6s 292 {'loss': '1.317', 'grad_norm': '13.07', 'learning_rate': '1.01e-07', 'epoch': '0.004032'}
+130.6s 293 {'train_runtime': '3.445', 'train_samples_per_second': '9.29', 'train_steps_per_second': '0.581', 'train_loss': '1.317', 'epoch': '0.004032'}
+130.6s 294 t3 micro-batch=8: 通过，峰值显存 6.10 GiB，每样本 245.28 ms（+余量 0.8 GiB = 6.90 GiB / 卡 14.56 GiB ⇒ 余量充足 ✓）
+131.4s 295 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+131.4s 296 Key                       | Status     |  |
+131.4s 297 --------------------------+------------+--+-
+131.4s 298 lm_head.layer_norm.weight | UNEXPECTED |  |
+131.4s 299 lm_head.dense.weight      | UNEXPECTED |  |
+131.4s 300 lm_head.bias              | UNEXPECTED |  |
+131.4s 301 lm_head.dense.bias        | UNEXPECTED |  |
+131.4s 302 lm_head.layer_norm.bias   | UNEXPECTED |  |
+131.4s 303 
+131.4s 304 Notes:
+131.4s 305 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+131.4s 306 
+131.4s 307 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+131.4s 308 Key                       | Status     |  |
+131.4s 309 --------------------------+------------+--+-
+131.4s 310 lm_head.layer_norm.weight | UNEXPECTED |  |
+131.4s 311 lm_head.dense.weight      | UNEXPECTED |  |
+131.4s 312 lm_head.bias              | UNEXPECTED |  |
+131.4s 313 lm_head.dense.bias        | UNEXPECTED |  |
+131.4s 314 lm_head.layer_norm.bias   | UNEXPECTED |  |
+131.4s 315 
+131.4s 316 Notes:
+131.4s 317 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+131.6s 318 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+132.2s 319 preflight：已按当前档位开启 gradient checkpointing（档位 t3）
+132.5s 320 loss                   : 1.1975   （NaN? False）
+132.5s 321 可训练参数             : 393
+132.5s 322 拿到非零梯度的参数     : 391  (99.5%)
+132.5s 323 回归头权重梯度绝对值和 : 101.286   （必须 > 0，否则读出通路没接上）
+132.5s 324 主干首参数梯度绝对值和 : 10.8917   （必须 > 0，否则主干被冻结）
+132.9s 325 损失项体检（按子集聚合）: L_order=[0.0, 0.0, 0.0, 0.0]  L_mse=[0.0, 0.0, 0.0, 0.0]
+132.9s 326 L_guard=[0.0, 0.0, 0.0, 0.0]  L_xrank=[0.0, 0.0, 0.0, 0.0]
+133.2s 327 （体检用途的 Trainer：覆盖了 ['max_steps', 'num_train_epochs'] ⇒ 自动关闭口径断言；正式训练路径仍保留）
+134.3s 328 真实损失反向          : loss=1.2199 | 最大梯度=1.514e+01 | 非有限梯度的参数数=0
+134.6s 329 → 梯度流验证通过（含真实损失的反向）。
+134.6s 330 （体检用途的 Trainer：覆盖了 ['max_steps', 'num_train_epochs'] ⇒ 自动关闭口径断言；正式训练路径仍保留）
+136.5s 331 {'loss': '0.3516', 'grad_norm': '11.78', 'learning_rate': '0', 'epoch': '0.001008'}
+137.1s 332 {'loss': '0.8702', 'grad_norm': '24.11', 'learning_rate': '1.01e-07', 'epoch': '0.002016'}
+137.9s 333 {'loss': '1.169', 'grad_norm': '20.84', 'learning_rate': '2.02e-07', 'epoch': '0.003024'}
+138.6s 334 {'loss': '0.2428', 'grad_norm': '16.56', 'learning_rate': '3.03e-07', 'epoch': '0.004032'}
+139.5s 335 {'loss': '1.001', 'grad_norm': '17.95', 'learning_rate': '4.04e-07', 'epoch': '0.00504'}
+139.5s 336 {'train_runtime': '3.798', 'train_samples_per_second': '10.53', 'train_steps_per_second': '1.317', 'train_loss': '0.7269', 'epoch': '0.00504'}
+139.5s 337 冒烟训练 loss 轨迹: 0.7269404649734497
+139.5s 338 → 冒烟测试通过（每个 Trainer 都是独立构造 args，不复用对象）。
+140.3s 339 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）| micro-batch=8 | 梯度累积=2 | 有效 batch=16（目标 16） | 峰值显存约 6.10 GiB
+140.3s 340 （档位写死为 t3 = 全参微调，不会悄悄漂到只训部分层的档位）
+140.3s 341 训练时长投影（探针口径，偏保守）：下游共约 125,760.0 个样本·轮 → 约 11.1 小时
+140.3s 342 训练时长投影（云端实测吞吐 87 ms/样本）：下游约 4.0 小时（预算 8.0 小时）
+140.4s 343 [显存·正式训练前] 已分配 0.02 GiB | 已保留 0.06 GiB | 卡 14.56 GiB
+140.6s 344 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+140.6s 345 Key                       | Status     |  |
+140.6s 346 --------------------------+------------+--+-
+140.6s 347 lm_head.layer_norm.weight | UNEXPECTED |  |
+140.6s 348 lm_head.dense.weight      | UNEXPECTED |  |
+140.6s 349 lm_head.bias              | UNEXPECTED |  |
+140.6s 350 lm_head.dense.bias        | UNEXPECTED |  |
+140.6s 351 lm_head.layer_norm.bias   | UNEXPECTED |  |
+140.6s 352 
+140.6s 353 Notes:
+140.6s 354 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+140.6s 355 
+140.6s 356 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+140.6s 357 Key                       | Status     |  |
+140.6s 358 --------------------------+------------+--+-
+140.6s 359 lm_head.layer_norm.weight | UNEXPECTED |  |
+140.6s 360 lm_head.dense.weight      | UNEXPECTED |  |
+140.6s 361 lm_head.bias              | UNEXPECTED |  |
+140.6s 362 lm_head.dense.bias        | UNEXPECTED |  |
+140.6s 363 lm_head.layer_norm.bias   | UNEXPECTED |  |
+140.6s 364 
+140.6s 365 Notes:
+140.6s 366 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+140.8s 367 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+141.4s 368 口径自检 ✓ 有效 batch = 8×2 = 16 | 每轮批数 992 | 总更新步 1984 | warmup 198 步（占 10.0%）
+172.0s 369 {'eval_loss': '0.9843', 'eval_model_preparation_time': '0.0067', 'eval_en-nn|ModAvg_指标1_ρ': '0.0001246', 'eval_en-nn|ModAvg_指标2_ρ': '0.024', 'eval_en-nn|ModAvg_指标3_RMSE': '1.575', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.01194', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1644', 'eval_en-nn|HeadAvg_指标3_RMSE': '1.852', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '-0.1035', 'eval_de-nn|ModAvg_指标2_ρ': '0.01159', 'eval_de-nn|ModAvg_指标3_RMSE': '1.996', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '-0.08019', 'eval_de-nn|HeadAvg_指标2_ρ': '0.02655', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.694', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '-0.03529', 'eval_en-pv|Avg_指标2_ρ': '-0.1333', 'eval_en-pv|Avg_指标3_RMSE': '1.142', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.01053', 'eval_de-pv|Avg_指标2_ρ': '0.4171', 'eval_de-pv|Avg_指标3_RMSE': '1.111', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '-0.03273', 'eval_合计|_指标2_ρ': '0.08507', 'eval_合计|_指标3_RMSE': '1.562', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '-33.83', 'eval_runtime': '29.46', 'eval_samples_per_second': '64.19', 'eval_steps_per_second': '8.045', 'epoch': 0}
+172.0s 370 随机初始化模型基线（29.5s）: 指标1 ρ=-0.0327 | 指标2 ρ=0.0851 | RMSE=1.5617
+172.0s 371 随机初始化时的评估 loss = 0.9843（图 F 的 epoch 0 起点）
+172.0s 372 [显存·随机基线评估后] 已分配 2.10 GiB | 已保留 2.12 GiB | 卡 14.56 GiB
+258.8s 373 {'loss': '1.459', 'grad_norm': '28.18', 'learning_rate': '6.162e-06', 'epoch': '0.125'}
+345.8s 374 {'loss': '1.002', 'grad_norm': '20.45', 'learning_rate': '1.242e-05', 'epoch': '0.25'}
+434.5s 375 {'loss': '0.9209', 'grad_norm': '35.35', 'learning_rate': '1.869e-05', 'epoch': '0.375'}
+520.5s 376 {'loss': '0.8637', 'grad_norm': '34.31', 'learning_rate': '1.945e-05', 'epoch': '0.5'}
+605.9s 377 {'loss': '0.9079', 'grad_norm': '26.4', 'learning_rate': '1.876e-05', 'epoch': '0.625'}
+695.1s 378 {'loss': '0.8161', 'grad_norm': '44.02', 'learning_rate': '1.806e-05', 'epoch': '0.75'}
+784.2s 379 {'loss': '0.6697', 'grad_norm': '60.38', 'learning_rate': '1.737e-05', 'epoch': '0.875'}
+870.7s 380 {'loss': '0.7655', 'grad_norm': '23.96', 'learning_rate': '1.667e-05', 'epoch': '1'}
+906.5s 381 {'eval_loss': '0.3919', 'eval_model_preparation_time': '0.0067', 'eval_en-nn|ModAvg_指标1_ρ': '0.3205', 'eval_en-nn|ModAvg_指标2_ρ': '0.3043', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9567', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.3834', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1637', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.866', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.1576', 'eval_de-nn|ModAvg_指标2_ρ': '0.244', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5968', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6742', 'eval_de-nn|HeadAvg_指标2_ρ': '0.2399', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.033', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.4734', 'eval_en-pv|Avg_指标2_ρ': '0.5982', 'eval_en-pv|Avg_指标3_RMSE': '1.099', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.4791', 'eval_de-pv|Avg_指标2_ρ': '0.2303', 'eval_de-pv|Avg_指标3_RMSE': '1.173', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4147', 'eval_合计|_指标2_ρ': '0.2967', 'eval_合计|_指标3_RMSE': '0.9542', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '2.683', 'eval_runtime': '35.81', 'eval_samples_per_second': '52.81', 'eval_steps_per_second': '6.619', 'epoch': '1'}
+997.6s 382 {'loss': '0.6401', 'grad_norm': '41.73', 'learning_rate': '1.598e-05', 'epoch': '1.125'}
+1085.3s 383 {'loss': '0.5496', 'grad_norm': '21.01', 'learning_rate': '1.529e-05', 'epoch': '1.25'}
+1172.7s 384 {'loss': '0.5773', 'grad_norm': '27.24', 'learning_rate': '1.459e-05', 'epoch': '1.375'}
+1258.8s 385 {'loss': '0.6125', 'grad_norm': '18.86', 'learning_rate': '1.39e-05', 'epoch': '1.5'}
+1344.1s 386 {'loss': '0.5931', 'grad_norm': '14.36', 'learning_rate': '1.32e-05', 'epoch': '1.625'}
+1432.3s 387 {'loss': '0.5574', 'grad_norm': '26.97', 'learning_rate': '1.251e-05', 'epoch': '1.75'}
+1519.7s 388 {'loss': '0.5624', 'grad_norm': '34.17', 'learning_rate': '1.181e-05', 'epoch': '1.875'}
+1608.1s 389 {'loss': '0.4392', 'grad_norm': '9.954', 'learning_rate': '1.112e-05', 'epoch': '2'}
+1643.9s 390 {'eval_loss': '0.3625', 'eval_model_preparation_time': '0.0067', 'eval_en-nn|ModAvg_指标1_ρ': '0.3801', 'eval_en-nn|ModAvg_指标2_ρ': '0.2795', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9847', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4762', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2727', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7771', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2855', 'eval_de-nn|ModAvg_指标2_ρ': '0.2299', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6104', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6964', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4926', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9448', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5417', 'eval_en-pv|Avg_指标2_ρ': '0.2908', 'eval_en-pv|Avg_指标3_RMSE': '1.168', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.5118', 'eval_de-pv|Avg_指标2_ρ': '0.39', 'eval_de-pv|Avg_指标3_RMSE': '1.134', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.482', 'eval_合计|_指标2_ρ': '0.3259', 'eval_合计|_指标3_RMSE': '0.9365', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '6.522', 'eval_runtime': '35.78', 'eval_samples_per_second': '52.85', 'eval_steps_per_second': '6.623', 'epoch': '2'}
+1733.7s 391 {'loss': '0.4494', 'grad_norm': '17.43', 'learning_rate': '1.043e-05', 'epoch': '2.125'}
+1820.9s 392 {'loss': '0.4047', 'grad_norm': '10.94', 'learning_rate': '9.731e-06', 'epoch': '2.25'}
+1907.7s 393 {'loss': '0.4064', 'grad_norm': '82.39', 'learning_rate': '9.037e-06', 'epoch': '2.375'}
+1995.9s 394 {'loss': '0.3877', 'grad_norm': '9.73', 'learning_rate': '8.343e-06', 'epoch': '2.5'}
+2082.8s 395 {'loss': '0.3973', 'grad_norm': '17.01', 'learning_rate': '7.648e-06', 'epoch': '2.625'}
+2170.9s 396 {'loss': '0.3809', 'grad_norm': '7.164', 'learning_rate': '6.954e-06', 'epoch': '2.75'}
+2259.5s 397 {'loss': '0.3402', 'grad_norm': '34.71', 'learning_rate': '6.26e-06', 'epoch': '2.875'}
+2346.5s 398 {'loss': '0.3805', 'grad_norm': '11.04', 'learning_rate': '5.566e-06', 'epoch': '3'}
+2382.1s 399 {'eval_loss': '0.2668', 'eval_model_preparation_time': '0.0067', 'eval_en-nn|ModAvg_指标1_ρ': '0.48', 'eval_en-nn|ModAvg_指标2_ρ': '0.2864', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8783', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5101', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3147', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7351', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3613', 'eval_de-nn|ModAvg_指标2_ρ': '0.2936', 'eval_de-nn|ModAvg_指标3_RMSE': '0.596', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7891', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4659', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7204', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6515', 'eval_en-pv|Avg_指标2_ρ': '0.7335', 'eval_en-pv|Avg_指标3_RMSE': '0.8334', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6345', 'eval_de-pv|Avg_指标2_ρ': '0.4265', 'eval_de-pv|Avg_指标3_RMSE': '0.8791', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5711', 'eval_合计|_指标2_ρ': '0.4201', 'eval_合计|_指标3_RMSE': '0.7737', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '15.65', 'eval_runtime': '35.6', 'eval_samples_per_second': '53.11', 'eval_steps_per_second': '6.657', 'epoch': '3'}
+2472.1s 400 {'loss': '0.2799', 'grad_norm': '107.8', 'learning_rate': '4.871e-06', 'epoch': '3.125'}
+2559.0s 401 {'loss': '0.2798', 'grad_norm': '3.986', 'learning_rate': '4.177e-06', 'epoch': '3.25'}
+2645.5s 402 {'loss': '0.3191', 'grad_norm': '7.368', 'learning_rate': '3.483e-06', 'epoch': '3.375'}
+2734.7s 403 {'loss': '0.2483', 'grad_norm': '12.36', 'learning_rate': '2.788e-06', 'epoch': '3.5'}
+2821.7s 404 {'loss': '0.2769', 'grad_norm': '29.69', 'learning_rate': '2.094e-06', 'epoch': '3.625'}
+2907.3s 405 {'loss': '0.2882', 'grad_norm': '28.21', 'learning_rate': '1.4e-06', 'epoch': '3.75'}
+2994.5s 406 {'loss': '0.2801', 'grad_norm': '31.55', 'learning_rate': '7.055e-07', 'epoch': '3.875'}
+3082.7s 407 {'loss': '0.2381', 'grad_norm': '13.12', 'learning_rate': '1.12e-08', 'epoch': '4'}
+3118.4s 408 {'eval_loss': '0.2676', 'eval_model_preparation_time': '0.0067', 'eval_en-nn|ModAvg_指标1_ρ': '0.4747', 'eval_en-nn|ModAvg_指标2_ρ': '0.3001', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8773', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5287', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3475', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7203', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3792', 'eval_de-nn|ModAvg_指标2_ρ': '0.2464', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5845', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7787', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4702', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7455', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6515', 'eval_en-pv|Avg_指标2_ρ': '0.7246', 'eval_en-pv|Avg_指标3_RMSE': '0.8504', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6564', 'eval_de-pv|Avg_指标2_ρ': '0.4131', 'eval_de-pv|Avg_指标3_RMSE': '0.8922', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5782', 'eval_合计|_指标2_ρ': '0.417', 'eval_合计|_指标3_RMSE': '0.7784', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '15.8', 'eval_runtime': '35.7', 'eval_samples_per_second': '52.98', 'eval_steps_per_second': '6.639', 'epoch': '4'}
+3120.6s 409 {'train_runtime': '2948', 'train_samples_per_second': '10.76', 'train_steps_per_second': '0.673', 'train_loss': '0.5404', 'epoch': '4'}
+3121.0s 410 训练完成，用时 49.2 分钟，loss=0.5404
+3121.0s 411 日志快照：训练点 32 个 | 评估点 4 个
+3121.0s 412 口径回读 ✓ 有效 batch=16 | 每轮批数=992 | 总更新步=1984 | warmup=198 步（占 10.0%）
+3121.0s 413 损失分项权重（自适应标定后）: {'w_order[col0·en-nn]': 0.0, 'w_order[col0·de-nn]': 0.0, 'w_order[col0·en-pv]': 0.0, 'w_order[col0·de-pv]': 0.0, 'w_mse[col0·en-nn]': 0.0, 'w_mse[col0·de-nn]': 0.0, 'w_mse[col0·en-pv]': 0.0, 'w_mse[col0·de-pv]': 0.0, 'w_guard[col0·en-nn]': 5.0, 'w_guard[col0·de-nn]': 5.0, 'w_guard[col0·en-pv]': 4.99907, 'w_guard[col0·de-pv]': 2.53535, 'w_xrank[col0·en-nn]': 0.0, 'w_xrank[col0·de-nn]': 0.0, 'w_xrank[col0·en-pv]': 0.0, 'w_xrank[col0·de-pv]': 0.0, 'w_order[col1·en-nn]': 0.0, 'w_order[col1·de-nn]': 0.0, 'w_order[col1·en-pv]': 0.0, 'w_order[col1·de-pv]': 0.0, 'w_mse[col1·en-nn]': 0.0, 'w_mse[col1·de-nn]': 0.0, 'w_mse[col1·en-pv]': 0.0, 'w_mse[col1·de-pv]': 0.0, 'w_guard[col1·en-nn]': 5.0, 'w_guard[col1·de-nn]': 5.0, 'w_guard[col1·en-pv]': 0.0, 'w_guard[col1·de-pv]': 0.0, 'w_xrank[col1·en-nn]': 0.0, 'w_xrank[col1·de-nn]': 0.0, 'w_xrank[col1·en-pv]': 0.0, 'w_xrank[col1·de-pv]': 0.0}
+3191.5s 414 {'eval_loss': '0.2676', 'eval_model_preparation_time': '0.0067', 'eval_en-nn|ModAvg_指标1_ρ': '0.4747', 'eval_en-nn|ModAvg_指标2_ρ': '0.3001', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8773', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5287', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3475', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7203', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3792', 'eval_de-nn|ModAvg_指标2_ρ': '0.2464', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5845', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7787', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4702', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7455', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6515', 'eval_en-pv|Avg_指标2_ρ': '0.7246', 'eval_en-pv|Avg_指标3_RMSE': '0.8504', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6564', 'eval_de-pv|Avg_指标2_ρ': '0.4131', 'eval_de-pv|Avg_指标3_RMSE': '0.8922', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5782', 'eval_合计|_指标2_ρ': '0.417', 'eval_合计|_指标3_RMSE': '0.7784', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '15.8', 'eval_runtime': '34.57', 'eval_samples_per_second': '54.7', 'eval_steps_per_second': '6.856', 'epoch': '4'}
+3191.5s 415 --- 训练后指标 ---
+3191.5s 416 en-nn|ModAvg_指标1_ρ                 0.4747
+3191.5s 417 en-nn|ModAvg_指标2_ρ                 0.3001
+3191.5s 418 en-nn|ModAvg_指标3_RMSE              0.8773
+3191.5s 419 en-nn|HeadAvg_指标1_ρ                0.5287
+3191.5s 420 en-nn|HeadAvg_指标2_ρ                0.3475
+3191.5s 421 en-nn|HeadAvg_指标3_RMSE             0.7203
+3191.5s 422 de-nn|ModAvg_指标1_ρ                 0.3792
+3191.5s 423 de-nn|ModAvg_指标2_ρ                 0.2464
+3191.5s 424 de-nn|ModAvg_指标3_RMSE              0.5845
+3191.5s 425 de-nn|HeadAvg_指标1_ρ                0.7787
+3191.5s 426 de-nn|HeadAvg_指标2_ρ                0.4702
+3191.5s 427 de-nn|HeadAvg_指标3_RMSE             0.7455
+3191.5s 428 en-pv|Avg_指标1_ρ                    0.6515
+3191.5s 429 en-pv|Avg_指标2_ρ                    0.7246
+3191.5s 430 en-pv|Avg_指标3_RMSE                 0.8504
+3191.5s 431 de-pv|Avg_指标1_ρ                    0.6564
+3191.5s 432 de-pv|Avg_指标2_ρ                    0.4131
+3191.5s 433 de-pv|Avg_指标3_RMSE                 0.8922
+3191.5s 434 合计|_指标1_ρ                          0.5782
+3191.5s 435 合计|_指标2_ρ                          0.4170
+3191.5s 436 合计|_指标3_RMSE                       0.7784
+3191.5s 437 合计|_综合分                            15.7999
+3191.7s 438 → 运行 joint_base 完成，产物在 /kaggle/working/outputs/xlmr/joint_base
+3192.6s 439 ★ V13 臂：joint_rank | loss_mode=rank | head=linear | pool=mean
+3192.6s 440 ==============================================================================
+3192.6s 441 运行 2/4：joint_rank  |  参与子集 ['en-nn', 'de-nn', 'en-pv', 'de-pv']
+3192.6s 442 ==============================================================================
+3199.6s 443 训练 7934 条 | 验证 1891 条 | 评测设置 6 个
+3199.6s 444 本次运行轮数 = 4（联合对照臂，覆盖全部评测设置）
+3199.8s 445 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+3199.8s 446 Key                       | Status     |  |
+3199.8s 447 --------------------------+------------+--+-
+3199.8s 448 lm_head.layer_norm.weight | UNEXPECTED |  |
+3199.8s 449 lm_head.dense.weight      | UNEXPECTED |  |
+3199.8s 450 lm_head.bias              | UNEXPECTED |  |
+3199.8s 451 lm_head.dense.bias        | UNEXPECTED |  |
+3199.8s 452 lm_head.layer_norm.bias   | UNEXPECTED |  |
+3199.8s 453 
+3199.8s 454 Notes:
+3199.8s 455 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+3199.8s 456 
+3199.8s 457 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+3199.8s 458 Key                       | Status     |  |
+3199.8s 459 --------------------------+------------+--+-
+3199.8s 460 lm_head.layer_norm.weight | UNEXPECTED |  |
+3199.8s 461 lm_head.dense.weight      | UNEXPECTED |  |
+3199.8s 462 lm_head.bias              | UNEXPECTED |  |
+3199.8s 463 lm_head.dense.bias        | UNEXPECTED |  |
+3199.8s 464 lm_head.layer_norm.bias   | UNEXPECTED |  |
+3199.8s 465 
+3199.8s 466 Notes:
+3199.8s 467 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+3200.0s 468 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+3200.8s 469 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+3200.8s 470 显存预算：FacebookAI/xlm-roberta-large | 560M 参数（实际） | 选档参考 560M（仅 auto 模式用；当前 FIT_MODE=t3） | 单卡容量 14.6 GiB | 安全系数 90%
+3200.8s 471 档位表（固定开销与 batch 无关，降 batch 救不了）：
+3200.8s 472 档   含义                                       固定    bs=1 需    bs=8 需  判定
+3200.8s 473 t0  全参微调 · fp32 AdamW · AMP                9.4G      9.7G     11.4G  ✓ 装得下
+3200.8s 474 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+3200.8s 475 t2  全参微调 · Adafactor · AMP                 5.3G      5.6G      6.8G  ✓ 装得下
+3200.8s 476 t3  全参微调 · Adafactor · 无 AMP               4.3G      4.6G      5.8G  ✓ 装得下
+3200.8s 477 t4  顶部 50% 层 · Adafactor · AMP             4.2G      4.5G      5.7G  ✓ 装得下
+3200.8s 478 t5  顶部 50% 层 · Adafactor · 无 AMP           3.2G      3.5G      4.7G  ✓ 装得下
+3200.8s 479 t6  顶部 25% 层 · Adafactor · 无 AMP           2.6G      2.9G      4.1G  ✓ 装得下
+3200.8s 480 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 4.3 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+3200.8s 481 [显存·正式训练前] 已分配 2.10 GiB | 已保留 2.12 GiB | 卡 14.56 GiB
+3201.0s 482 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+3201.0s 483 Key                       | Status     |  |
+3201.0s 484 --------------------------+------------+--+-
+3201.0s 485 lm_head.layer_norm.weight | UNEXPECTED |  |
+3201.0s 486 lm_head.dense.weight      | UNEXPECTED |  |
+3201.0s 487 lm_head.bias              | UNEXPECTED |  |
+3201.0s 488 lm_head.dense.bias        | UNEXPECTED |  |
+3201.0s 489 lm_head.layer_norm.bias   | UNEXPECTED |  |
+3201.0s 490 
+3201.0s 491 Notes:
+3201.0s 492 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+3201.0s 493 
+3201.0s 494 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+3201.0s 495 Key                       | Status     |  |
+3201.0s 496 --------------------------+------------+--+-
+3201.0s 497 lm_head.layer_norm.weight | UNEXPECTED |  |
+3201.0s 498 lm_head.dense.weight      | UNEXPECTED |  |
+3201.0s 499 lm_head.bias              | UNEXPECTED |  |
+3201.0s 500 lm_head.dense.bias        | UNEXPECTED |  |
+3201.0s 501 lm_head.layer_norm.bias   | UNEXPECTED |  |
+3201.0s 502 
+3201.0s 503 Notes:
+3201.0s 504 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+3201.2s 505 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+3201.9s 506 口径自检 ✓ 有效 batch = 8×2 = 16 | 每轮批数 992 | 总更新步 1984 | warmup 198 步（占 10.0%）
+3238.5s 507 {'eval_loss': '1.043', 'eval_model_preparation_time': '0.007', 'eval_en-nn|ModAvg_指标1_ρ': '0.0001246', 'eval_en-nn|ModAvg_指标2_ρ': '0.024', 'eval_en-nn|ModAvg_指标3_RMSE': '1.575', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.01194', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1644', 'eval_en-nn|HeadAvg_指标3_RMSE': '1.852', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '-0.1035', 'eval_de-nn|ModAvg_指标2_ρ': '0.01159', 'eval_de-nn|ModAvg_指标3_RMSE': '1.996', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '-0.08019', 'eval_de-nn|HeadAvg_指标2_ρ': '0.02655', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.694', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '-0.03529', 'eval_en-pv|Avg_指标2_ρ': '-0.1333', 'eval_en-pv|Avg_指标3_RMSE': '1.142', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.01053', 'eval_de-pv|Avg_指标2_ρ': '0.4171', 'eval_de-pv|Avg_指标3_RMSE': '1.111', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '-0.03273', 'eval_合计|_指标2_ρ': '0.08507', 'eval_合计|_指标3_RMSE': '1.562', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '-33.83', 'eval_runtime': '35.39', 'eval_samples_per_second': '53.43', 'eval_steps_per_second': '6.696', 'epoch': 0}
+3238.5s 508 随机初始化模型基线（35.4s）: 指标1 ρ=-0.0327 | 指标2 ρ=0.0851 | RMSE=1.5617
+3238.5s 509 随机初始化时的评估 loss = 1.0431（图 F 的 epoch 0 起点）
+3238.5s 510 [显存·随机基线评估后] 已分配 2.10 GiB | 已保留 2.15 GiB | 卡 14.56 GiB
+3325.8s 511 {'loss': '1.54', 'grad_norm': '19.03', 'learning_rate': '6.162e-06', 'epoch': '0.125'}
+3412.8s 512 {'loss': '1.1', 'grad_norm': '104.2', 'learning_rate': '1.242e-05', 'epoch': '0.25'}
+3501.7s 513 {'loss': '1.028', 'grad_norm': '44.53', 'learning_rate': '1.869e-05', 'epoch': '0.375'}
+3587.5s 514 {'loss': '0.912', 'grad_norm': '11.58', 'learning_rate': '1.945e-05', 'epoch': '0.5'}
+3672.9s 515 {'loss': '1.01', 'grad_norm': '15.22', 'learning_rate': '1.876e-05', 'epoch': '0.625'}
+3761.8s 516 {'loss': '0.8773', 'grad_norm': '45.75', 'learning_rate': '1.806e-05', 'epoch': '0.75'}
+3850.9s 517 {'loss': '0.7199', 'grad_norm': '74.33', 'learning_rate': '1.737e-05', 'epoch': '0.875'}
+3937.5s 518 {'loss': '0.8145', 'grad_norm': '27.13', 'learning_rate': '1.667e-05', 'epoch': '1'}
+3973.5s 519 {'eval_loss': '0.4157', 'eval_model_preparation_time': '0.007', 'eval_en-nn|ModAvg_指标1_ρ': '0.3331', 'eval_en-nn|ModAvg_指标2_ρ': '0.3958', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9608', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.41', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2347', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.8497', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2584', 'eval_de-nn|ModAvg_指标2_ρ': '0.2887', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6054', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6835', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4828', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.043', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5464', 'eval_en-pv|Avg_指标2_ρ': '0.5733', 'eval_en-pv|Avg_指标3_RMSE': '1.001', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.4633', 'eval_de-pv|Avg_指标2_ρ': '0.285', 'eval_de-pv|Avg_指标3_RMSE': '1.048', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4491', 'eval_合计|_指标2_ρ': '0.3767', 'eval_合计|_指标3_RMSE': '0.918', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '6.42', 'eval_runtime': '35.97', 'eval_samples_per_second': '52.57', 'eval_steps_per_second': '6.588', 'epoch': '1'}
+4064.8s 520 {'loss': '0.6698', 'grad_norm': '43.67', 'learning_rate': '1.598e-05', 'epoch': '1.125'}
+4152.4s 521 {'loss': '0.5838', 'grad_norm': '6.891', 'learning_rate': '1.529e-05', 'epoch': '1.25'}
+4239.6s 522 {'loss': '0.5912', 'grad_norm': '36.5', 'learning_rate': '1.459e-05', 'epoch': '1.375'}
+4325.5s 523 {'loss': '0.6438', 'grad_norm': '13.25', 'learning_rate': '1.39e-05', 'epoch': '1.5'}
+4410.7s 524 {'loss': '0.6757', 'grad_norm': '20.65', 'learning_rate': '1.32e-05', 'epoch': '1.625'}
+4498.8s 525 {'loss': '0.5852', 'grad_norm': '32.62', 'learning_rate': '1.251e-05', 'epoch': '1.75'}
+4586.2s 526 {'loss': '0.6109', 'grad_norm': '19.58', 'learning_rate': '1.181e-05', 'epoch': '1.875'}
+4674.8s 527 {'loss': '0.4963', 'grad_norm': '10', 'learning_rate': '1.112e-05', 'epoch': '2'}
+4710.9s 528 {'eval_loss': '0.3989', 'eval_model_preparation_time': '0.007', 'eval_en-nn|ModAvg_指标1_ρ': '0.4257', 'eval_en-nn|ModAvg_指标2_ρ': '0.441', 'eval_en-nn|ModAvg_指标3_RMSE': '0.956', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5134', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2254', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7617', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2856', 'eval_de-nn|ModAvg_指标2_ρ': '0.2667', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6303', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7169', 'eval_de-nn|HeadAvg_指标2_ρ': '0.5117', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.9821', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.585', 'eval_en-pv|Avg_指标2_ρ': '0.5075', 'eval_en-pv|Avg_指标3_RMSE': '1.052', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.571', 'eval_de-pv|Avg_指标2_ρ': '0.4674', 'eval_de-pv|Avg_指标3_RMSE': '1.094', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5163', 'eval_合计|_指标2_ρ': '0.4033', 'eval_合计|_指标3_RMSE': '0.9128', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '9.935', 'eval_runtime': '36.14', 'eval_samples_per_second': '52.33', 'eval_steps_per_second': '6.558', 'epoch': '2'}
+4801.4s 529 {'loss': '0.4558', 'grad_norm': '4.869', 'learning_rate': '1.043e-05', 'epoch': '2.125'}
+4888.5s 530 {'loss': '0.3968', 'grad_norm': '20.08', 'learning_rate': '9.731e-06', 'epoch': '2.25'}
+4975.2s 531 {'loss': '0.4511', 'grad_norm': '73.13', 'learning_rate': '9.037e-06', 'epoch': '2.375'}
+5063.5s 532 {'loss': '0.4309', 'grad_norm': '8.639', 'learning_rate': '8.343e-06', 'epoch': '2.5'}
+5150.3s 533 {'loss': '0.4338', 'grad_norm': '12.6', 'learning_rate': '7.648e-06', 'epoch': '2.625'}
+5238.4s 534 {'loss': '0.3885', 'grad_norm': '3.221', 'learning_rate': '6.954e-06', 'epoch': '2.75'}
+5326.8s 535 {'loss': '0.3767', 'grad_norm': '26.37', 'learning_rate': '6.26e-06', 'epoch': '2.875'}
+5413.4s 536 {'loss': '0.43', 'grad_norm': '21.35', 'learning_rate': '5.566e-06', 'epoch': '3'}
+5449.3s 537 {'eval_loss': '0.3104', 'eval_model_preparation_time': '0.007', 'eval_en-nn|ModAvg_指标1_ρ': '0.4949', 'eval_en-nn|ModAvg_指标2_ρ': '0.3638', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8587', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5694', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3216', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7114', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3944', 'eval_de-nn|ModAvg_指标2_ρ': '0.3491', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5837', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7783', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4879', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7539', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.669', 'eval_en-pv|Avg_指标2_ρ': '0.6578', 'eval_en-pv|Avg_指标3_RMSE': '0.8316', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6121', 'eval_de-pv|Avg_指标2_ρ': '0.3642', 'eval_de-pv|Avg_指标3_RMSE': '0.8955', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5863', 'eval_合计|_指标2_ρ': '0.4241', 'eval_合计|_指标3_RMSE': '0.7725', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '16.41', 'eval_runtime': '35.94', 'eval_samples_per_second': '52.62', 'eval_steps_per_second': '6.595', 'epoch': '3'}
+5539.2s 538 {'loss': '0.3117', 'grad_norm': '14.96', 'learning_rate': '4.871e-06', 'epoch': '3.125'}
+5626.0s 539 {'loss': '0.3229', 'grad_norm': '3.039', 'learning_rate': '4.177e-06', 'epoch': '3.25'}
+5712.6s 540 {'loss': '0.3574', 'grad_norm': '12.23', 'learning_rate': '3.483e-06', 'epoch': '3.375'}
+5801.5s 541 {'loss': '0.2955', 'grad_norm': '12.34', 'learning_rate': '2.788e-06', 'epoch': '3.5'}
+5888.5s 542 {'loss': '0.3146', 'grad_norm': '19.55', 'learning_rate': '2.094e-06', 'epoch': '3.625'}
+5973.8s 543 {'loss': '0.307', 'grad_norm': '27.84', 'learning_rate': '1.4e-06', 'epoch': '3.75'}
+6061.0s 544 {'loss': '0.3018', 'grad_norm': '14.34', 'learning_rate': '7.055e-07', 'epoch': '3.875'}
+6149.2s 545 {'loss': '0.2798', 'grad_norm': '9.258', 'learning_rate': '1.12e-08', 'epoch': '4'}
+6185.3s 546 {'eval_loss': '0.3122', 'eval_model_preparation_time': '0.007', 'eval_en-nn|ModAvg_指标1_ρ': '0.4891', 'eval_en-nn|ModAvg_指标2_ρ': '0.3584', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8608', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5712', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3738', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.6794', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.4096', 'eval_de-nn|ModAvg_指标2_ρ': '0.306', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5724', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7689', 'eval_de-nn|HeadAvg_指标2_ρ': '0.5037', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7898', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6709', 'eval_en-pv|Avg_指标2_ρ': '0.6494', 'eval_en-pv|Avg_指标3_RMSE': '0.8451', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6219', 'eval_de-pv|Avg_指标2_ρ': '0.3366', 'eval_de-pv|Avg_指标3_RMSE': '0.9081', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5886', 'eval_合计|_指标2_ρ': '0.4213', 'eval_合计|_指标3_RMSE': '0.7759', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '16.38', 'eval_runtime': '36.1', 'eval_samples_per_second': '52.39', 'eval_steps_per_second': '6.566', 'epoch': '4'}
+6187.9s 547 {'train_runtime': '2949', 'train_samples_per_second': '10.76', 'train_steps_per_second': '0.673', 'train_loss': '0.5848', 'epoch': '4'}
+6188.3s 548 训练完成，用时 49.2 分钟，loss=0.5848
+6188.3s 549 日志快照：训练点 32 个 | 评估点 4 个
+6188.3s 550 口径回读 ✓ 有效 batch=16 | 每轮批数=992 | 总更新步=1984 | warmup=198 步（占 10.0%）
+6188.3s 551 损失分项权重（自适应标定后）: {'w_order[col0·en-nn]': 0.0, 'w_order[col0·de-nn]': 0.0, 'w_order[col0·en-pv]': 0.0, 'w_order[col0·de-pv]': 0.0, 'w_mse[col0·en-nn]': 0.0, 'w_mse[col0·de-nn]': 0.0, 'w_mse[col0·en-pv]': 0.0, 'w_mse[col0·de-pv]': 0.0, 'w_guard[col0·en-nn]': 5.0, 'w_guard[col0·de-nn]': 5.0, 'w_guard[col0·en-pv]': 4.68911, 'w_guard[col0·de-pv]': 3.79676, 'w_xrank[col0·en-nn]': 0.0, 'w_xrank[col0·de-nn]': 0.0, 'w_xrank[col0·en-pv]': 0.0, 'w_xrank[col0·de-pv]': 0.0, 'w_order[col1·en-nn]': 0.0, 'w_order[col1·de-nn]': 0.0, 'w_order[col1·en-pv]': 0.0, 'w_order[col1·de-pv]': 0.0, 'w_mse[col1·en-nn]': 0.0, 'w_mse[col1·de-nn]': 0.0, 'w_mse[col1·en-pv]': 0.0, 'w_mse[col1·de-pv]': 0.0, 'w_guard[col1·en-nn]': 5.0, 'w_guard[col1·de-nn]': 5.0, 'w_guard[col1·en-pv]': 0.0, 'w_guard[col1·de-pv]': 0.0, 'w_xrank[col1·en-nn]': 0.0, 'w_xrank[col1·de-nn]': 0.0, 'w_xrank[col1·en-pv]': 0.0, 'w_xrank[col1·de-pv]': 0.0, 'w_rank_fixed': 0.1, 'rank_val': 0.21199}
+6259.2s 552 {'eval_loss': '0.3104', 'eval_model_preparation_time': '0.007', 'eval_en-nn|ModAvg_指标1_ρ': '0.4949', 'eval_en-nn|ModAvg_指标2_ρ': '0.3638', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8587', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5694', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3216', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7114', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3944', 'eval_de-nn|ModAvg_指标2_ρ': '0.3491', 'eval_de-nn|ModAvg_指标3_RMSE': '0.5837', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7783', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4879', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7539', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.669', 'eval_en-pv|Avg_指标2_ρ': '0.6578', 'eval_en-pv|Avg_指标3_RMSE': '0.8316', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6121', 'eval_de-pv|Avg_指标2_ρ': '0.3642', 'eval_de-pv|Avg_指标3_RMSE': '0.8955', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5863', 'eval_合计|_指标2_ρ': '0.4241', 'eval_合计|_指标3_RMSE': '0.7725', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '16.41', 'eval_runtime': '35.11', 'eval_samples_per_second': '53.86', 'eval_steps_per_second': '6.75', 'epoch': '4'}
+6259.2s 553 --- 训练后指标 ---
+6259.2s 554 en-nn|ModAvg_指标1_ρ                 0.4949
+6259.2s 555 en-nn|ModAvg_指标2_ρ                 0.3638
+6259.2s 556 en-nn|ModAvg_指标3_RMSE              0.8587
+6259.2s 557 en-nn|HeadAvg_指标1_ρ                0.5694
+6259.2s 558 en-nn|HeadAvg_指标2_ρ                0.3216
+6259.2s 559 en-nn|HeadAvg_指标3_RMSE             0.7114
+6259.2s 560 de-nn|ModAvg_指标1_ρ                 0.3944
+6259.2s 561 de-nn|ModAvg_指标2_ρ                 0.3491
+6259.2s 562 de-nn|ModAvg_指标3_RMSE              0.5837
+6259.2s 563 de-nn|HeadAvg_指标1_ρ                0.7783
+6259.2s 564 de-nn|HeadAvg_指标2_ρ                0.4879
+6259.2s 565 de-nn|HeadAvg_指标3_RMSE             0.7539
+6259.2s 566 en-pv|Avg_指标1_ρ                    0.6690
+6259.2s 567 en-pv|Avg_指标2_ρ                    0.6578
+6259.2s 568 en-pv|Avg_指标3_RMSE                 0.8316
+6259.2s 569 de-pv|Avg_指标1_ρ                    0.6121
+6259.2s 570 de-pv|Avg_指标2_ρ                    0.3642
+6259.2s 571 de-pv|Avg_指标3_RMSE                 0.8955
+6259.2s 572 合计|_指标1_ρ                          0.5863
+6259.2s 573 合计|_指标2_ρ                          0.4241
+6259.2s 574 合计|_指标3_RMSE                       0.7725
+6259.2s 575 合计|_综合分                            16.4112
+6259.5s 576 → 运行 joint_rank 完成，产物在 /kaggle/working/outputs/xlmr/joint_rank
+6260.5s 577 ★ V13 臂：joint_hetero | loss_mode=hetero | head=hetero | pool=mean
+6260.5s 578 ==============================================================================
+6260.5s 579 运行 3/4：joint_hetero  |  参与子集 ['en-nn', 'de-nn', 'en-pv', 'de-pv']
+6260.5s 580 ==============================================================================
+6267.6s 581 训练 7934 条 | 验证 1891 条 | 评测设置 6 个
+6267.6s 582 本次运行轮数 = 4（联合对照臂，覆盖全部评测设置）
+6267.8s 583 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+6267.8s 584 Key                       | Status     |  |
+6267.8s 585 --------------------------+------------+--+-
+6267.8s 586 lm_head.layer_norm.weight | UNEXPECTED |  |
+6267.8s 587 lm_head.dense.weight      | UNEXPECTED |  |
+6267.8s 588 lm_head.bias              | UNEXPECTED |  |
+6267.8s 589 lm_head.dense.bias        | UNEXPECTED |  |
+6267.8s 590 lm_head.layer_norm.bias   | UNEXPECTED |  |
+6267.8s 591 
+6267.8s 592 Notes:
+6267.8s 593 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+6267.8s 594 
+6267.8s 595 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+6267.8s 596 Key                       | Status     |  |
+6267.8s 597 --------------------------+------------+--+-
+6267.8s 598 lm_head.layer_norm.weight | UNEXPECTED |  |
+6267.8s 599 lm_head.dense.weight      | UNEXPECTED |  |
+6267.8s 600 lm_head.bias              | UNEXPECTED |  |
+6267.8s 601 lm_head.dense.bias        | UNEXPECTED |  |
+6267.8s 602 lm_head.layer_norm.bias   | UNEXPECTED |  |
+6267.8s 603 
+6267.8s 604 Notes:
+6267.8s 605 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+6268.0s 606 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+6268.9s 607 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+6268.9s 608 显存预算：FacebookAI/xlm-roberta-large | 560M 参数（实际） | 选档参考 560M（仅 auto 模式用；当前 FIT_MODE=t3） | 单卡容量 14.6 GiB | 安全系数 90%
+6268.9s 609 档位表（固定开销与 batch 无关，降 batch 救不了）：
+6268.9s 610 档   含义                                       固定    bs=1 需    bs=8 需  判定
+6268.9s 611 t0  全参微调 · fp32 AdamW · AMP                9.4G      9.7G     11.4G  ✓ 装得下
+6268.9s 612 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+6268.9s 613 t2  全参微调 · Adafactor · AMP                 5.3G      5.6G      6.8G  ✓ 装得下
+6268.9s 614 t3  全参微调 · Adafactor · 无 AMP               4.3G      4.6G      5.8G  ✓ 装得下
+6268.9s 615 t4  顶部 50% 层 · Adafactor · AMP             4.2G      4.5G      5.7G  ✓ 装得下
+6268.9s 616 t5  顶部 50% 层 · Adafactor · 无 AMP           3.2G      3.5G      4.7G  ✓ 装得下
+6268.9s 617 t6  顶部 25% 层 · Adafactor · 无 AMP           2.6G      2.9G      4.1G  ✓ 装得下
+6268.9s 618 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 4.3 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+6268.9s 619 [显存·正式训练前] 已分配 2.10 GiB | 已保留 2.12 GiB | 卡 14.56 GiB
+6269.1s 620 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+6269.1s 621 Key                       | Status     |  |
+6269.1s 622 --------------------------+------------+--+-
+6269.1s 623 lm_head.layer_norm.weight | UNEXPECTED |  |
+6269.1s 624 lm_head.dense.weight      | UNEXPECTED |  |
+6269.1s 625 lm_head.bias              | UNEXPECTED |  |
+6269.1s 626 lm_head.dense.bias        | UNEXPECTED |  |
+6269.1s 627 lm_head.layer_norm.bias   | UNEXPECTED |  |
+6269.1s 628 
+6269.1s 629 Notes:
+6269.1s 630 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+6269.1s 631 
+6269.1s 632 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+6269.1s 633 Key                       | Status     |  |
+6269.1s 634 --------------------------+------------+--+-
+6269.1s 635 lm_head.layer_norm.weight | UNEXPECTED |  |
+6269.1s 636 lm_head.dense.weight      | UNEXPECTED |  |
+6269.1s 637 lm_head.bias              | UNEXPECTED |  |
+6269.1s 638 lm_head.dense.bias        | UNEXPECTED |  |
+6269.1s 639 lm_head.layer_norm.bias   | UNEXPECTED |  |
+6269.1s 640 
+6269.1s 641 Notes:
+6269.1s 642 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+6269.3s 643 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+6270.0s 644 口径自检 ✓ 有效 batch = 8×2 = 16 | 每轮批数 992 | 总更新步 1984 | warmup 198 步（占 10.0%）
+6306.3s 645 {'eval_loss': '1.321', 'eval_model_preparation_time': '0.0073', 'eval_en-nn|ModAvg_指标1_ρ': '0.0001243', 'eval_en-nn|ModAvg_指标2_ρ': '0.02395', 'eval_en-nn|ModAvg_指标3_RMSE': '1.611', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.01194', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1644', 'eval_en-nn|HeadAvg_指标3_RMSE': '1.832', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '-0.1035', 'eval_de-nn|ModAvg_指标2_ρ': '0.01159', 'eval_de-nn|ModAvg_指标3_RMSE': '2.04', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '-0.08019', 'eval_de-nn|HeadAvg_指标2_ρ': '0.02655', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.679', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '-0.03529', 'eval_en-pv|Avg_指标2_ρ': '-0.1333', 'eval_en-pv|Avg_指标3_RMSE': '1.144', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.01053', 'eval_de-pv|Avg_指标2_ρ': '0.4171', 'eval_de-pv|Avg_指标3_RMSE': '1.121', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '-0.03273', 'eval_合计|_指标2_ρ': '0.08506', 'eval_合计|_指标3_RMSE': '1.571', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '-34.03', 'eval_runtime': '35.14', 'eval_samples_per_second': '53.81', 'eval_steps_per_second': '6.745', 'epoch': 0}
+6306.3s 646 随机初始化模型基线（35.1s）: 指标1 ρ=-0.0327 | 指标2 ρ=0.0851 | RMSE=1.5709
+6306.3s 647 随机初始化时的评估 loss = 1.3213（图 F 的 epoch 0 起点）
+6306.3s 648 [显存·随机基线评估后] 已分配 2.10 GiB | 已保留 2.15 GiB | 卡 14.56 GiB
+6393.9s 649 {'loss': '1.794', 'grad_norm': '36.65', 'learning_rate': '6.162e-06', 'epoch': '0.125'}
+6480.9s 650 {'loss': '1.228', 'grad_norm': '47.36', 'learning_rate': '1.242e-05', 'epoch': '0.25'}
+6569.9s 651 {'loss': '1.149', 'grad_norm': '67.08', 'learning_rate': '1.869e-05', 'epoch': '0.375'}
+6655.8s 652 {'loss': '1.109', 'grad_norm': '27.2', 'learning_rate': '1.945e-05', 'epoch': '0.5'}
+6741.2s 653 {'loss': '1.121', 'grad_norm': '36.68', 'learning_rate': '1.876e-05', 'epoch': '0.625'}
+6830.1s 654 {'loss': '1.044', 'grad_norm': '56.49', 'learning_rate': '1.806e-05', 'epoch': '0.75'}
+6919.4s 655 {'loss': '0.7036', 'grad_norm': '43.21', 'learning_rate': '1.737e-05', 'epoch': '0.875'}
+7005.9s 656 {'loss': '0.953', 'grad_norm': '157.2', 'learning_rate': '1.667e-05', 'epoch': '1'}
+7042.3s 657 {'eval_loss': '0.4866', 'eval_model_preparation_time': '0.0073', 'eval_en-nn|ModAvg_指标1_ρ': '0.3862', 'eval_en-nn|ModAvg_指标2_ρ': '0.4468', 'eval_en-nn|ModAvg_指标3_RMSE': '1.061', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.411', 'eval_en-nn|HeadAvg_指标2_ρ': '0.08839', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.9422', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2415', 'eval_de-nn|ModAvg_指标2_ρ': '0.1939', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6669', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6108', 'eval_de-nn|HeadAvg_指标2_ρ': '0.1532', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.119', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5131', 'eval_en-pv|Avg_指标2_ρ': '0.6018', 'eval_en-pv|Avg_指标3_RMSE': '1.035', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.3749', 'eval_de-pv|Avg_指标2_ρ': '0.02692', 'eval_de-pv|Avg_指标3_RMSE': '1.035', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4229', 'eval_合计|_指标2_ρ': '0.2518', 'eval_合计|_指标3_RMSE': '0.9766', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '1.737', 'eval_runtime': '36.33', 'eval_samples_per_second': '52.05', 'eval_steps_per_second': '6.524', 'epoch': '1'}
+7133.5s 658 {'loss': '0.6282', 'grad_norm': '125.6', 'learning_rate': '1.598e-05', 'epoch': '1.125'}
+7221.5s 659 {'loss': '0.506', 'grad_norm': '24.97', 'learning_rate': '1.529e-05', 'epoch': '1.25'}
+7309.0s 660 {'loss': '0.4785', 'grad_norm': '82.2', 'learning_rate': '1.459e-05', 'epoch': '1.375'}
+7395.2s 661 {'loss': '0.6363', 'grad_norm': '28.36', 'learning_rate': '1.39e-05', 'epoch': '1.5'}
+7480.2s 662 {'loss': '0.5952', 'grad_norm': '40.13', 'learning_rate': '1.32e-05', 'epoch': '1.625'}
+7568.5s 663 {'loss': '0.4721', 'grad_norm': '30.61', 'learning_rate': '1.251e-05', 'epoch': '1.75'}
+7655.9s 664 {'loss': '0.6045', 'grad_norm': '141.9', 'learning_rate': '1.181e-05', 'epoch': '1.875'}
+7744.3s 665 {'loss': '0.1488', 'grad_norm': '36.63', 'learning_rate': '1.112e-05', 'epoch': '2'}
+7780.5s 666 {'eval_loss': '0.8761', 'eval_model_preparation_time': '0.0073', 'eval_en-nn|ModAvg_指标1_ρ': '0.4238', 'eval_en-nn|ModAvg_指标2_ρ': '0.2432', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9474', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4899', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2036', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.8021', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.2898', 'eval_de-nn|ModAvg_指标2_ρ': '0.3442', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6825', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6465', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4533', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.114', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.5671', 'eval_en-pv|Avg_指标2_ρ': '0.5653', 'eval_en-pv|Avg_指标3_RMSE': '1.027', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.4866', 'eval_de-pv|Avg_指标2_ρ': '0.1382', 'eval_de-pv|Avg_指标3_RMSE': '1.202', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.484', 'eval_合计|_指标2_ρ': '0.3246', 'eval_合计|_指标3_RMSE': '0.9626', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '6.019', 'eval_runtime': '36.11', 'eval_samples_per_second': '52.37', 'eval_steps_per_second': '6.564', 'epoch': '2'}
+7870.5s 667 {'loss': '0.1121', 'grad_norm': '36.86', 'learning_rate': '1.043e-05', 'epoch': '2.125'}
+7957.6s 668 {'loss': '-0.05993', 'grad_norm': '53.69', 'learning_rate': '9.731e-06', 'epoch': '2.25'}
+8044.5s 669 {'loss': '0.1951', 'grad_norm': '151.8', 'learning_rate': '9.037e-06', 'epoch': '2.375'}
+8132.9s 670 {'loss': '-0.01015', 'grad_norm': '52.39', 'learning_rate': '8.343e-06', 'epoch': '2.5'}
+8219.7s 671 {'loss': '-0.05899', 'grad_norm': '51.37', 'learning_rate': '7.648e-06', 'epoch': '2.625'}
+8307.7s 672 {'loss': '-0.178', 'grad_norm': '31.53', 'learning_rate': '6.954e-06', 'epoch': '2.75'}
+8396.2s 673 {'loss': '-0.1377', 'grad_norm': '67.4', 'learning_rate': '6.26e-06', 'epoch': '2.875'}
+8482.8s 674 {'loss': '-0.1392', 'grad_norm': '46.8', 'learning_rate': '5.566e-06', 'epoch': '3'}
+8518.8s 675 {'eval_loss': '0.2858', 'eval_model_preparation_time': '0.0073', 'eval_en-nn|ModAvg_指标1_ρ': '0.483', 'eval_en-nn|ModAvg_指标2_ρ': '0.2454', 'eval_en-nn|ModAvg_指标3_RMSE': '0.853', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5483', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2715', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7452', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3577', 'eval_de-nn|ModAvg_指标2_ρ': '0.3438', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6387', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7287', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4564', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.8769', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6587', 'eval_en-pv|Avg_指标2_ρ': '0.6409', 'eval_en-pv|Avg_指标3_RMSE': '0.8242', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.618', 'eval_de-pv|Avg_指标2_ρ': '0.418', 'eval_de-pv|Avg_指标3_RMSE': '0.8733', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5657', 'eval_合计|_指标2_ρ': '0.396', 'eval_合计|_指标3_RMSE': '0.8019', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '14.37', 'eval_runtime': '35.98', 'eval_samples_per_second': '52.56', 'eval_steps_per_second': '6.587', 'epoch': '3'}
+8609.9s 676 {'loss': '-0.3756', 'grad_norm': '44.72', 'learning_rate': '4.871e-06', 'epoch': '3.125'}
+8696.7s 677 {'loss': '-0.5075', 'grad_norm': '45.88', 'learning_rate': '4.177e-06', 'epoch': '3.25'}
+8783.0s 678 {'loss': '-0.2811', 'grad_norm': '40.26', 'learning_rate': '3.483e-06', 'epoch': '3.375'}
+8872.1s 679 {'loss': '-0.5604', 'grad_norm': '192.7', 'learning_rate': '2.788e-06', 'epoch': '3.5'}
+8959.2s 680 {'loss': '-0.4548', 'grad_norm': '41.41', 'learning_rate': '2.094e-06', 'epoch': '3.625'}
+9044.4s 681 {'loss': '-0.5284', 'grad_norm': '109.2', 'learning_rate': '1.4e-06', 'epoch': '3.75'}
+9131.5s 682 {'loss': '-0.5078', 'grad_norm': '49.05', 'learning_rate': '7.055e-07', 'epoch': '3.875'}
+9219.6s 683 {'loss': '-0.7697', 'grad_norm': '34.22', 'learning_rate': '1.12e-08', 'epoch': '4'}
+9255.4s 684 {'eval_loss': '0.6068', 'eval_model_preparation_time': '0.0073', 'eval_en-nn|ModAvg_指标1_ρ': '0.4913', 'eval_en-nn|ModAvg_指标2_ρ': '0.2709', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8681', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5538', 'eval_en-nn|HeadAvg_指标2_ρ': '0.3582', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7297', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3652', 'eval_de-nn|ModAvg_指标2_ρ': '0.3717', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6142', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7186', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4579', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.8951', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6444', 'eval_en-pv|Avg_指标2_ρ': '0.5862', 'eval_en-pv|Avg_指标3_RMSE': '0.8638', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6141', 'eval_de-pv|Avg_指标2_ρ': '0.426', 'eval_de-pv|Avg_指标3_RMSE': '0.9386', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5646', 'eval_合计|_指标2_ρ': '0.4118', 'eval_合计|_指标3_RMSE': '0.8183', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '14.25', 'eval_runtime': '35.83', 'eval_samples_per_second': '52.78', 'eval_steps_per_second': '6.615', 'epoch': '4'}
+9258.5s 685 {'train_runtime': '2952', 'train_samples_per_second': '10.75', 'train_steps_per_second': '0.672', 'train_loss': '0.2784', 'epoch': '4'}
+9259.0s 686 训练完成，用时 49.2 分钟，loss=0.2784
+9259.0s 687 日志快照：训练点 32 个 | 评估点 4 个
+9259.0s 688 口径回读 ✓ 有效 batch=16 | 每轮批数=992 | 总更新步=1984 | warmup=198 步（占 10.0%）
+9259.0s 689 损失分项权重（自适应标定后）: {'w_order[col0·en-nn]': 0.0, 'w_order[col0·de-nn]': 0.0, 'w_order[col0·en-pv]': 0.0, 'w_order[col0·de-pv]': 0.0, 'w_mse[col0·en-nn]': 0.0, 'w_mse[col0·de-nn]': 0.0, 'w_mse[col0·en-pv]': 0.0, 'w_mse[col0·de-pv]': 0.0, 'w_guard[col0·en-nn]': -135.95341, 'w_guard[col0·de-nn]': -142.85806, 'w_guard[col0·en-pv]': 0.69408, 'w_guard[col0·de-pv]': -0.03949, 'w_xrank[col0·en-nn]': 0.0, 'w_xrank[col0·de-nn]': 0.0, 'w_xrank[col0·en-pv]': 0.0, 'w_xrank[col0·de-pv]': 0.0, 'w_order[col1·en-nn]': 0.0, 'w_order[col1·de-nn]': 0.0, 'w_order[col1·en-pv]': 0.0, 'w_order[col1·de-pv]': 0.0, 'w_mse[col1·en-nn]': 0.0, 'w_mse[col1·de-nn]': 0.0, 'w_mse[col1·en-pv]': 0.0, 'w_mse[col1·de-pv]': 0.0, 'w_guard[col1·en-nn]': -260.80478, 'w_guard[col1·de-nn]': -458.961, 'w_guard[col1·en-pv]': 0.0, 'w_guard[col1·de-pv]': 0.0, 'w_xrank[col1·en-nn]': 0.0, 'w_xrank[col1·de-nn]': 0.0, 'w_xrank[col1·en-pv]': 0.0, 'w_xrank[col1·de-pv]': 0.0}
+9329.7s 690 {'eval_loss': '0.3216', 'eval_model_preparation_time': '0.0073', 'eval_en-nn|ModAvg_指标1_ρ': '0.483', 'eval_en-nn|ModAvg_指标2_ρ': '0.2454', 'eval_en-nn|ModAvg_指标3_RMSE': '0.853', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5483', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2715', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7452', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3577', 'eval_de-nn|ModAvg_指标2_ρ': '0.3438', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6387', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7287', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4564', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.8769', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6587', 'eval_en-pv|Avg_指标2_ρ': '0.6409', 'eval_en-pv|Avg_指标3_RMSE': '0.8242', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.618', 'eval_de-pv|Avg_指标2_ρ': '0.418', 'eval_de-pv|Avg_指标3_RMSE': '0.8733', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5657', 'eval_合计|_指标2_ρ': '0.396', 'eval_合计|_指标3_RMSE': '0.8019', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '14.37', 'eval_runtime': '34.77', 'eval_samples_per_second': '54.39', 'eval_steps_per_second': '6.817', 'epoch': '4'}
+9363.2s 691 σ 采集完成：验证集 1891 行 | σ 范围 [0.300, 1.089]（夹界 [0.3, 2.0]）
+9363.2s 692 --- 训练后指标 ---
+9363.2s 693 en-nn|ModAvg_指标1_ρ                 0.4830
+9363.2s 694 en-nn|ModAvg_指标2_ρ                 0.2454
+9363.2s 695 en-nn|ModAvg_指标3_RMSE              0.8530
+9363.2s 696 en-nn|HeadAvg_指标1_ρ                0.5483
+9363.2s 697 en-nn|HeadAvg_指标2_ρ                0.2715
+9363.2s 698 en-nn|HeadAvg_指标3_RMSE             0.7452
+9363.2s 699 de-nn|ModAvg_指标1_ρ                 0.3577
+9363.2s 700 de-nn|ModAvg_指标2_ρ                 0.3438
+9363.2s 701 de-nn|ModAvg_指标3_RMSE              0.6387
+9363.2s 702 de-nn|HeadAvg_指标1_ρ                0.7287
+9363.2s 703 de-nn|HeadAvg_指标2_ρ                0.4564
+9363.2s 704 de-nn|HeadAvg_指标3_RMSE             0.8769
+9363.2s 705 en-pv|Avg_指标1_ρ                    0.6587
+9363.2s 706 en-pv|Avg_指标2_ρ                    0.6409
+9363.2s 707 en-pv|Avg_指标3_RMSE                 0.8242
+9363.2s 708 de-pv|Avg_指标1_ρ                    0.6180
+9363.2s 709 de-pv|Avg_指标2_ρ                    0.4180
+9363.2s 710 de-pv|Avg_指标3_RMSE                 0.8733
+9363.2s 711 合计|_指标1_ρ                          0.5657
+9363.2s 712 合计|_指标2_ρ                          0.3960
+9363.2s 713 合计|_指标3_RMSE                       0.8019
+9363.2s 714 合计|_综合分                            14.3653
+9363.5s 715 → 运行 joint_hetero 完成，产物在 /kaggle/working/outputs/xlmr/joint_hetero
+9364.3s 716 ★ V13 臂：joint_rank_hetero | loss_mode=rankhetero | head=hetero | pool=mean
+9364.3s 717 ==============================================================================
+9364.3s 718 运行 4/4：joint_rank_hetero  |  参与子集 ['en-nn', 'de-nn', 'en-pv', 'de-pv']
+9364.3s 719 ==============================================================================
+9371.4s 720 训练 7934 条 | 验证 1891 条 | 评测设置 6 个
+9371.4s 721 本次运行轮数 = 4（联合对照臂，覆盖全部评测设置）
+9371.6s 722 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+9371.6s 723 Key                       | Status     |  |
+9371.6s 724 --------------------------+------------+--+-
+9371.6s 725 lm_head.layer_norm.weight | UNEXPECTED |  |
+9371.6s 726 lm_head.dense.weight      | UNEXPECTED |  |
+9371.6s 727 lm_head.bias              | UNEXPECTED |  |
+9371.6s 728 lm_head.dense.bias        | UNEXPECTED |  |
+9371.6s 729 lm_head.layer_norm.bias   | UNEXPECTED |  |
+9371.6s 730 
+9371.6s 731 Notes:
+9371.6s 732 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+9371.6s 733 
+9371.6s 734 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+9371.6s 735 Key                       | Status     |  |
+9371.6s 736 --------------------------+------------+--+-
+9371.6s 737 lm_head.layer_norm.weight | UNEXPECTED |  |
+9371.6s 738 lm_head.dense.weight      | UNEXPECTED |  |
+9371.6s 739 lm_head.bias              | UNEXPECTED |  |
+9371.6s 740 lm_head.dense.bias        | UNEXPECTED |  |
+9371.6s 741 lm_head.layer_norm.bias   | UNEXPECTED |  |
+9371.6s 742 
+9371.6s 743 Notes:
+9371.6s 744 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+9371.8s 745 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+9372.6s 746 GPU0: Tesla T4 | 14.6 GiB | compute capability 7.5
+9372.6s 747 显存预算：FacebookAI/xlm-roberta-large | 560M 参数（实际） | 选档参考 560M（仅 auto 模式用；当前 FIT_MODE=t3） | 单卡容量 14.6 GiB | 安全系数 90%
+9372.6s 748 档位表（固定开销与 batch 无关，降 batch 救不了）：
+9372.6s 749 档   含义                                       固定    bs=1 需    bs=8 需  判定
+9372.6s 750 t0  全参微调 · fp32 AdamW · AMP                9.4G      9.7G     11.4G  ✓ 装得下
+9372.6s 751 t1  全参微调 · 8bit AdamW · AMP                   -         -         -  不可用（需要 bitsandbytes）
+9372.6s 752 t2  全参微调 · Adafactor · AMP                 5.3G      5.6G      6.8G  ✓ 装得下
+9372.6s 753 t3  全参微调 · Adafactor · 无 AMP               4.3G      4.6G      5.8G  ✓ 装得下
+9372.6s 754 t4  顶部 50% 层 · Adafactor · AMP             4.2G      4.5G      5.7G  ✓ 装得下
+9372.6s 755 t5  顶部 50% 层 · Adafactor · 无 AMP           3.2G      3.5G      4.7G  ✓ 装得下
+9372.6s 756 t6  顶部 25% 层 · Adafactor · 无 AMP           2.6G      2.9G      4.1G  ✓ 装得下
+9372.6s 757 → 采用档位 t3（全参微调 · Adafactor · 无 AMP）；本模型固定开销 4.3 GiB（+ 激活：bs=1 约 0.3 / bs=8 约 1.5 GiB，实际能跑多大由探测决定）
+9372.6s 758 [显存·正式训练前] 已分配 2.10 GiB | 已保留 2.12 GiB | 卡 14.56 GiB
+9372.8s 759 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+9372.8s 760 Key                       | Status     |  |
+9372.8s 761 --------------------------+------------+--+-
+9372.8s 762 lm_head.layer_norm.weight | UNEXPECTED |  |
+9372.8s 763 lm_head.dense.weight      | UNEXPECTED |  |
+9372.8s 764 lm_head.bias              | UNEXPECTED |  |
+9372.8s 765 lm_head.dense.bias        | UNEXPECTED |  |
+9372.8s 766 lm_head.layer_norm.bias   | UNEXPECTED |  |
+9372.8s 767 
+9372.8s 768 Notes:
+9372.8s 769 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+9372.8s 770 
+9372.8s 771 [transformers] [1mXLMRobertaModel LOAD REPORT[0m from: /root/.cache/huggingface/hub/models--FacebookAI--xlm-roberta-large/snapshots/c23d21b0620b635a76227c604d44e43a9f0ee389
+9372.8s 772 Key                       | Status     |  |
+9372.8s 773 --------------------------+------------+--+-
+9372.8s 774 lm_head.layer_norm.weight | UNEXPECTED |  |
+9372.8s 775 lm_head.dense.weight      | UNEXPECTED |  |
+9372.8s 776 lm_head.bias              | UNEXPECTED |  |
+9372.8s 777 lm_head.dense.bias        | UNEXPECTED |  |
+9372.8s 778 lm_head.layer_norm.bias   | UNEXPECTED |  |
+9372.8s 779 
+9372.8s 780 Notes:
+9372.8s 781 - UNEXPECTED:	can be ignored when loading from different task/architecture; not ok if you expect identical arch.
+9373.0s 782 主干加载成功: FacebookAI/xlm-roberta-large | attn_implementation=sdpa
+9373.7s 783 口径自检 ✓ 有效 batch = 8×2 = 16 | 每轮批数 992 | 总更新步 1984 | warmup 198 步（占 10.0%）
+9409.4s 784 {'eval_loss': '1.38', 'eval_model_preparation_time': '0.0066', 'eval_en-nn|ModAvg_指标1_ρ': '0.0001243', 'eval_en-nn|ModAvg_指标2_ρ': '0.02395', 'eval_en-nn|ModAvg_指标3_RMSE': '1.611', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.01194', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1644', 'eval_en-nn|HeadAvg_指标3_RMSE': '1.832', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '-0.1035', 'eval_de-nn|ModAvg_指标2_ρ': '0.01159', 'eval_de-nn|ModAvg_指标3_RMSE': '2.04', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '-0.08019', 'eval_de-nn|HeadAvg_指标2_ρ': '0.02655', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.679', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '-0.03529', 'eval_en-pv|Avg_指标2_ρ': '-0.1333', 'eval_en-pv|Avg_指标3_RMSE': '1.144', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.01053', 'eval_de-pv|Avg_指标2_ρ': '0.4171', 'eval_de-pv|Avg_指标3_RMSE': '1.121', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '-0.03273', 'eval_合计|_指标2_ρ': '0.08506', 'eval_合计|_指标3_RMSE': '1.571', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '-34.03', 'eval_runtime': '34.88', 'eval_samples_per_second': '54.22', 'eval_steps_per_second': '6.795', 'epoch': 0}
+9409.4s 785 随机初始化模型基线（34.9s）: 指标1 ρ=-0.0327 | 指标2 ρ=0.0851 | RMSE=1.5709
+9409.4s 786 随机初始化时的评估 loss = 1.3801（图 F 的 epoch 0 起点）
+9409.9s 787 [显存·随机基线评估后] 已分配 2.10 GiB | 已保留 2.15 GiB | 卡 14.56 GiB
+9497.4s 788 {'loss': '1.882', 'grad_norm': '32.88', 'learning_rate': '6.162e-06', 'epoch': '0.125'}
+9584.4s 789 {'loss': '1.296', 'grad_norm': '48.76', 'learning_rate': '1.242e-05', 'epoch': '0.25'}
+9673.6s 790 {'loss': '1.242', 'grad_norm': '49.77', 'learning_rate': '1.869e-05', 'epoch': '0.375'}
+9759.8s 791 {'loss': '1.174', 'grad_norm': '30.84', 'learning_rate': '1.945e-05', 'epoch': '0.5'}
+9845.2s 792 {'loss': '1.139', 'grad_norm': '32.37', 'learning_rate': '1.876e-05', 'epoch': '0.625'}
+9934.4s 793 {'loss': '1.14', 'grad_norm': '51.15', 'learning_rate': '1.806e-05', 'epoch': '0.75'}
+10023.7s 794 {'loss': '0.7643', 'grad_norm': '77.73', 'learning_rate': '1.737e-05', 'epoch': '0.875'}
+10110.2s 795 {'loss': '1.051', 'grad_norm': '160.9', 'learning_rate': '1.667e-05', 'epoch': '1'}
+10146.3s 796 {'eval_loss': '0.5136', 'eval_model_preparation_time': '0.0066', 'eval_en-nn|ModAvg_指标1_ρ': '0.3297', 'eval_en-nn|ModAvg_指标2_ρ': '0.2613', 'eval_en-nn|ModAvg_指标3_RMSE': '1.061', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.4858', 'eval_en-nn|HeadAvg_指标2_ρ': '-0.042', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.9166', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3013', 'eval_de-nn|ModAvg_指标2_ρ': '0.2512', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6222', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6511', 'eval_de-nn|HeadAvg_指标2_ρ': '0.2107', 'eval_de-nn|HeadAvg_指标3_RMSE': '1.065', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.4465', 'eval_en-pv|Avg_指标2_ρ': '0.5217', 'eval_en-pv|Avg_指标3_RMSE': '1.034', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.4909', 'eval_de-pv|Avg_指标2_ρ': '-0.005117', 'eval_de-pv|Avg_指标3_RMSE': '1.013', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.4509', 'eval_合计|_指标2_ρ': '0.1996', 'eval_合计|_指标3_RMSE': '0.9521', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '2.536', 'eval_runtime': '36.13', 'eval_samples_per_second': '52.33', 'eval_steps_per_second': '6.559', 'epoch': '1'}
+10237.3s 797 {'loss': '0.8131', 'grad_norm': '78.58', 'learning_rate': '1.598e-05', 'epoch': '1.125'}
+10324.9s 798 {'loss': '0.4542', 'grad_norm': '28.79', 'learning_rate': '1.529e-05', 'epoch': '1.25'}
+10412.4s 799 {'loss': '0.4754', 'grad_norm': '162.6', 'learning_rate': '1.459e-05', 'epoch': '1.375'}
+10498.6s 800 {'loss': '0.6493', 'grad_norm': '28.84', 'learning_rate': '1.39e-05', 'epoch': '1.5'}
+10583.7s 801 {'loss': '0.6397', 'grad_norm': '57.73', 'learning_rate': '1.32e-05', 'epoch': '1.625'}
+10672.3s 802 {'loss': '0.5595', 'grad_norm': '34.86', 'learning_rate': '1.251e-05', 'epoch': '1.75'}
+10760.0s 803 {'loss': '0.5454', 'grad_norm': '117.3', 'learning_rate': '1.181e-05', 'epoch': '1.875'}
+10848.8s 804 {'loss': '0.1339', 'grad_norm': '36.9', 'learning_rate': '1.112e-05', 'epoch': '2'}
+10885.2s 805 {'eval_loss': '0.6501', 'eval_model_preparation_time': '0.0066', 'eval_en-nn|ModAvg_指标1_ρ': '0.3934', 'eval_en-nn|ModAvg_指标2_ρ': '0.3006', 'eval_en-nn|ModAvg_指标3_RMSE': '0.9899', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5069', 'eval_en-nn|HeadAvg_指标2_ρ': '0.1575', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7701', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3231', 'eval_de-nn|ModAvg_指标2_ρ': '0.3565', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6527', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.6903', 'eval_de-nn|HeadAvg_指标2_ρ': '0.5242', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.986', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6251', 'eval_en-pv|Avg_指标2_ρ': '0.6116', 'eval_en-pv|Avg_指标3_RMSE': '0.9299', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.5568', 'eval_de-pv|Avg_指标2_ρ': '0.4385', 'eval_de-pv|Avg_指标3_RMSE': '1.037', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5159', 'eval_合计|_指标2_ρ': '0.3981', 'eval_合计|_指标3_RMSE': '0.8942', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '10.23', 'eval_runtime': '36.33', 'eval_samples_per_second': '52.05', 'eval_steps_per_second': '6.523', 'epoch': '2'}
+10975.4s 806 {'loss': '0.109', 'grad_norm': '36.07', 'learning_rate': '1.043e-05', 'epoch': '2.125'}
+11062.4s 807 {'loss': '-0.1194', 'grad_norm': '47.55', 'learning_rate': '9.731e-06', 'epoch': '2.25'}
+11149.3s 808 {'loss': '0.129', 'grad_norm': '133.9', 'learning_rate': '9.037e-06', 'epoch': '2.375'}
+11238.0s 809 {'loss': '-0.1037', 'grad_norm': '39.3', 'learning_rate': '8.343e-06', 'epoch': '2.5'}
+11324.6s 810 {'loss': '-0.1582', 'grad_norm': '52.64', 'learning_rate': '7.648e-06', 'epoch': '2.625'}
+11412.6s 811 {'loss': '-0.1498', 'grad_norm': '28.61', 'learning_rate': '6.954e-06', 'epoch': '2.75'}
+11501.3s 812 {'loss': '-0.1658', 'grad_norm': '62.15', 'learning_rate': '6.26e-06', 'epoch': '2.875'}
+11587.7s 813 {'loss': '-0.1418', 'grad_norm': '45.66', 'learning_rate': '5.566e-06', 'epoch': '3'}
+11623.9s 814 {'eval_loss': '0.4045', 'eval_model_preparation_time': '0.0066', 'eval_en-nn|ModAvg_指标1_ρ': '0.4859', 'eval_en-nn|ModAvg_指标2_ρ': '0.3589', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8921', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5288', 'eval_en-nn|HeadAvg_指标2_ρ': '0.27', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7387', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3816', 'eval_de-nn|ModAvg_指标2_ρ': '0.238', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6287', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7632', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4984', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7731', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6807', 'eval_en-pv|Avg_指标2_ρ': '0.6939', 'eval_en-pv|Avg_指标3_RMSE': '0.8106', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.627', 'eval_de-pv|Avg_指标2_ρ': '0.4216', 'eval_de-pv|Avg_指标3_RMSE': '0.8736', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5779', 'eval_合计|_指标2_ρ': '0.4135', 'eval_合计|_指标3_RMSE': '0.7861', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '15.55', 'eval_runtime': '36.14', 'eval_samples_per_second': '52.32', 'eval_steps_per_second': '6.558', 'epoch': '3'}
+11714.9s 815 {'loss': '-0.3937', 'grad_norm': '68.29', 'learning_rate': '4.871e-06', 'epoch': '3.125'}
+11801.8s 816 {'loss': '-0.488', 'grad_norm': '34.99', 'learning_rate': '4.177e-06', 'epoch': '3.25'}
+11888.4s 817 {'loss': '-0.313', 'grad_norm': '45.47', 'learning_rate': '3.483e-06', 'epoch': '3.375'}
+11977.6s 818 {'loss': '-0.531', 'grad_norm': '81.66', 'learning_rate': '2.788e-06', 'epoch': '3.5'}
+12065.0s 819 {'loss': '-0.4537', 'grad_norm': '37.11', 'learning_rate': '2.094e-06', 'epoch': '3.625'}
+12150.6s 820 {'loss': '-0.5095', 'grad_norm': '127', 'learning_rate': '1.4e-06', 'epoch': '3.75'}
+12237.9s 821 {'loss': '-0.5607', 'grad_norm': '48.8', 'learning_rate': '7.055e-07', 'epoch': '3.875'}
+12326.2s 822 {'loss': '-0.7123', 'grad_norm': '221.6', 'learning_rate': '1.12e-08', 'epoch': '4'}
+12362.3s 823 {'eval_loss': '0.5453', 'eval_model_preparation_time': '0.0066', 'eval_en-nn|ModAvg_指标1_ρ': '0.4806', 'eval_en-nn|ModAvg_指标2_ρ': '0.3498', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8794', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.549', 'eval_en-nn|HeadAvg_指标2_ρ': '0.2639', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7231', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.4147', 'eval_de-nn|ModAvg_指标2_ρ': '0.2624', 'eval_de-nn|ModAvg_指标3_RMSE': '0.602', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7453', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4742', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.8084', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6639', 'eval_en-pv|Avg_指标2_ρ': '0.6618', 'eval_en-pv|Avg_指标3_RMSE': '0.8401', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.6329', 'eval_de-pv|Avg_指标2_ρ': '0.4469', 'eval_de-pv|Avg_指标3_RMSE': '0.8989', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5811', 'eval_合计|_指标2_ρ': '0.4098', 'eval_合计|_指标3_RMSE': '0.792', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '15.5', 'eval_runtime': '36.03', 'eval_samples_per_second': '52.49', 'eval_steps_per_second': '6.578', 'epoch': '4'}
+12365.2s 824 {'train_runtime': '2955', 'train_samples_per_second': '10.74', 'train_steps_per_second': '0.671', 'train_loss': '0.2937', 'epoch': '4'}
+12365.7s 825 训练完成，用时 49.3 分钟，loss=0.2937
+12365.7s 826 日志快照：训练点 32 个 | 评估点 4 个
+12365.7s 827 口径回读 ✓ 有效 batch=16 | 每轮批数=992 | 总更新步=1984 | warmup=198 步（占 10.0%）
+12365.7s 828 损失分项权重（自适应标定后）: {'w_order[col0·en-nn]': 0.0, 'w_order[col0·de-nn]': 0.0, 'w_order[col0·en-pv]': 0.0, 'w_order[col0·de-pv]': 0.0, 'w_mse[col0·en-nn]': 0.0, 'w_mse[col0·de-nn]': 0.0, 'w_mse[col0·en-pv]': 0.0, 'w_mse[col0·de-pv]': 0.0, 'w_guard[col0·en-nn]': -109.83086, 'w_guard[col0·de-nn]': -129.54158, 'w_guard[col0·en-pv]': -1.22432, 'w_guard[col0·de-pv]': -0.68251, 'w_xrank[col0·en-nn]': 0.0, 'w_xrank[col0·de-nn]': 0.0, 'w_xrank[col0·en-pv]': 0.0, 'w_xrank[col0·de-pv]': 0.0, 'w_order[col1·en-nn]': 0.0, 'w_order[col1·de-nn]': 0.0, 'w_order[col1·en-pv]': 0.0, 'w_order[col1·de-pv]': 0.0, 'w_mse[col1·en-nn]': 0.0, 'w_mse[col1·de-nn]': 0.0, 'w_mse[col1·en-pv]': 0.0, 'w_mse[col1·de-pv]': 0.0, 'w_guard[col1·en-nn]': -119.05063, 'w_guard[col1·de-nn]': -247.70547, 'w_guard[col1·en-pv]': 0.0, 'w_guard[col1·de-pv]': 0.0, 'w_xrank[col1·en-nn]': 0.0, 'w_xrank[col1·de-nn]': 0.0, 'w_xrank[col1·en-pv]': 0.0, 'w_xrank[col1·de-pv]': 0.0, 'w_rank_fixed': 0.1, 'rank_val': 0.25694}
+12436.8s 829 {'eval_loss': '0.448', 'eval_model_preparation_time': '0.0066', 'eval_en-nn|ModAvg_指标1_ρ': '0.4859', 'eval_en-nn|ModAvg_指标2_ρ': '0.3589', 'eval_en-nn|ModAvg_指标3_RMSE': '0.8921', 'eval_en-nn|ModAvg_组内std退化目标数': 0, 'eval_en-nn|ModAvg_样例数': 679, 'eval_en-nn|HeadAvg_指标1_ρ': '0.5288', 'eval_en-nn|HeadAvg_指标2_ρ': '0.27', 'eval_en-nn|HeadAvg_指标3_RMSE': '0.7387', 'eval_en-nn|HeadAvg_组内std退化目标数': 0, 'eval_en-nn|HeadAvg_样例数': 679, 'eval_de-nn|ModAvg_指标1_ρ': '0.3816', 'eval_de-nn|ModAvg_指标2_ρ': '0.238', 'eval_de-nn|ModAvg_指标3_RMSE': '0.6287', 'eval_de-nn|ModAvg_组内std退化目标数': 0, 'eval_de-nn|ModAvg_样例数': 631, 'eval_de-nn|HeadAvg_指标1_ρ': '0.7632', 'eval_de-nn|HeadAvg_指标2_ρ': '0.4984', 'eval_de-nn|HeadAvg_指标3_RMSE': '0.7731', 'eval_de-nn|HeadAvg_组内std退化目标数': 0, 'eval_de-nn|HeadAvg_样例数': 631, 'eval_en-pv|Avg_指标1_ρ': '0.6807', 'eval_en-pv|Avg_指标2_ρ': '0.6939', 'eval_en-pv|Avg_指标3_RMSE': '0.8106', 'eval_en-pv|Avg_组内std退化目标数': 0, 'eval_en-pv|Avg_样例数': 293, 'eval_de-pv|Avg_指标1_ρ': '0.627', 'eval_de-pv|Avg_指标2_ρ': '0.4216', 'eval_de-pv|Avg_指标3_RMSE': '0.8736', 'eval_de-pv|Avg_组内std退化目标数': 0, 'eval_de-pv|Avg_样例数': 288, 'eval_合计|_指标1_ρ': '0.5779', 'eval_合计|_指标2_ρ': '0.4135', 'eval_合计|_指标3_RMSE': '0.7861', 'eval_合计|_组内std退化目标数': 0, 'eval_合计|_评测设置数': 6, 'eval_合计|_样例数': 1891, 'eval_合计|_目标数': 240, 'eval_合计|_综合分': '15.55', 'eval_runtime': '34.83', 'eval_samples_per_second': '54.29', 'eval_steps_per_second': '6.804', 'epoch': '4'}
+12470.1s 830 σ 采集完成：验证集 1891 行 | σ 范围 [0.300, 0.960]（夹界 [0.3, 2.0]）
+12470.1s 831 --- 训练后指标 ---
+12470.1s 832 en-nn|ModAvg_指标1_ρ                 0.4859
+12470.1s 833 en-nn|ModAvg_指标2_ρ                 0.3589
+12470.1s 834 en-nn|ModAvg_指标3_RMSE              0.8921
+12470.1s 835 en-nn|HeadAvg_指标1_ρ                0.5288
+12470.1s 836 en-nn|HeadAvg_指标2_ρ                0.2700
+12470.1s 837 en-nn|HeadAvg_指标3_RMSE             0.7387
+12470.1s 838 de-nn|ModAvg_指标1_ρ                 0.3816
+12470.1s 839 de-nn|ModAvg_指标2_ρ                 0.2380
+12470.1s 840 de-nn|ModAvg_指标3_RMSE              0.6287
+12470.1s 841 de-nn|HeadAvg_指标1_ρ                0.7632
+12470.1s 842 de-nn|HeadAvg_指标2_ρ                0.4984
+12470.1s 843 de-nn|HeadAvg_指标3_RMSE             0.7731
+12470.1s 844 en-pv|Avg_指标1_ρ                    0.6807
+12470.1s 845 en-pv|Avg_指标2_ρ                    0.6939
+12470.1s 846 en-pv|Avg_指标3_RMSE                 0.8106
+12470.1s 847 de-pv|Avg_指标1_ρ                    0.6270
+12470.1s 848 de-pv|Avg_指标2_ρ                    0.4216
+12470.1s 849 de-pv|Avg_指标3_RMSE                 0.8736
+12470.1s 850 合计|_指标1_ρ                          0.5779
+12470.1s 851 合计|_指标2_ρ                          0.4135
+12470.1s 852 合计|_指标3_RMSE                       0.7861
+12470.1s 853 合计|_综合分                            15.5530
+12470.3s 854 → 运行 joint_rank_hetero 完成，产物在 /kaggle/working/outputs/xlmr/joint_rank_hetero
+12471.0s 855 
+12471.0s 856 ==============================================================================
+12471.0s 857 全部 4 次运行完成
+12471.0s 858 ==============================================================================
+12471.1s 859 主图使用的运行: joint_base | 评测设置: 6
+12471.2s 860 ================================================================================================
+12471.2s 861 表 1  评估标准 —— joint_base（联合运行覆盖全部评测设置）
+12471.2s 862 ================================================================================================
+12471.2s 863 运行    子集     标签列  指标1 ρ  指标2 ρ  指标3 RMSE  组内std退化目标数  样例数
+12471.2s 864 joint_base en-nn  ModAvg 0.4747 0.3001    0.8773           0  679
+12471.2s 865 joint_base en-nn HeadAvg 0.5287 0.3475    0.7203           0  679
+12471.2s 866 joint_base de-nn  ModAvg 0.3792 0.2464    0.5845           0  631
+12471.2s 867 joint_base de-nn HeadAvg 0.7787 0.4702    0.7455           0  631
+12471.2s 868 joint_base en-pv     Avg 0.6515 0.7246    0.8504           0  293
+12471.2s 869 joint_base de-pv     Avg 0.6564 0.4131    0.8922           0  288
+12471.2s 870 
+12471.2s 871 合计（各评测设置取平均）：指标1 ρ=0.5782 | 指标2 ρ=0.4170 | RMSE=0.7784
+12471.2s 872 best-checkpoint 选择指标（合计|_综合分，= 指标1/0.023 + 指标2/0.055 − RMSE/0.046，即在 z 分数空间里等权）= 15.7999
+12471.2s 873 → 指标 2 若是 nan，说明该设置下模型对同一目标的所有例句给出了相同分数，会在官方评测中直接出局。
+12471.2s 874 
+12471.2s 875 已保存: /kaggle/working/outputs/summary/results_all_runs.csv
+12471.2s 876 已保存: /kaggle/working/outputs/summary/arm_config.json
+12471.2s 877 
+12471.2s 878 ==============================================================================
+12471.2s 879 本实验的口径（独立记录；A 组里「声明值」与「实际值」必须一致）
+12471.2s 880 ==============================================================================
+12471.2s 881 
+12471.2s 882 【A. 本实验口径】24 项
+12471.2s 883 fit_tier                 = t3
+12471.2s 884 trainable_scope          = 1.0
+12471.2s 885 mixed_precision          = fp32
+12471.2s 886 optim                    = adafactor
+12471.2s 887 effective_batch          = 16
+12471.2s 888 actual_effective_batch   = 16
+12471.2s 889 lr                       = 2e-05
+12471.2s 890 epochs                   = 4
+12471.2s 891 run_epochs               = 4
+12471.2s 892 joint_epochs             = 4
+12471.2s 893 warmup_ratio             = 0.1
+12471.2s 894 actual_warmup_frac       = 0.0998
+12471.2s 895 huber_delta              = 1.0
+12471.2s 896 seed                     = 42
+12471.2s 897 n_outputs                = 2
+12471.2s 898 max_length               = 160
+12471.2s 899 weight_decay             = 0.01
+12471.2s 900 metric_for_best_model    = 合计|_综合分
+12471.2s 901 auto_balance             = True
+12471.2s 902 order_tau                = 1.0
+12471.2s 903 xrank_margin             = 0.05
+12471.2s 904 xrank_tau                = 2.0
+12471.2s 905 balance_ema_beta         = 0.99
+12471.2s 906 loss_finite_check_every  = 50
+12471.2s 907 
+12471.2s 908 声明值 vs 实际值核对（必须一致）：
+12471.2s 909 effective_batch=16 | actual_effective_batch=16    ← 有效 batch：声明值 = 实际生效值
+12471.2s 910 warmup_ratio=0.1 | actual_warmup_frac=0.0998    ← warmup 占比：声明值 = 实际生效值
+12471.2s 911 fit_tier=t3 | trainable_scope=1.0    ← 档位 = 可训层比例（t3 ⇒ 1.0 全参）
+12471.2s 912 
+12471.2s 913 【B. 机制项】13 项
+12471.2s 914 pool_mode                = mean      ← 本运行的池化方式（上游判读冻结为 mean = 全句掩码均值）
+12471.2s 915 loss_profile             = {'en-nn': {'order': 0.0, 'mse': 0.0, 'guard': 0.06, 'xrank': 0.0, 'kappa': 0.15}, 'de-nn': {'order': 0.0, 'mse': 0.0, 'guard': 0.06, 'xrank': 0.0, 'kappa': 0.15}, 'en-pv': {'order': 0.0, 'mse': 0.0, 'guard': 0.06, 'xrank': 0.0, 'kappa': 0.5}, 'de-pv': {'order': 0.0, 'mse': 0.0, 'guard': 0.06, 'xrank': 0.0, 'kappa': 0.5}}      ← 本运行的按子集损失占比表（guard 保险丝四臂同机制；主项 base=huber / hetero=NLE）
+12471.2s 916 loss_mode                = base      ← 本运行的损失模式（base / rank / hetero / rankhetero）
+12471.2s 917 head_kind                = linear      ← 本运行的读出头（linear / hetero μ+log σ）
+12471.2s 918 rank_w                   = 0.1      ← 跨目标排序项的固定权重（rank / rankhetero 臂）
+12471.2s 919 rank_tau                 = 1.0      ← 排序项的 softplus 温度
+12471.2s 920 rank_dy_min              = 0.25      ← 排序项的近并列对排除阈值（|Δy| 低于它不提供可靠序）
+12471.2s 921 sigma_min                = 0.3      ← 异方差 σ 的下夹界（挡 1/σ² 溢出）
+12471.2s 922 sigma_max                = 2.0      ← 异方差 σ 的上夹界（挡 σ→∞ 塌缩）
+12471.2s 923 sigma_init               = 1.0      ← σ 的初始化值（零权重 + 固定偏置）
+12471.2s 924 z_m1                     = 0.023      ← best 准则的 z 分数常数
+12471.2s 925 z_m2                     = 0.055      ← best 准则的 z 分数常数
+12471.2s 926 z_m3                     = 0.046      ← best 准则的 z 分数常数
+12471.2s 927 
+12471.2s 928 【C. 实现细节 / 环境】17 项 —— 允许不同，不影响数值
+12471.2s 929 model_key                = xlmr      ← 模型身份
+12471.2s 930 model_id                 = FacebookAI/xlm-roberta-large      ← 模型身份
+12471.2s 931 run_name                 = joint_base      ← 运行名（= 对照臂名）
+12471.2s 932 micro_batch              = 8      ← batch 分解方式（乘积 = effective_batch 即等价）
+12471.2s 933 grad_accum               = 2      ← batch 分解方式（乘积 = effective_batch 即等价）
+12471.2s 934 gradient_checkpointing   = True      ← 只影响速度与显存，数学上等价
+12471.2s 935 gpu_index                = 0      ← 用哪一张**同型号**卡（只影响并行调度）
+12471.2s 936 train_subset             = ['en-nn', 'de-nn', 'en-pv', 'de-pv']      ← 本次运行的子集
+12471.2s 937 actual_max_steps         = 1984      ← 本次运行的总更新步数（随轮数变）
+12471.2s 938 actual_warmup_steps      = 198      ← 本次运行的 warmup 绝对步数
+12471.2s 939 dataloader_len           = 992      ← 本次运行每轮的批数
+12471.2s 940 loss_term_weights        = {'w_order[col0·en-nn]': 0.0, 'w_order[col0·de-nn]': 0.0, 'w_order[col0·en-pv]': 0.0, 'w_order[col0·de-pv]': 0.0, 'w_mse[col0·en-nn]': 0.0, 'w_mse[col0·de-nn]': 0.0, 'w_mse[col0·en-pv]': 0.0, 'w_mse[col0·de-pv]': 0.0, 'w_guard[col0·en-nn]': 5.0, 'w_guard[col0·de-nn]': 5.0, 'w_guard[col0·en-pv]': 4.9991, 'w_guard[col0·de-pv]': 2.5354, 'w_xrank[col0·en-nn]': 0.0, 'w_xrank[col0·de-nn]': 0.0, 'w_xrank[col0·en-pv]': 0.0, 'w_xrank[col0·de-pv]': 0.0, 'w_order[col1·en-nn]': 0.0, 'w_order[col1·de-nn]': 0.0, 'w_order[col1·en-pv]': 0.0, 'w_order[col1·de-pv]': 0.0, 'w_mse[col1·en-nn]': 0.0, 'w_mse[col1·de-nn]': 0.0, 'w_mse[col1·en-pv]': 0.0, 'w_mse[col1·de-pv]': 0.0, 'w_guard[col1·en-nn]': 5.0, 'w_guard[col1·de-nn]': 5.0, 'w_guard[col1·en-pv]': 0.0, 'w_guard[col1·de-pv]': 0.0, 'w_xrank[col1·en-nn]': 0.0, 'w_xrank[col1·de-nn]': 0.0, 'w_xrank[col1·en-pv]': 0.0, 'w_xrank[col1·de-pv]': 0.0}      ← balancer EMA（rank 臂另附 w_rank_fixed / rank_val；rank_val = 最后一次 compute_loss 的排序项数值，含训练内评估批，纯诊断量）
+12471.2s 941 stats_dtype              = float64      ← 组统计矩的累加精度（CUDA/CPU=float64；MPS 不支持 float64）
+12471.2s 942 run_plan                 = [['joint_base', None], ['joint_rank', None], ['joint_hetero', None], ['joint_rank_hetero', None]]      ← 本次实际跑了哪几次（run_plan 裁剪后）
+12471.2s 943 data_mode                = orig      ← 数据口径（V13 固定 orig）
+12471.2s 944 seed                     = 42      ← 训练种子
+12471.2s 945 n_outputs                = 2      ← 输出列数
+12471.2s 946 
+12471.2s 947 口径文件: /kaggle/working/outputs/summary/run_settings_joint_base.json
+12471.2s 948 判读规则：
+12471.2s 949 ① 本实验独立成立——不要求与另一个实验口径一致；
+12471.2s 950 ② A 组的「声明值」必须等于「实际生效值」；
+12471.2s 951 ③ 与其它实验比较时，用这张表核对差异，不要假设两边一定一样。
+12473.1s 952 已保存: /kaggle/working/outputs/summary/figA_pred_vs_gold.png
+12474.1s 953 已保存: /kaggle/working/outputs/summary/figB_evaluation_standard.png
+12476.0s 954 已保存: /kaggle/working/outputs/summary/figC_group_std.png
+12476.8s 955 已保存: /kaggle/working/outputs/summary/figD_run_comparison.png
+12476.9s 956 ================================================================================================
+12476.9s 957 区块二  参考对照（不是评估标准，仅用于解读上面的数字）
+12476.9s 958 ================================================================================================
+12476.9s 959 运行              对照系统   指标1 ρ  指标2 ρ  指标3 RMSE
+12476.9s 960 joint_base             训练后模型  0.5782 0.4170    0.7784
+12476.9s 961 joint_base             随机初始化 -0.0327 0.0851    1.5617
+12476.9s 962 joint_base type-level oracle  0.7837    NaN    0.5374
+12476.9s 963 joint_rank             训练后模型  0.5863 0.4241    0.7725
+12476.9s 964 joint_rank             随机初始化 -0.0327 0.0851    1.5617
+12476.9s 965 joint_rank type-level oracle  0.7837    NaN    0.5374
+12476.9s 966 joint_hetero             训练后模型  0.5657 0.3960    0.8019
+12476.9s 967 joint_hetero             随机初始化 -0.0327 0.0851    1.5709
+12476.9s 968 joint_hetero type-level oracle  0.7837    NaN    0.5374
+12476.9s 969 joint_rank_hetero             训练后模型  0.5779 0.4135    0.7861
+12476.9s 970 joint_rank_hetero             随机初始化 -0.0327 0.0851    1.5709
+12476.9s 971 joint_rank_hetero type-level oracle  0.7837    NaN    0.5374
+12476.9s 972 
+12476.9s 973 --- 三个系统分别是什么 ---
+12476.9s 974 随机初始化      ：同一模型、同一份数据，但一步都没训练。它是「瞎猜」的下界；训练后模型必须显著高于它，否则等于没训。
+12476.9s 975 type-level oracle：给每个目标赋它自己的真实均值（不看语境）。它在指标 1 / RMSE 上接近满分，但指标 2 必然是 nan（同一目标的所有例句拿到同一个分数 → 组内 std 恒为 0 → 相关系数未定义）。
+12476.9s 976 → 我们的模型如果指标 2 也接近 nan，说明还没有真正做到「因句而异」。
+12477.7s 977 已保存: /kaggle/working/outputs/summary/figE_reference_comparison.png
+12478.7s 978 已保存: /kaggle/working/outputs/summary/figF_loss_curves.png
+12478.9s 979 [joint_base / en-nn] -> en-nn-pred.tsv
+12478.9s 980 [joint_base / de-nn] -> de-nn-pred.tsv
+12478.9s 981 [joint_base / en-pv] -> en-pv-pred.tsv
+12478.9s 982 [joint_base / de-pv] -> de-pv-pred.tsv
+12478.9s 983 [joint_rank / en-nn] -> en-nn-pred.tsv
+12479.0s 984 [joint_rank / de-nn] -> de-nn-pred.tsv
+12479.0s 985 [joint_rank / en-pv] -> en-pv-pred.tsv
+12479.0s 986 [joint_rank / de-pv] -> de-pv-pred.tsv
+12479.0s 987 [joint_hetero / en-nn] -> en-nn-pred.tsv
+12479.0s 988 [joint_hetero / de-nn] -> de-nn-pred.tsv
+12479.0s 989 [joint_hetero / en-pv] -> en-pv-pred.tsv
+12479.0s 990 [joint_hetero / de-pv] -> de-pv-pred.tsv
+12479.0s 991 [joint_rank_hetero / en-nn] -> en-nn-pred.tsv
+12479.0s 992 [joint_rank_hetero / de-nn] -> de-nn-pred.tsv
+12479.0s 993 [joint_rank_hetero / en-pv] -> en-pv-pred.tsv
+12479.0s 994 [joint_rank_hetero / de-pv] -> de-pv-pred.tsv
+12479.0s 995 
+12479.0s 996 → 无表头、列数正确、值域 [0,5]、ContextID 原样透传。
+12479.0s 997 → 正式提交时把 4 个 *-train.tsv 换成官方测试 TSV，文件名保持 en-nn-pred.tsv 等 4 个。
+12479.0s 998 → 多臂计划下这 4 个演示文件被逐臂覆盖，磁盘上是最后一个臂的导出；正式提交在测试集发布后按采纳配方单独导出。
+12479.1s 999 ================================================================================================
+12479.1s 1000 表 1  四臂汇总（2×2 析因 best-checkpoint；参照 冻结配方 0.5825/0.5782 / 六次均值 0.5853 / v4.4 0.4982）
+12479.1s 1001 ================================================================================================
+12479.1s 1002 臂                  loss_mode       指标1ρ Δm1(vs 0.5825)     指标2ρ     RMSE   退化    训练min
+12479.1s 1003 joint_base         base          0.5782        -0.0043   0.4170   0.7784    0     49.2
+12479.1s 1004 joint_rank         rank          0.5863        +0.0038   0.4241   0.7725    0     49.2
+12479.1s 1005 joint_hetero       hetero        0.5657        -0.0168   0.3960   0.8019    0     49.2
+12479.1s 1006 joint_rank_hetero  rankhetero    0.5779        -0.0046   0.4135   0.7861    0     49.3
+12479.1s 1007 
+12479.1s 1008 逐臂轨迹（合计指标1）：
+12479.1s 1009 joint_base         e1:0.4147 e2:0.4820 e3:0.5711 e4:0.5782
+12479.1s 1010 joint_rank         e1:0.4491 e2:0.5163 e3:0.5863 e4:0.5886
+12479.1s 1011 joint_hetero       e1:0.4229 e2:0.4840 e3:0.5657 e4:0.5646
+12479.1s 1012 joint_rank_hetero  e1:0.4509 e2:0.5159 e3:0.5779 e4:0.5811
+12479.3s 1013 ================================================================================================
+12479.3s 1014 表 2  预注册配对判读（阈值 0.0652/0.1526/0.0463；同一数据切分 ⇒ 配对差值合法）
+12479.3s 1015 ================================================================================================
+12479.3s 1016 验证集逐行对齐检验：通过（数据切分种子恒为 42）
+12479.3s 1017 joint_rank vs base: Δm1 = +0.0081 | Δm2 = +0.0071 | ΔRMSE = -0.0059
+12479.3s 1018 joint_hetero vs base: Δm1 = -0.0125 | Δm2 = -0.0210 | ΔRMSE = +0.0235
+12479.3s 1019 joint_rank_hetero vs base: Δm1 = -0.0003 | Δm2 = -0.0035 | ΔRMSE = +0.0077
+12479.3s 1020 析因交互（仅参考，不判读）：Δm1(rank∧hetero) = -0.0003 vs 边际和 -0.0043
+12479.3s 1021 预注册决策：rank / hetero 均无可测收益 ⇒ 不采纳（提交配方保持冻结版）
+12479.3s 1022 （幸存臂存在但无一越过采纳阈值 ⇒ 按预注册规则全部不采纳）
+12479.3s 1023 逐设置 Δm1（joint_rank − base；仅作参考，预注册判读只看合计）: en-nn|ModAvg +0.0202 | en-nn|HeadAvg +0.0406 | de-nn|ModAvg +0.0152 | de-nn|HeadAvg -0.0004 | en-pv|Avg +0.0175 | de-pv|Avg -0.0443
+12479.3s 1024 逐设置 Δm1（joint_hetero − base；仅作参考，预注册判读只看合计）: en-nn|ModAvg +0.0083 | en-nn|HeadAvg +0.0195 | de-nn|ModAvg -0.0215 | de-nn|HeadAvg -0.0500 | en-pv|Avg +0.0071 | de-pv|Avg -0.0384
+12479.3s 1025 逐设置 Δm1（joint_rank_hetero − base；仅作参考，预注册判读只看合计）: en-nn|ModAvg +0.0112 | en-nn|HeadAvg +0.0001 | de-nn|ModAvg +0.0024 | de-nn|HeadAvg -0.0155 | en-pv|Avg +0.0291 | de-pv|Avg -0.0294
+12479.3s 1026 
+12479.3s 1027 异方差诊断（目标级 ρ(σ_pred, 人工 std)；仅报告，不参与判读）：
+12479.3s 1028 joint_hetero       en-nn|ModAvg: ρ(σ,人工std) = +0.2783（89 目标）
+12479.3s 1029 joint_hetero       en-nn|HeadAvg: ρ(σ,人工std) = +0.2620（89 目标）
+12479.3s 1030 joint_hetero       de-nn|ModAvg: ρ(σ,人工std) = +0.3197（91 目标）
+12479.3s 1031 joint_hetero       de-nn|HeadAvg: ρ(σ,人工std) = +0.4393（91 目标）
+12479.3s 1032 joint_hetero       en-pv|Avg: ρ(σ,人工std) = -0.0510（30 目标）
+12479.3s 1033 joint_hetero       de-pv|Avg: ρ(σ,人工std) = +0.4490（30 目标）
+12479.3s 1034 joint_rank_hetero  en-nn|ModAvg: ρ(σ,人工std) = +0.2846（89 目标）
+12479.3s 1035 joint_rank_hetero  en-nn|HeadAvg: ρ(σ,人工std) = +0.2276（89 目标）
+12479.3s 1036 joint_rank_hetero  de-nn|ModAvg: ρ(σ,人工std) = +0.2566（91 目标）
+12479.3s 1037 joint_rank_hetero  de-nn|HeadAvg: ρ(σ,人工std) = +0.4717（91 目标）
+12479.3s 1038 joint_rank_hetero  en-pv|Avg: ρ(σ,人工std) = +0.1533（30 目标）
+12479.3s 1039 joint_rank_hetero  de-pv|Avg: ρ(σ,人工std) = +0.4005（30 目标）
+12479.3s 1040 
+12479.3s 1041 复现性参照：冻结配方上游实测 0.5825 / 同配方两次复测均 0.5782（逐位相同）；joint_base 与 0.5825 的差 = -0.0043（本管线同配方具有逐位确定性：若 ≠ 0.5782，先查本版实现层的 RNG 消耗差异，不要诉诸噪声；判读只用臂内配对差，不受影响）
+12479.3s 1042 本计划最佳臂：joint_rank  0.5863/0.4241/0.7725
+12479.3s 1043 注：单次运行对照噪声较大，判读只按预注册阈值执行；「无差异」时按精简原则取冻结侧。
+12481.6s 1044 已写出 v13_ablation.json / v13_ablation_runs.csv / figJ / figK / figL
+12481.6s 1045 判读顺序：R4 红线 → 反向否决（逐臂）→ 采纳规则（逐臂）
+12488.7s 1046 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+12488.7s 1047 cells[i][c] = re.sub('\\\\\|', '|', cell)
+12489.0s 1048 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+12489.0s 1049 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+12490.0s 1050 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+12490.3s 1051 [NbConvertApp] Writing 1929592 bytes to __notebook__.ipynb
+12493.3s 1052 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+12495.0s 1053 [NbConvertApp] Support files will be in __results___files/
+12495.0s 1054 [NbConvertApp] Making directory __results___files
+12495.0s 1055 [NbConvertApp] Making directory __results___files
+12495.0s 1056 [NbConvertApp] Making directory __results___files
+12495.0s 1057 [NbConvertApp] Making directory __results___files
+12495.0s 1058 [NbConvertApp] Making directory __results___files
+12495.0s 1059 [NbConvertApp] Making directory __results___files
+12495.0s 1060 [NbConvertApp] Making directory __results___files
+12495.0s 1061 [NbConvertApp] Making directory __results___files
+12495.0s 1062 [NbConvertApp] Making directory __results___files
+12495.0s 1063 [NbConvertApp] Writing 1604369 bytes to __results__.html
